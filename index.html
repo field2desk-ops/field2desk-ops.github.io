@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Field2Desk | Dedicated Dispatch & Front-Office Operations for US Trade Teams</title>
   <meta name="description" content="Dedicated remote call handling, live dispatching, and back-office operations for US HVAC, plumbing, and electrical contractors." />
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%230B192C'/%3E%3Cpath d='M20 33v-3a12 12 0 0 1 24 0v3' fill='none' stroke='%230D9488' stroke-width='4.5' stroke-linecap='round'/%3E%3Crect x='15' y='30' width='7' height='12' rx='3.5' fill='%23FFFFFF'/%3E%3Crect x='42' y='30' width='7' height='12' rx='3.5' fill='%23FFFFFF'/%3E%3Cpath d='M45 42v3a5 5 0 0 1-5 5h-6' fill='none' stroke='%230D9488' stroke-width='3.5' stroke-linecap='round'/%3E%3Ccircle cx='32' cy='50' r='3' fill='%23FFFFFF'/%3E%3C/svg%3E" />
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230A1D37'/%3E%3Cpath d='M16 34v-3a16 16 0 0 1 32 0v3' fill='none' stroke='%231EB2A6' stroke-width='3.5' stroke-linecap='round'/%3E%3Crect x='11' y='30' width='6' height='12' rx='3' fill='%231EB2A6'/%3E%3Crect x='47' y='30' width='6' height='12' rx='3' fill='%231EB2A6'/%3E%3Cpolygon points='32,16 43,23 43,39 32,46 21,39 21,23' fill='none' stroke='%23FFFFFF' stroke-width='2.5'/%3E%3Crect x='29' y='25' width='6' height='11' rx='3' fill='%231EB2A6'/%3E%3Cpath d='M16 42c2 5 6 7 11 7' fill='none' stroke='%23FFFFFF' stroke-width='2.5' stroke-linecap='round'/%3E%3Ccircle cx='28' cy='49' r='2.5' fill='%23FFFFFF'/%3E%3C/svg%3E" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@600;700;800&display=swap" rel="stylesheet">
@@ -14,20 +14,20 @@
       --bg-cream: #FAF9F6;
       --bg-white: #FFFFFF;
       --bg-stone: #F3F1EC;
-      --navy: #0B192C;
+      --navy: #0A1D37;
+      --navy-mid: #132C4E;
       --navy-soft: #1E293B;
       --slate: #475569;
       --muted: #64748B;
-      --teal: #0D9488;
-      --teal-dark: #0F766E;
+      --teal: #1EB2A6;
+      --teal-dark: #138A80;
       --teal-tint: #F0FDFA;
       --teal-border: #99F6E4;
-      --amber-tint: #FFFBEB;
-      --amber-text: #B45309;
-      --border: #E5E7EB;
+      --border: #E2E8F0;
       --border-strong: #CBD5E1;
-      --shadow-card: 0 4px 20px -2px rgba(11, 25, 44, 0.06), 0 2px 6px -1px rgba(11, 25, 44, 0.03);
-      --shadow-float: 0 24px 48px -12px rgba(11, 25, 44, 0.16);
+      --shadow-sm: 0 2px 8px rgba(10, 29, 55, 0.04);
+      --shadow-card: 0 10px 30px -5px rgba(10, 29, 55, 0.07), 0 4px 10px -2px rgba(10, 29, 55, 0.03);
+      --shadow-float: 0 25px 50px -12px rgba(10, 29, 55, 0.18);
     }
 
     * {
@@ -48,27 +48,27 @@
       -webkit-font-smoothing: antialiased;
     }
 
-    h1, h2, h3, h4, .brand {
+    h1, h2, h3, h4, .brand-name {
       font-family: 'Outfit', sans-serif;
       letter-spacing: -0.025em;
     }
 
     .container {
-      max-width: 1180px;
+      max-width: 1200px;
       margin: 0 auto;
       padding: 0 28px;
     }
 
-    /* Sticky Light Header */
+    /* Navigation */
     header {
-      background: rgba(250, 249, 246, 0.92);
+      background: rgba(10, 29, 55, 0.96);
       backdrop-filter: blur(12px);
       -webkit-backdrop-filter: blur(12px);
-      border-bottom: 1px solid var(--border);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.09);
       position: sticky;
       top: 0;
       z-index: 100;
-      padding: 16px 0;
+      padding: 14px 0;
     }
 
     .nav-wrap {
@@ -80,33 +80,37 @@
     .brand {
       display: inline-flex;
       align-items: center;
-      gap: 11px;
-      font-size: 1.42rem;
-      font-weight: 800;
-      color: var(--navy);
+      gap: 12px;
       text-decoration: none;
     }
 
-    .brand span {
+    .brand-name {
+      font-size: 1.48rem;
+      font-weight: 800;
+      color: #FFFFFF;
+      letter-spacing: -0.02em;
+    }
+
+    .brand-name span {
       color: var(--teal);
     }
 
     .nav-links {
       display: flex;
       align-items: center;
-      gap: 30px;
+      gap: 26px;
     }
 
     .nav-links a:not(.btn) {
-      color: var(--slate);
+      color: #CBD5E1;
       text-decoration: none;
-      font-size: 0.92rem;
+      font-size: 0.9rem;
       font-weight: 500;
       transition: color 0.2s ease;
     }
 
     .nav-links a:not(.btn):hover {
-      color: var(--navy);
+      color: #FFFFFF;
     }
 
     /* Buttons */
@@ -123,27 +127,28 @@
       transition: all 0.2s ease;
       cursor: pointer;
       border: none;
-    }
-
-    .btn-primary {
-      background-color: var(--navy);
-      color: #FFFFFF;
-      box-shadow: 0 4px 12px rgba(11, 25, 44, 0.16);
-    }
-
-    .btn-primary:hover {
-      background-color: #162B47;
-      transform: translateY(-1px);
+      font-family: 'Inter', sans-serif;
     }
 
     .btn-teal {
       background-color: var(--teal);
       color: #FFFFFF;
-      box-shadow: 0 4px 14px rgba(13, 148, 136, 0.25);
+      box-shadow: 0 4px 14px rgba(30, 178, 166, 0.28);
     }
 
     .btn-teal:hover {
       background-color: var(--teal-dark);
+      transform: translateY(-1px);
+    }
+
+    .btn-navy {
+      background-color: var(--navy);
+      color: #FFFFFF;
+      box-shadow: 0 4px 14px rgba(10, 29, 55, 0.16);
+    }
+
+    .btn-navy:hover {
+      background-color: var(--navy-mid);
       transform: translateY(-1px);
     }
 
@@ -158,21 +163,34 @@
       background-color: var(--bg-stone);
     }
 
+    .btn-glass {
+      background: rgba(255, 255, 255, 0.08);
+      color: #FFFFFF;
+      border: 1px solid rgba(255, 255, 255, 0.18);
+    }
+
+    .btn-glass:hover {
+      background: rgba(255, 255, 255, 0.15);
+    }
+
     .nav-cta {
-      padding: 10px 18px;
+      padding: 9px 18px;
       font-size: 0.88rem;
     }
 
-    /* Editorial Light Hero */
+    /* Hero Section */
     .hero {
-      padding: 76px 0 92px;
+      padding: 74px 0 92px;
       border-bottom: 1px solid var(--border);
+      background:
+        radial-gradient(circle at 90% 10%, rgba(30, 178, 166, 0.08) 0%, transparent 45%),
+        var(--bg-cream);
     }
 
     .hero-grid {
       display: grid;
-      grid-template-columns: 1.05fr 0.95fr;
-      gap: 56px;
+      grid-template-columns: 1.06fr 0.94fr;
+      gap: 54px;
       align-items: center;
     }
 
@@ -180,7 +198,7 @@
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      font-size: 0.8rem;
+      font-size: 0.78rem;
       font-weight: 700;
       text-transform: uppercase;
       letter-spacing: 0.08em;
@@ -189,7 +207,7 @@
       border: 1px solid var(--teal-border);
       padding: 6px 14px;
       border-radius: 999px;
-      margin-bottom: 22px;
+      margin-bottom: 20px;
     }
 
     .live-dot {
@@ -200,7 +218,7 @@
     }
 
     .hero h1 {
-      font-size: 3.25rem;
+      font-size: 3.2rem;
       font-weight: 800;
       line-height: 1.1;
       color: var(--navy);
@@ -212,10 +230,10 @@
     }
 
     .hero-lead {
-      font-size: 1.12rem;
+      font-size: 1.1rem;
       color: var(--slate);
-      margin-bottom: 34px;
-      max-width: 530px;
+      margin-bottom: 32px;
+      max-width: 540px;
       line-height: 1.7;
     }
 
@@ -223,7 +241,7 @@
       display: flex;
       gap: 14px;
       flex-wrap: wrap;
-      margin-bottom: 42px;
+      margin-bottom: 38px;
     }
 
     .trust-strip {
@@ -237,17 +255,17 @@
     .trust-item strong {
       display: block;
       font-family: 'Outfit', sans-serif;
-      font-size: 1.45rem;
+      font-size: 1.42rem;
       font-weight: 800;
       color: var(--navy);
     }
 
     .trust-item span {
-      font-size: 0.84rem;
+      font-size: 0.83rem;
       color: var(--muted);
     }
 
-    /* Hero Photo + Floating Live Dispatch Overlay */
+    /* Hero Photo + Floating Dispatch Widget */
     .hero-visual {
       position: relative;
     }
@@ -257,8 +275,8 @@
       overflow: hidden;
       border: 1px solid var(--border);
       box-shadow: var(--shadow-float);
-      background: var(--bg-stone);
-      aspect-ratio: 4 / 4.3;
+      aspect-ratio: 4 / 4.2;
+      background: var(--navy);
     }
 
     .hero-photo-frame img {
@@ -270,10 +288,10 @@
 
     .floating-card {
       position: absolute;
-      left: -28px;
-      bottom: 28px;
-      right: 28px;
-      background: rgba(255, 255, 255, 0.96);
+      left: -26px;
+      bottom: 24px;
+      right: 24px;
+      background: rgba(255, 255, 255, 0.97);
       backdrop-filter: blur(12px);
       border: 1px solid var(--border);
       border-radius: 16px;
@@ -285,11 +303,11 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: 12px;
+      margin-bottom: 10px;
     }
 
     .fc-title {
-      font-size: 0.78rem;
+      font-size: 0.75rem;
       font-weight: 700;
       text-transform: uppercase;
       letter-spacing: 0.06em;
@@ -297,7 +315,7 @@
     }
 
     .fc-pill {
-      font-size: 0.74rem;
+      font-size: 0.72rem;
       font-weight: 700;
       color: var(--teal-dark);
       background: var(--teal-tint);
@@ -308,12 +326,12 @@
     .fc-tabs {
       display: flex;
       gap: 6px;
-      margin-bottom: 12px;
+      margin-bottom: 11px;
     }
 
     .fc-tab {
       font-family: 'Inter', sans-serif;
-      font-size: 0.76rem;
+      font-size: 0.75rem;
       font-weight: 600;
       padding: 5px 10px;
       border-radius: 7px;
@@ -331,13 +349,13 @@
 
     .fc-body strong {
       display: block;
-      font-size: 0.95rem;
+      font-size: 0.94rem;
       color: var(--navy);
       margin-bottom: 2px;
     }
 
     .fc-body p {
-      font-size: 0.82rem;
+      font-size: 0.81rem;
       color: var(--slate);
     }
 
@@ -345,7 +363,7 @@
     .tools-bar {
       background: var(--bg-white);
       border-bottom: 1px solid var(--border);
-      padding: 26px 0;
+      padding: 24px 0;
     }
 
     .tools-flex {
@@ -353,11 +371,11 @@
       justify-content: space-between;
       align-items: center;
       flex-wrap: wrap;
-      gap: 18px;
+      gap: 16px;
     }
 
     .tools-label {
-      font-size: 0.78rem;
+      font-size: 0.76rem;
       font-weight: 700;
       text-transform: uppercase;
       letter-spacing: 0.08em;
@@ -371,23 +389,23 @@
     }
 
     .tool-tag {
-      font-size: 0.86rem;
+      font-size: 0.85rem;
       font-weight: 600;
-      color: var(--navy-soft);
+      color: var(--navy);
       background: var(--bg-cream);
       border: 1px solid var(--border);
       padding: 6px 14px;
       border-radius: 8px;
     }
 
-    /* Sections */
+    /* Common Section Layout */
     section {
-      padding: 92px 0;
+      padding: 90px 0;
     }
 
     .section-head {
-      max-width: 650px;
-      margin: 0 auto 54px;
+      max-width: 660px;
+      margin: 0 auto 52px;
       text-align: center;
     }
 
@@ -397,12 +415,12 @@
       font-weight: 700;
       text-transform: uppercase;
       letter-spacing: 0.09em;
-      color: var(--teal);
+      color: var(--teal-dark);
       margin-bottom: 10px;
     }
 
     .section-head h2 {
-      font-size: 2.35rem;
+      font-size: 2.3rem;
       font-weight: 800;
       color: var(--navy);
       line-height: 1.18;
@@ -410,11 +428,178 @@
     }
 
     .section-head p {
-      font-size: 1.05rem;
+      font-size: 1.04rem;
       color: var(--slate);
     }
 
-    /* Comparison Table (DIY Phones vs Field2Desk) */
+    /* Trade Specialties with Photos */
+    .trades-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 26px;
+    }
+
+    .trade-card {
+      background: var(--bg-white);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      overflow: hidden;
+      box-shadow: var(--shadow-card);
+      transition: transform 0.2s ease;
+    }
+
+    .trade-card:hover {
+      transform: translateY(-4px);
+    }
+
+    .trade-img {
+      height: 195px;
+      width: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .trade-body {
+      padding: 26px;
+    }
+
+    .trade-badge {
+      display: inline-block;
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--teal-dark);
+      background: var(--teal-tint);
+      padding: 4px 10px;
+      border-radius: 6px;
+      margin-bottom: 10px;
+    }
+
+    .trade-body h3 {
+      font-size: 1.24rem;
+      margin-bottom: 8px;
+      color: var(--navy);
+    }
+
+    .trade-body p {
+      font-size: 0.92rem;
+      color: var(--slate);
+    }
+
+    /* Behind the Desk Photo + Playbook Simulator */
+    .playbook-section {
+      background: var(--bg-white);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .playbook-split {
+      display: grid;
+      grid-template-columns: 0.9fr 1.1fr;
+      gap: 44px;
+      align-items: center;
+    }
+
+    .desk-photo-wrap {
+      position: relative;
+      border-radius: 20px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow-card);
+    }
+
+    .desk-photo-wrap img {
+      width: 100%;
+      height: 430px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .desk-caption {
+      position: absolute;
+      bottom: 16px;
+      left: 16px;
+      right: 16px;
+      background: rgba(10, 29, 55, 0.92);
+      color: #FFFFFF;
+      padding: 14px 18px;
+      border-radius: 12px;
+      font-size: 0.85rem;
+    }
+
+    .desk-caption strong {
+      color: var(--teal);
+      display: block;
+      margin-bottom: 2px;
+    }
+
+    .sim-box {
+      background: var(--bg-cream);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 32px;
+    }
+
+    .sim-tabs {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-bottom: 22px;
+    }
+
+    .sim-btn {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.84rem;
+      font-weight: 600;
+      padding: 9px 14px;
+      border-radius: 9px;
+      border: 1px solid var(--border-strong);
+      background: var(--bg-white);
+      color: var(--slate);
+      cursor: pointer;
+    }
+
+    .sim-btn.active {
+      background: var(--navy);
+      color: #FFFFFF;
+      border-color: var(--navy);
+    }
+
+    .sim-panel {
+      background: var(--bg-white);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 24px;
+    }
+
+    .sim-step {
+      margin-bottom: 16px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .sim-step:last-child {
+      margin-bottom: 0;
+      padding-bottom: 0;
+      border-bottom: none;
+    }
+
+    .sim-label {
+      font-size: 0.74rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--teal-dark);
+      margin-bottom: 4px;
+    }
+
+    .sim-text {
+      font-size: 0.94rem;
+      color: var(--navy);
+    }
+
+    /* Comparison Table */
     .compare-wrap {
       background: var(--bg-white);
       border: 1px solid var(--border);
@@ -430,37 +615,37 @@
     }
 
     .compare-table th {
-      padding: 22px 28px;
+      padding: 20px 26px;
       font-family: 'Outfit', sans-serif;
-      font-size: 1.05rem;
+      font-size: 1.04rem;
       border-bottom: 1px solid var(--border);
     }
 
     .compare-table th:nth-child(1) {
-      width: 30%;
+      width: 28%;
       color: var(--muted);
-      font-size: 0.85rem;
+      font-size: 0.84rem;
       text-transform: uppercase;
       letter-spacing: 0.06em;
     }
 
     .compare-table th:nth-child(2) {
-      width: 35%;
+      width: 36%;
       color: var(--slate);
       background: #FAFAFA;
     }
 
     .compare-table th:nth-child(3) {
-      width: 35%;
+      width: 36%;
       color: var(--navy);
       background: var(--teal-tint);
       border-left: 1px solid var(--teal-border);
     }
 
     .compare-table td {
-      padding: 20px 28px;
+      padding: 18px 26px;
       border-bottom: 1px solid var(--border);
-      font-size: 0.94rem;
+      font-size: 0.93rem;
       vertical-align: top;
     }
 
@@ -485,110 +670,51 @@
       border-left: 1px solid var(--teal-border);
     }
 
-    /* Services Bento Grid */
-    .services-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 26px;
-    }
-
-    .service-card {
-      background: var(--bg-white);
-      border: 1px solid var(--border);
-      border-radius: 18px;
-      padding: 34px 28px;
-      box-shadow: var(--shadow-card);
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
-    }
-
-    .service-card:hover {
-      transform: translateY(-4px);
-      box-shadow: var(--shadow-float);
-    }
-
-    .icon-pill {
-      width: 48px;
-      height: 48px;
-      border-radius: 12px;
-      background: var(--teal-tint);
-      border: 1px solid var(--teal-border);
-      color: var(--teal-dark);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-bottom: 20px;
-    }
-
-    .service-card h3 {
-      font-size: 1.25rem;
-      color: var(--navy);
-      margin-bottom: 10px;
-    }
-
-    .service-card p {
-      font-size: 0.95rem;
-      color: var(--slate);
-    }
-
-    /* Real Shop Impact / Proof Banner */
-    .proof-section {
+    /* Day in the Life Shift Timeline */
+    .timeline-section {
       background: var(--bg-stone);
       border-top: 1px solid var(--border);
       border-bottom: 1px solid var(--border);
     }
 
-    .proof-grid {
+    .timeline-grid {
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 32px;
-      align-items: stretch;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
     }
 
-    .proof-card {
+    .time-card {
       background: var(--bg-white);
       border: 1px solid var(--border);
-      border-radius: 18px;
-      padding: 34px;
-      box-shadow: var(--shadow-card);
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
+      border-radius: 16px;
+      padding: 26px 22px;
+      box-shadow: var(--shadow-sm);
     }
 
-    .proof-tag {
+    .time-pill {
       display: inline-block;
-      font-size: 0.75rem;
+      font-family: 'Outfit', sans-serif;
+      font-size: 0.8rem;
       font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.06em;
-      color: var(--teal-dark);
-      background: var(--teal-tint);
+      color: #FFFFFF;
+      background: var(--navy);
       padding: 4px 10px;
       border-radius: 6px;
-      margin-bottom: 16px;
-      align-self: flex-start;
+      margin-bottom: 14px;
     }
 
-    .proof-card blockquote {
-      font-size: 1.08rem;
-      color: var(--navy);
-      font-weight: 500;
-      line-height: 1.65;
-      margin-bottom: 22px;
-    }
-
-    .proof-author strong {
-      display: block;
-      font-size: 0.94rem;
+    .time-card h3 {
+      font-size: 1.12rem;
+      margin-bottom: 8px;
       color: var(--navy);
     }
 
-    .proof-author span {
-      font-size: 0.84rem;
-      color: var(--muted);
+    .time-card p {
+      font-size: 0.9rem;
+      color: var(--slate);
     }
 
-    /* Calculator */
+    /* ROI Calculator */
     .calc-card {
       background: var(--bg-white);
       border: 1px solid var(--border);
@@ -651,7 +777,7 @@
     }
 
     .calc-summary .cap {
-      font-size: 0.78rem;
+      font-size: 0.76rem;
       text-transform: uppercase;
       letter-spacing: 0.08em;
       color: #94A3B8;
@@ -663,7 +789,7 @@
       font-family: 'Outfit', sans-serif;
       font-size: 3rem;
       font-weight: 800;
-      color: #2DD4BF;
+      color: var(--teal);
       line-height: 1.1;
       margin-bottom: 10px;
       font-variant-numeric: tabular-nums;
@@ -724,7 +850,7 @@
     }
 
     .tier h3 {
-      font-size: 1.34rem;
+      font-size: 1.32rem;
       color: var(--navy);
       margin-bottom: 8px;
     }
@@ -811,44 +937,140 @@
       color: var(--slate);
     }
 
-    /* CTA Banner */
-    .final-cta {
+    /* Inquiry Form + Direct Social Contact Split */
+    .contact-section {
       background: var(--navy);
       color: #FFFFFF;
-      border-radius: 24px;
-      padding: 64px 44px;
-      text-align: center;
+      padding: 92px 0;
     }
 
-    .final-cta h2 {
-      font-size: 2.3rem;
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 0.92fr 1.08fr;
+      gap: 48px;
+      align-items: start;
+    }
+
+    .contact-info h2 {
+      font-size: 2.35rem;
       font-weight: 800;
+      line-height: 1.16;
+      margin-bottom: 16px;
+    }
+
+    .contact-info p {
+      color: #CBD5E1;
+      font-size: 1.04rem;
+      margin-bottom: 28px;
+    }
+
+    .direct-channels {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      margin-bottom: 30px;
+    }
+
+    .channel-box {
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 14px;
+      padding: 18px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 14px;
+      text-decoration: none;
+      color: #FFFFFF;
+      transition: background 0.2s ease;
+    }
+
+    .channel-box:hover {
+      background: rgba(255, 255, 255, 0.11);
+    }
+
+    .channel-box strong {
+      display: block;
+      font-size: 0.98rem;
+    }
+
+    .channel-box span {
+      font-size: 0.84rem;
+      color: #94A3B8;
+    }
+
+    .intake-card {
+      background: var(--bg-white);
+      color: var(--navy);
+      border-radius: 20px;
+      padding: 36px;
+      box-shadow: var(--shadow-float);
+    }
+
+    .intake-card h3 {
+      font-size: 1.4rem;
+      margin-bottom: 6px;
+    }
+
+    .intake-card > p {
+      font-size: 0.9rem;
+      color: var(--slate);
+      margin-bottom: 22px;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
       margin-bottom: 14px;
     }
 
-    .final-cta p {
-      color: #CBD5E1;
-      max-width: 560px;
-      margin: 0 auto 32px;
-      font-size: 1.06rem;
+    .form-group {
+      margin-bottom: 14px;
     }
 
-    .cta-btns {
+    .form-group label {
+      display: block;
+      font-size: 0.83rem;
+      font-weight: 600;
+      color: var(--navy);
+      margin-bottom: 6px;
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%;
+      padding: 11px 14px;
+      border: 1px solid var(--border-strong);
+      border-radius: 10px;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.92rem;
+      color: var(--navy);
+      background: var(--bg-cream);
+    }
+
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      outline: none;
+      border-color: var(--teal);
+      background: #FFFFFF;
+    }
+
+    .form-actions {
       display: flex;
-      justify-content: center;
-      gap: 16px;
+      gap: 10px;
       flex-wrap: wrap;
+      margin-top: 8px;
     }
 
-    .btn-white-outline {
-      background: transparent;
-      color: #FFFFFF;
-      border: 1.5px solid rgba(255, 255, 255, 0.3);
-    }
-
-    .btn-white-outline:hover {
-      border-color: #FFFFFF;
-      background: rgba(255, 255, 255, 0.08);
+    .form-status {
+      margin-top: 12px;
+      font-size: 0.86rem;
+      color: var(--teal-dark);
+      font-weight: 600;
+      display: none;
     }
 
     /* Footer */
@@ -896,7 +1118,7 @@
       display: none;
       position: fixed;
       inset: 0;
-      background: rgba(11, 25, 44, 0.65);
+      background: rgba(10, 29, 55, 0.7);
       backdrop-filter: blur(4px);
       z-index: 200;
       align-items: center;
@@ -931,15 +1153,18 @@
 
     @media (max-width: 960px) {
       .hero-grid,
-      .services-grid,
-      .proof-grid,
+      .trades-grid,
+      .playbook-split,
+      .timeline-grid,
       .calc-card,
-      .tiers-grid {
+      .tiers-grid,
+      .contact-grid,
+      .form-row {
         grid-template-columns: 1fr;
       }
 
       .hero h1 {
-        font-size: 2.45rem;
+        font-size: 2.4rem;
       }
 
       .floating-card {
@@ -964,22 +1189,44 @@
   <header>
     <div class="container nav-wrap">
       <a href="#" class="brand">
-        <svg width="34" height="34" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-          <rect width="64" height="64" rx="15" fill="#0B192C"/>
-          <path d="M20 33v-3a12 12 0 0 1 24 0v3" stroke="#14B8A6" stroke-width="4.5" stroke-linecap="round"/>
-          <rect x="14" y="29" width="7" height="13" rx="3.5" fill="#FFFFFF"/>
-          <rect x="43" y="29" width="7" height="13" rx="3.5" fill="#FFFFFF"/>
-          <path d="M46 42v3a5 5 0 0 1-5 5h-7" stroke="#14B8A6" stroke-width="3.5" stroke-linecap="round"/>
-          <circle cx="32" cy="50" r="3" fill="#FFFFFF"/>
+        <!-- Custom Field2Desk Emblem: Headset + Split Snowflake/Flame Hexagon + Mic + Wrench -->
+        <svg width="42" height="42" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <rect width="80" height="80" rx="16" fill="#0D2546" stroke="rgba(255,255,255,0.12)" stroke-width="1.5"/>
+          <!-- Outer Headset Arch -->
+          <path d="M18 41v-4c0-12.15 9.85-22 22-22s22 9.85 22 22v4" stroke="#1EB2A6" stroke-width="4.2" stroke-linecap="round"/>
+          <!-- Left & Right Ear Cups -->
+          <rect x="12" y="36" width="7" height="15" rx="3.5" fill="#1EB2A6"/>
+          <rect x="61" y="36" width="7" height="15" rx="3.5" fill="#1EB2A6"/>
+          <!-- Left Half Hexagon (White Top, Teal Bottom) -->
+          <path d="M38 20L24 28v13" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M24 41v8l14 8" stroke="#1EB2A6" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+          <!-- Right Half Hexagon (Teal) -->
+          <path d="M42 20l14 8v15" stroke="#1EB2A6" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+          <!-- Snowflake (Left Inside) -->
+          <path d="M31 29v10M26.7 31.5l8.6 5M35.3 31.5l-8.6 5" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round"/>
+          <!-- Flame (Right Inside) -->
+          <path d="M49 27c2.5 3 4 5.2 4 7.8a4 4 0 0 1-8 0c0-1.6.9-3.2 2-4.5.2 1.2 1 1.8 1.6 1.8.5 0 .4-2.5.4-5.1z" fill="#1EB2A6"/>
+          <!-- Center Microphone (Split White/Teal) -->
+          <rect x="35.5" y="31" width="9" height="15" rx="4.5" fill="#FFFFFF"/>
+          <path d="M40 31a4.5 4.5 0 0 1 4.5 4.5v6A4.5 4.5 0 0 1 40 46V31z" fill="#1EB2A6"/>
+          <path d="M32 42c0 4.4 3.6 8 8 8s8-3.6 8-8" stroke="#FFFFFF" stroke-width="2.6" stroke-linecap="round"/>
+          <line x1="40" y1="50" x2="40" y2="56" stroke="#FFFFFF" stroke-width="2.6" stroke-linecap="round"/>
+          <line x1="34" y1="56" x2="46" y2="56" stroke="#FFFFFF" stroke-width="2.6" stroke-linecap="round"/>
+          <!-- Headset Boom Mic -->
+          <path d="M16 51c2.5 6.5 7.5 10 15 10.5" stroke="#FFFFFF" stroke-width="2.6" stroke-linecap="round"/>
+          <circle cx="32.5" cy="61.5" r="3" fill="#FFFFFF"/>
+          <!-- Wrench (Bottom Right) -->
+          <path d="M51 56l7.5-7.5a4.5 4.5 0 0 0 5.5-5.5l-3 3-2.5-.5-.5-2.5 3-3a4.5 4.5 0 0 0-5.5 5.5L48 53l3 3z" fill="#1EB2A6"/>
         </svg>
-        <div>Field<span>2</span>Desk</div>
+        <div class="brand-name">Field<span>2</span>Desk</div>
       </a>
       <nav class="nav-links">
-        <a href="#comparison">Why Field2Desk</a>
-        <a href="#services">Services</a>
+        <a href="#trades">Trades</a>
+        <a href="#playbook">Live Playbook</a>
+        <a href="#comparison">Why Us</a>
         <a href="#calculator">ROI Calculator</a>
         <a href="#coverage">Coverage</a>
-        <a href="#contact" class="btn btn-primary nav-cta">Book an Intro Chat</a>
+        <a href="#contact" class="btn btn-teal nav-cta">Request Discovery Chat</a>
       </nav>
     </div>
   </header>
@@ -987,12 +1234,12 @@
   <section class="hero">
     <div class="container hero-grid">
       <div>
-        <div class="eyebrow"><span class="live-dot"></span> Built for US HVAC, Plumbing & Electrical Shops</div>
+        <div class="eyebrow"><span class="live-dot"></span> Dedicated Front-Office Operations for US Trade Teams</div>
         <h1>Keep Your Trucks Moving. We'll Run the <span>Phones & Dispatch.</span></h1>
-        <p class="hero-lead">We embed dedicated call coordinators and dispatchers directly into your Housecall Pro, ServiceTitan, or Jobber account—so homeowners get answered live and your board stays tight all day.</p>
+        <p class="hero-lead">We embed trained call coordinators and dispatchers directly into your Housecall Pro, ServiceTitan, or Jobber workflow—so every homeowner gets answered live and your technicians stay on schedule.</p>
         <div class="hero-actions">
-          <a href="#contact" class="btn btn-primary">Message Our Team</a>
-          <a href="#calculator" class="btn btn-outline">Calculate Missed-Call Loss</a>
+          <a href="#contact" class="btn btn-navy">Submit Shop Inquiry</a>
+          <a href="#calculator" class="btn btn-outline">Estimate Missed-Call Revenue</a>
         </div>
         <div class="trust-strip">
           <div class="trust-item">
@@ -1010,14 +1257,14 @@
         </div>
       </div>
 
-      <!-- Real Photo + Floating Interactive Dispatch Card -->
+      <!-- Real Field Photo + Floating Live Dispatch Widget -->
       <div class="hero-visual">
         <div class="hero-photo-frame">
-          <img src="https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?auto=format&fit=crop&w=900&q=80" alt="HVAC service technician working on commercial equipment while remote dispatch manages calls" />
+          <img src="https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?auto=format&fit=crop&w=950&q=80" alt="HVAC technician inspecting equipment while remote dispatch manages bookings" />
         </div>
         <div class="floating-card">
           <div class="fc-top">
-            <span class="fc-title">Live Desk Activity</span>
+            <span class="fc-title">Live Desk Queue</span>
             <span class="fc-pill">● US Shift Active</span>
           </div>
           <div class="fc-tabs">
@@ -1036,7 +1283,7 @@
 
   <div class="tools-bar">
     <div class="container tools-flex">
-      <span class="tools-label">Seamless Integration With Your Stack</span>
+      <span class="tools-label">Seamless Integration With Your Existing Stack</span>
       <div class="tool-tags">
         <span class="tool-tag">Housecall Pro</span>
         <span class="tool-tag">ServiceTitan</span>
@@ -1048,13 +1295,92 @@
     </div>
   </div>
 
+  <!-- Trade Specialties With Real Photos -->
+  <section id="trades">
+    <div class="container">
+      <div class="section-head">
+        <span class="kicker">Trade-Specific Expertise</span>
+        <h2>Built Specifically for Residential & Light Commercial Contractors</h2>
+        <p>We don't use generic call-center scripts. Our coordinators speak the day-to-day language of home-service dispatching.</p>
+      </div>
+      <div class="trades-grid">
+        <div class="trade-card">
+          <img class="trade-img" src="https://images.unsplash.com/photo-1621905251189-08b45d6a269e?auto=format&fit=crop&w=800&q=80" alt="HVAC technician servicing outdoor condenser unit" />
+          <div class="trade-body">
+            <span class="trade-badge">HVAC & Refrigeration</span>
+            <h3>No-Cool Triage & Seasonal Tune-Ups</h3>
+            <p>We capture system age, thermostat symptoms, and attic/closet access notes, prioritize emergency heat/AC outages, and fill shoulder-season maintenance boards.</p>
+          </div>
+        </div>
+        <div class="trade-card">
+          <img class="trade-img" src="https://images.unsplash.com/photo-1585704032915-c3400ca199e7?auto=format&fit=crop&w=800&q=80" alt="Plumber repairing residential pipe system" />
+          <div class="trade-body">
+            <span class="trade-badge">Plumbing & Drain</span>
+            <h3>Urgent Leak & Main-Line Dispatch</h3>
+            <p>When a homeowner has an active slab leak or sewer backup, speed wins the job. We calm the caller, confirm dispatch fees, and route your nearest open truck immediately.</p>
+          </div>
+        </div>
+        <div class="trade-card">
+          <img class="trade-img" src="https://images.unsplash.com/photo-1621905252507-b35492cc74b4?auto=format&fit=crop&w=800&q=80" alt="Electrician inspecting residential breaker panel" />
+          <div class="trade-body">
+            <span class="trade-badge">Electrical & Multi-Trade</span>
+            <h3>Panel Upgrades, EV Chargers & Repairs</h3>
+            <p>We qualify troubleshooting calls vs. install estimates, collect panel photos via SMS before arrival, and keep multi-truck schedules tightly grouped by zip code.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Behind the Desk Photo + Interactive Playbook Simulator -->
+  <section id="playbook" class="playbook-section">
+    <div class="container">
+      <div class="section-head">
+        <span class="kicker">Inside Our Workflow</span>
+        <h2>See How a Field2Desk Coordinator Handles Your Calls</h2>
+        <p>Click through real scenarios below to see how we protect your booking rate and keep owners out of the weeds.</p>
+      </div>
+      <div class="playbook-split">
+        <div class="desk-photo-wrap">
+          <img src="https://images.unsplash.com/photo-1553877522-43269d4ea984?auto=format&fit=crop&w=850&q=80" alt="Operations coordinator managing live dispatch board and customer calls" />
+          <div class="desk-caption">
+            <strong>Proactive Desk Standard</strong>
+            We spot incoming texts, missed calls, and schedule gaps inside Quo & Housecall Pro before the owner ever has to ask.
+          </div>
+        </div>
+
+        <div class="sim-box">
+          <div class="sim-tabs">
+            <button type="button" class="sim-btn active" data-play="emergency">1. Urgent "No-Cool" Call</button>
+            <button type="button" class="sim-btn" data-play="delay">2. Tech Running Late</button>
+            <button type="button" class="sim-btn" data-play="estimate">3. Unsold $4,800 Quote</button>
+          </div>
+          <div class="sim-panel" id="simPanel">
+            <div class="sim-step">
+              <div class="sim-label">Step 1 • Live Pickup (&lt; 3 Rings)</div>
+              <div class="sim-text">"Thank you for calling [Your Company Name], this is your dispatch desk—how can we help get you comfortable today?"</div>
+            </div>
+            <div class="sim-step">
+              <div class="sim-label">Step 2 • Qualification & Fee Approval</div>
+              <div class="sim-text">Confirms homeowner address, equipment age (11-year-old split system), and gets upfront approval on your $89 diagnostic dispatch fee.</div>
+            </div>
+            <div class="sim-step">
+              <div class="sim-label">Step 3 • Instant CRM & Tech Sync</div>
+              <div class="sim-text">Books into the 1:00–3:00 PM slot in Housecall Pro, tags the assigned tech, and triggers an automated confirmation text to the homeowner.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- Before vs After Comparison Table -->
   <section id="comparison">
     <div class="container">
       <div class="section-head">
         <span class="kicker">The Operational Shift</span>
         <h2>Stop Running Your Front Desk From the Driver's Seat</h2>
-        <p>See what happens when you separate field execution from daily call handling and board management.</p>
+        <p>Compare handling phones between jobs against having a dedicated coordinator owning your desk all shift.</p>
       </div>
       <div class="compare-wrap">
         <table class="compare-table">
@@ -1092,67 +1418,34 @@
     </div>
   </section>
 
-  <section id="services" style="background: var(--bg-white); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);">
+  <!-- A Day in the Life US Shift Timeline -->
+  <section class="timeline-section">
     <div class="container">
       <div class="section-head">
-        <span class="kicker">What We Handle</span>
-        <h2>End-to-End Front-Office Support for Trade Shops</h2>
-        <p>Trained coordinators who already understand diagnostic fees, emergency triage, and home-service CRM workflows.</p>
+        <span class="kicker">Daily Shift Cadence</span>
+        <h2>What Happens During a Typical US Business Day</h2>
+        <p>Structured, repeatable execution from morning dispatch through end-of-day reporting.</p>
       </div>
-      <div class="services-grid">
-        <div class="service-card">
-          <div class="icon-pill">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-          </div>
-          <h3>Live Call Answering & Triage</h3>
-          <p>We qualify every caller, separate urgent no-cool or leak emergencies from routine tune-ups, collect equipment details, and book directly onto your calendar.</p>
+      <div class="timeline-grid">
+        <div class="time-card">
+          <span class="time-pill">7:30 AM – 10:00 AM</span>
+          <h3>Morning Triage & Confirmations</h3>
+          <p>Clear overnight voicemails and web forms, confirm first-call arrival windows with homeowners, and verify every tech is en route.</p>
         </div>
-        <div class="service-card">
-          <div class="icon-pill">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
-          </div>
-          <h3>Active Dispatch Management</h3>
-          <p>We monitor technician progress all day, notify homeowners before arrival windows shift, and fill last-minute cancellations from your waitlist.</p>
+        <div class="time-card">
+          <span class="time-pill">10:00 AM – 2:00 PM</span>
+          <h3>Peak Inbound & Board Control</h3>
+          <p>Answer live service calls, slot same-day emergencies into open gaps, and rebalance afternoon jobs if a morning repair runs long.</p>
         </div>
-        <div class="service-card">
-          <div class="icon-pill">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
-          </div>
-          <h3>Estimate Follow-Up & KPI Tracking</h3>
-          <p>We chase open quotes, book seasonal maintenance renewals, request 5-star Google reviews after completed jobs, and maintain clean daily job trackers.</p>
+        <div class="time-card">
+          <span class="time-pill">2:00 PM – 4:30 PM</span>
+          <h3>48-Hour Quote & Tune-Up Calls</h3>
+          <p>Follow up on open replacement estimates, call overdue maintenance club members, and send Google review links on completed jobs.</p>
         </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Real Shop Proof Section -->
-  <section class="proof-section">
-    <div class="container">
-      <div class="section-head">
-        <span class="kicker">How We Work</span>
-        <h2>Proactive Desk Management—Not Order Taking</h2>
-        <p>Great front-office support means catching customer requests before the owner even has to ask.</p>
-      </div>
-      <div class="proof-grid">
-        <div class="proof-card">
-          <div>
-            <span class="proof-tag">Live Shop Workflow</span>
-            <blockquote>"Did you see the customer inquiry from earlier?" — "Yep, already saw it, pulled up her service history, and got back to her with the answer." — "You're the best."</blockquote>
-          </div>
-          <div class="proof-author">
-            <strong>Daily Client Operations Standard</strong>
-            <span>Managed inside Quo & Housecall Pro for US HVAC Crews</span>
-          </div>
-        </div>
-        <div class="proof-card">
-          <div>
-            <span class="proof-tag">3-Step Launch</span>
-            <blockquote>We map your exact service zip codes, diagnostic fees, and technician skillsets during a 15-minute onboarding call—so your coordinator books jobs with the same accuracy as an in-house manager within 3 to 5 business days.</blockquote>
-          </div>
-          <div class="proof-author">
-            <strong>Zero Phone Number Changes Required</strong>
-            <span>Plugs straight into your existing VoIP & field service software</span>
-          </div>
+        <div class="time-card">
+          <span class="time-pill">4:30 PM – 6:00 PM</span>
+          <h3>Next-Day Prep & EOD Summary</h3>
+          <p>Lock tomorrow's dispatch board, verify parts-pending callbacks, and send you a clean daily KPI summary of calls, bookings, and revenue.</p>
         </div>
       </div>
     </div>
@@ -1164,7 +1457,7 @@
       <div class="section-head">
         <span class="kicker">Revenue Calculator</span>
         <h2>See What Missed Calls Are Costing Your Shop</h2>
-        <p>Adjust the sliders below to estimate how much monthly revenue is slipping to competitors when calls go unanswered.</p>
+        <p>Adjust the sliders below to estimate how much monthly revenue is slipping to competitors when calls go to voicemail.</p>
       </div>
       <div class="calc-card">
         <div>
@@ -1197,7 +1490,7 @@
           <div class="cap">Estimated Monthly Revenue Recoverable</div>
           <div class="num" id="monthlyLoss">$7,015</div>
           <div class="sub">That's <strong id="annualLoss" style="color:#FFFFFF;">$84,180/year</strong> in booked service calls.</div>
-          <a href="#contact" class="btn btn-teal" style="width: 100%;">Reclaim These Calls — Chat With Us</a>
+          <a href="#contact" class="btn btn-teal" style="width: 100%;">Reclaim These Calls — Inquire Below</a>
         </div>
       </div>
     </div>
@@ -1224,7 +1517,7 @@
               <li><span>✓</span>Direct booking in your existing CRM</li>
             </ul>
           </div>
-          <a href="#contact" class="btn btn-outline" style="width: 100%;">Inquire About Part-Time</a>
+          <a href="#contact" class="btn btn-outline" style="width: 100%;">Select Part-Time Inquiry</a>
         </div>
 
         <div class="tier popular">
@@ -1240,7 +1533,7 @@
               <li><span>✓</span>End-of-day KPI & job tracker reporting</li>
             </ul>
           </div>
-          <a href="#contact" class="btn btn-primary" style="width: 100%;">Inquire About Full-Time</a>
+          <a href="#contact" class="btn btn-navy" style="width: 100%;">Select Full-Time Inquiry</a>
         </div>
 
         <div class="tier">
@@ -1290,24 +1583,106 @@
     </div>
   </section>
 
-  <section id="contact" style="padding-top: 10px;">
-    <div class="container">
-      <div class="final-cta">
+  <!-- Contact Section with Full Intake Form + Direct Social Channels -->
+  <section id="contact" class="contact-section">
+    <div class="container contact-grid">
+      <div class="contact-info">
+        <span class="kicker" style="color: var(--teal);">Get Started</span>
         <h2>Ready to Take Phones & Dispatch Off Your Plate?</h2>
-        <p>Send us a quick message on LinkedIn or Facebook. We'll walk through how your phones are currently handled and see if we're a fit—zero pressure.</p>
-        <div class="cta-btns">
-          <a href="https://www.linkedin.com/company/144131146/" target="_blank" rel="noopener" class="btn btn-teal">Message Us on LinkedIn</a>
-          <a href="https://www.facebook.com/profile.php?id=61595046637750" target="_blank" rel="noopener" class="btn btn-white-outline">Message Us on Facebook</a>
+        <p>Fill out the quick shop intake form or message us directly on LinkedIn or Facebook. We'll review your current call flow and walk through how we can help—zero pressure.</p>
+
+        <div class="direct-channels">
+          <a href="https://www.linkedin.com/company/144131146/" target="_blank" rel="noopener" class="channel-box">
+            <div>
+              <strong>Message Field2Desk on LinkedIn</strong>
+              <span>Connect directly with our operations partners</span>
+            </div>
+            <span style="color: var(--teal); font-weight: 700;">Open →</span>
+          </a>
+          <a href="https://www.facebook.com/profile.php?id=61595046637750" target="_blank" rel="noopener" class="channel-box">
+            <div>
+              <strong>Message Field2Desk on Facebook</strong>
+              <span>Fast responses during US & PH business hours</span>
+            </div>
+            <span style="color: var(--teal); font-weight: 700;">Open →</span>
+          </a>
         </div>
+      </div>
+
+      <div class="intake-card">
+        <h3>Shop Operations Inquiry</h3>
+        <p>Tell us a bit about your fleet and current CRM so we can prepare for a quick 15-minute intro chat.</p>
+
+        <form id="inquiryForm">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="ownerName">Your Name *</label>
+              <input type="text" id="ownerName" placeholder="e.g. Mike Reynolds" required />
+            </div>
+            <div class="form-group">
+              <label for="companyName">Company Name *</label>
+              <input type="text" id="companyName" placeholder="e.g. Apex Heating & Air" required />
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="contactEmail">Work Email or Phone *</label>
+              <input type="text" id="contactEmail" placeholder="mike@apexhvac.com / (555) 234-5678" required />
+            </div>
+            <div class="form-group">
+              <label for="truckCount">Active Service Trucks</label>
+              <select id="truckCount">
+                <option value="1-2 Trucks">1–2 Trucks</option>
+                <option value="3-5 Trucks" selected>3–5 Trucks</option>
+                <option value="6-10 Trucks">6–10 Trucks</option>
+                <option value="10+ Trucks">10+ Trucks</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="crmTool">Current CRM / Phone System</label>
+              <select id="crmTool">
+                <option value="Housecall Pro">Housecall Pro</option>
+                <option value="ServiceTitan">ServiceTitan</option>
+                <option value="Jobber">Jobber</option>
+                <option value="GoHighLevel">GoHighLevel</option>
+                <option value="Quo / OpenPhone / Other">Quo / OpenPhone / Other</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="coverageNeed">Coverage Interest</label>
+              <select id="coverageNeed">
+                <option value="Full-Time Dedicated Desk (8 hrs/day)">Full-Time Dedicated Desk (8 hrs/day)</option>
+                <option value="Part-Time Overflow & Admin (4 hrs/day)">Part-Time Overflow & Admin (4 hrs/day)</option>
+                <option value="Multi-Tech Dispatch Pod">Multi-Tech Dispatch Pod</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="bottleneckNote">Biggest Front-Office Bottleneck Right Now</label>
+            <textarea id="bottleneckNote" rows="3" placeholder="e.g. Missing inbound calls while on-site, dispatch board changes, or following up on open estimates..."></textarea>
+          </div>
+
+          <div class="form-actions">
+            <button type="submit" class="btn btn-teal" style="flex: 1;">Send Inquiry via Email</button>
+            <button type="button" id="copyInquiryBtn" class="btn btn-outline">Copy Summary for DM</button>
+          </div>
+          <div class="form-status" id="formStatus"></div>
+        </form>
       </div>
     </div>
   </section>
 
   <footer>
     <div class="container footer-flex">
-      <p>&copy; 2026 Field2Desk Operations. Remote Dispatch & Front-Office Support for US Trade Teams.</p>
+      <p>&copy; 2026 Field2Desk Operations. Remote Dispatch & Front-Office Support for US Trade Businesses.</p>
       <div class="footer-links">
-        <a href="#comparison">Why Field2Desk</a>
+        <a href="#trades">Trades</a>
+        <a href="#playbook">Live Playbook</a>
         <a href="#calculator">ROI Calculator</a>
         <button type="button" class="careers-btn" id="openCareers">Hiring VAs? Apply Here</button>
       </div>
@@ -1325,7 +1700,7 @@
         <li><span>✓</span>Clear, natural English phone communication</li>
         <li><span>✓</span>100% Remote Work-From-Home Setup</li>
       </ul>
-      <a href="https://www.facebook.com/profile.php?id=61595046637750" target="_blank" rel="noopener" class="btn btn-primary" style="width: 100%;">DM Your Resume (PDF) on Facebook</a>
+      <a href="https://www.facebook.com/profile.php?id=61595046637750" target="_blank" rel="noopener" class="btn btn-navy" style="width: 100%;">DM Your Resume (PDF) on Facebook</a>
     </div>
   </div>
 
@@ -1356,6 +1731,40 @@
       });
     });
 
+    // Playbook Simulator Tabs
+    const playbooks = {
+      emergency: [
+        { label: "Step 1 • Live Pickup (< 3 Rings)", text: "\"Thank you for calling [Your Company Name], this is your dispatch desk—how can we help get you comfortable today?\"" },
+        { label: "Step 2 • Qualification & Fee Approval", text: "Confirms homeowner address, equipment age (11-year-old split system), and gets upfront approval on your $89 diagnostic dispatch fee." },
+        { label: "Step 3 • Instant CRM & Tech Sync", text: "Books into the 1:00–3:00 PM slot in Housecall Pro, tags the assigned tech, and triggers an automated confirmation text to the homeowner." }
+      ],
+      delay: [
+        { label: "Step 1 • Proactive Board Monitoring", text: "Coordinator spots that Tech #2's compressor repair is running 45 minutes over before the next arrival window opens." },
+        { label: "Step 2 • Homeowner Notification", text: "Calls and texts the 2:00 PM customer immediately to offer a 2:45 PM arrival or priority first-slot rescheduling tomorrow." },
+        { label: "Step 3 • Zero Angry Callbacks", text: "Customer appreciates the proactive heads-up, keeps the appointment, and the technician stays focused on finishing the repair safely." }
+      ],
+      estimate: [
+        { label: "Step 1 • 48-Hour Estimate Queue", text: "Pulls open replacement quotes over $2,500 that haven't been approved within 48 hours of the technician's visit." },
+        { label: "Step 2 • Helpful Check-In Call", text: "\"Hi Sarah, following up on the two-stage system options Marcus sent over Tuesday—did you have any questions on financing or warranty coverage?\"" },
+        { label: "Step 3 • Deposit & Install Booking", text: "Answers financing term question, collects approval signature via CRM link, and locks the install crew on Thursday's board." }
+      ]
+    };
+
+    const simPanel = document.getElementById('simPanel');
+    document.querySelectorAll('.sim-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.sim-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        const steps = playbooks[btn.dataset.play];
+        simPanel.innerHTML = steps.map(s => `
+          <div class="sim-step">
+            <div class="sim-label">${s.label}</div>
+            <div class="sim-text">${s.text}</div>
+          </div>
+        `).join('');
+      });
+    });
+
     // ROI Calculator
     const missedInput = document.getElementById('missedCalls');
     const ticketInput = document.getElementById('avgTicket');
@@ -1379,6 +1788,50 @@
     ticketInput.addEventListener('input', updateCalculator);
     rateInput.addEventListener('input', updateCalculator);
     updateCalculator();
+
+    // Intake Form Handler (Email Launch + 1-Click DM Copy)
+    function buildInquiryText() {
+      const name = document.getElementById('ownerName').value.trim() || 'Shop Owner';
+      const company = document.getElementById('companyName').value.trim() || 'Not specified';
+      const contact = document.getElementById('contactEmail').value.trim() || 'Not specified';
+      const trucks = document.getElementById('truckCount').value;
+      const crm = document.getElementById('crmTool').value;
+      const coverage = document.getElementById('coverageNeed').value;
+      const note = document.getElementById('bottleneckNote').value.trim() || 'General front-office & dispatch support';
+
+      return `Field2Desk Operations Inquiry\n` +
+             `-----------------------------\n` +
+             `Name: ${name}\n` +
+             `Company: ${company}\n` +
+             `Contact: ${contact}\n` +
+             `Fleet Size: ${trucks}\n` +
+             `CRM / Phone Stack: ${crm}\n` +
+             `Coverage Interest: ${coverage}\n` +
+             `Main Bottleneck: ${note}`;
+    }
+
+    const statusEl = document.getElementById('formStatus');
+    document.getElementById('inquiryForm').addEventListener('submit', (e) => {
+      e.preventDefault();
+      const company = document.getElementById('companyName').value.trim() || 'New Shop';
+      const body = encodeURIComponent(buildInquiryText());
+      const subject = encodeURIComponent(`Field2Desk Discovery Inquiry — ${company}`);
+      statusEl.textContent = 'Opening your email app with your shop details pre-filled...';
+      statusEl.style.display = 'block';
+      window.location.href = `mailto:noblezamaribelle@gmail.com?subject=${subject}&body=${body}`;
+    });
+
+    document.getElementById('copyInquiryBtn').addEventListener('click', async () => {
+      const summary = buildInquiryText();
+      try {
+        await navigator.clipboard.writeText(summary);
+        statusEl.textContent = '✓ Inquiry summary copied! Paste it directly into LinkedIn or Facebook DM.';
+        statusEl.style.display = 'block';
+      } catch (err) {
+        statusEl.textContent = 'Select and copy your details above to send via LinkedIn or Facebook.';
+        statusEl.style.display = 'block';
+      }
+    });
 
     // Careers Modal
     const modal = document.getElementById('careersModal');
