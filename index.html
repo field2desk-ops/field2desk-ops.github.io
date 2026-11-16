@@ -9,6 +9,9 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@600;700;800&display=swap" rel="stylesheet">
+  <!-- Calendly Popup Widget CSS & JS -->
+  <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
+  <script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async></script>
   <style>
     :root {
       --bg-cream: #F8FAFC;
@@ -1692,11 +1695,20 @@
       text-decoration: none;
       color: #FFFFFF;
       transition: background 0.2s ease, transform 0.2s ease;
+      cursor: pointer;
+      width: 100%;
+      text-align: left;
+      font-family: inherit;
     }
 
     .channel-box:hover {
       background: rgba(255, 255, 255, 0.12);
       transform: translateX(4px);
+    }
+
+    .channel-box.featured-cal {
+      background: rgba(20, 184, 166, 0.16);
+      border-color: rgba(45, 212, 191, 0.45);
     }
 
     .channel-box strong {
@@ -1982,7 +1994,7 @@
         <button type="button" class="nav-item" data-target="pricing">ROI & Coverage</button>
         <button type="button" class="nav-item" data-target="about">About Us</button>
         <button type="button" class="nav-item" data-target="contact">Contact Us</button>
-        <button type="button" class="btn btn-teal nav-cta" data-target="contact">Request Discovery Chat</button>
+        <button type="button" class="btn btn-teal nav-cta" data-calendly="true">Book a 30-Min Audit</button>
       </nav>
 
       <button type="button" class="mobile-toggle" id="mobileMenuBtn" aria-label="Toggle Menu">
@@ -1996,7 +2008,7 @@
       <button type="button" class="nav-item" data-target="pricing">ROI & Coverage</button>
       <button type="button" class="nav-item" data-target="about">About Us</button>
       <button type="button" class="nav-item" data-target="contact">Contact Us</button>
-      <button type="button" class="btn btn-teal" data-target="contact" style="margin-top: 8px; width: 100%;">Request Discovery Chat</button>
+      <button type="button" class="btn btn-teal" data-calendly="true" style="margin-top: 8px; width: 100%;">Book a 30-Min Audit</button>
     </div>
   </header>
 
@@ -2010,7 +2022,7 @@
             <h1>Keep Your Trucks Moving. We'll Run the <span>Phones & Dispatch.</span></h1>
             <p class="hero-lead">We embed trained call coordinators and dispatchers directly into your Housecall Pro, ServiceTitan, or Jobber workflow—so every homeowner gets answered live and your technicians stay billable.</p>
             <div class="hero-actions">
-              <button type="button" class="btn btn-navy" data-target="contact">Book a 15-Min Workflow Audit</button>
+              <button type="button" class="btn btn-navy" data-calendly="true">Book a 30-Min Workflow Audit</button>
               <button type="button" class="btn btn-outline" data-target="pricing">Calculate Missed-Call Loss →</button>
             </div>
             <div class="trust-strip">
@@ -2261,11 +2273,11 @@
           <div class="bottom-cta-strip reveal" style="margin-top: 58px;">
             <div>
               <h3>See how much voicemail is costing your shop every month.</h3>
-              <p>Use our interactive calculator or test-drive our live call scripts.</p>
+              <p>Use our interactive calculator or book a 30-minute workflow audit live.</p>
             </div>
             <div style="display:flex; gap:12px; flex-wrap:wrap;">
-              <button type="button" class="btn btn-teal" data-target="pricing">Open ROI Calculator →</button>
-              <button type="button" class="btn btn-outline" data-target="services" style="background:transparent; color:#FFFFFF; border-color:rgba(255,255,255,0.3);">View Call Playbook</button>
+              <button type="button" class="btn btn-teal" data-calendly="true">Schedule 30-Min Audit →</button>
+              <button type="button" class="btn btn-outline" data-target="pricing" style="background:transparent; color:#FFFFFF; border-color:rgba(255,255,255,0.3);">Open ROI Calculator</button>
             </div>
           </div>
         </div>
@@ -2450,7 +2462,7 @@
                   <strong id="bookedJobs">16 jobs/mo</strong>
                 </div>
               </div>
-              <button type="button" id="calcCtaBtn" class="btn btn-teal" data-target="contact" style="width: 100%;">Reclaim $7,015/mo — Inquire Now</button>
+              <button type="button" id="calcCtaBtn" class="btn btn-teal" data-calendly="true" style="width: 100%;">Reclaim $7,015/mo — Book 30-Min Audit</button>
             </div>
           </div>
         </div>
@@ -2476,7 +2488,7 @@
                   <li><span>✓</span>Direct booking in your existing CRM</li>
                 </ul>
               </div>
-              <button type="button" class="btn btn-outline" data-target="contact" style="width: 100%;">Select Part-Time Inquiry</button>
+              <button type="button" class="btn btn-outline" data-calendly="true" style="width: 100%;">Book Part-Time Intro Call</button>
             </div>
 
             <div class="tier popular reveal delay-2">
@@ -2492,7 +2504,7 @@
                   <li><span>✓</span>End-of-day KPI & job tracker reporting</li>
                 </ul>
               </div>
-              <button type="button" class="btn btn-navy" data-target="contact" style="width: 100%;">Select Full-Time Inquiry</button>
+              <button type="button" class="btn btn-navy" data-calendly="true" style="width: 100%;">Book Full-Time Intro Call</button>
             </div>
 
             <div class="tier reveal delay-3">
@@ -2507,7 +2519,7 @@
                   <li><span>✓</span>Custom SOP playbook & weekly ops review</li>
                 </ul>
               </div>
-              <button type="button" class="btn btn-outline" data-target="contact" style="width: 100%;">Request Custom Setup</button>
+              <button type="button" class="btn btn-outline" data-calendly="true" style="width: 100%;">Schedule Custom Pod Call</button>
             </div>
           </div>
         </div>
@@ -2617,7 +2629,7 @@
             </details>
             <details class="faq-box">
               <summary>How fast can we get someone trained on our board?</summary>
-              <p>Once we complete a 15-minute alignment call to review your booking rules and CRM permissions, we typically finish onboarding and go live on your phones within 3 to 5 business days.</p>
+              <p>Once we complete a 30-minute alignment call to review your booking rules and CRM permissions, we typically finish onboarding and go live on your phones within 3 to 5 business days.</p>
             </details>
           </div>
         </div>
@@ -2630,18 +2642,26 @@
         <div class="container reveal">
           <span class="kicker">Contact Us</span>
           <h1>Let's Take Phones & Dispatch Off Your Plate</h1>
-          <p>Submit your shop details below or send us a direct message on LinkedIn or Facebook for a fast, no-pressure workflow chat.</p>
+          <p>Grab a 30-minute slot on our live calendar, submit your shop details below, or message us directly on LinkedIn or Facebook.</p>
         </div>
       </div>
 
       <section class="contact-page-sec">
         <div class="container contact-grid">
           <div class="contact-info-box reveal">
-            <span class="kicker" style="color: var(--teal-bright);">Direct Channels</span>
+            <span class="kicker" style="color: var(--teal-bright);">Instant Scheduling & Direct Channels</span>
             <h2>Connect With Our Operations Team</h2>
-            <p>Prefer a quick message over forms? Reach out on LinkedIn or Facebook and we'll respond promptly during US and PH hours.</p>
+            <p>Pick a time directly on our calendar or drop us a quick message on LinkedIn or Facebook.</p>
 
             <div class="direct-channels">
+              <button type="button" class="channel-box featured-cal" data-calendly="true">
+                <div>
+                  <strong>Book a 30-Min Discovery Call on Calendly</strong>
+                  <span style="color:#E2E8F0;">Pick a time slot instantly in popup calendar</span>
+                </div>
+                <span style="color: var(--teal-bright); font-weight: 700;">Book Now →</span>
+              </button>
+
               <a href="https://www.linkedin.com/company/144131146/" target="_blank" rel="noopener" class="channel-box">
                 <div>
                   <strong>Message Field2Desk on LinkedIn</strong>
@@ -2649,6 +2669,7 @@
                 </div>
                 <span style="color: var(--teal-bright); font-weight: 700;">Open →</span>
               </a>
+
               <a href="https://www.facebook.com/profile.php?id=61595046637750" target="_blank" rel="noopener" class="channel-box">
                 <div>
                   <strong>Message Field2Desk on Facebook</strong>
@@ -2660,13 +2681,13 @@
 
             <div style="border-top: 1px solid rgba(255,255,255,0.12); padding-top: 22px;">
               <strong style="display:block; font-size:0.95rem; margin-bottom:8px; color:#FFFFFF;">What Happens After You Reach Out:</strong>
-              <p style="font-size:0.88rem; color:#CBD5E1; margin-bottom:0;">1. 15-minute workflow & CRM alignment chat.<br>2. Custom booking & escalation playbook setup.<br>3. Live shift launch on your phones in 3–5 days.</p>
+              <p style="font-size:0.88rem; color:#CBD5E1; margin-bottom:0;">1. 30-minute workflow & CRM alignment chat.<br>2. Custom booking & escalation playbook setup.<br>3. Live shift launch on your phones in 3–5 days.</p>
             </div>
           </div>
 
           <div class="intake-card reveal delay-1">
             <h3>Shop Operations Inquiry</h3>
-            <p>Tell us a bit about your fleet and current CRM so we can prepare for a quick 15-minute intro chat.</p>
+            <p>Tell us a bit about your fleet and current CRM—or click "Schedule on Calendly" after filling out your details.</p>
 
             <form id="inquiryForm">
               <div class="form-row">
@@ -2764,6 +2785,24 @@
   </div>
 
   <script>
+    // Calendly Popup Launcher
+    const CALENDLY_URL = 'https://calendly.com/noblezamaribelle/30min?hide_gdpr_banner=1&background_color=ffffff&text_color=0a1d37&primary_color=14b8a6';
+
+    function openCalendlyPopup() {
+      if (window.Calendly) {
+        window.Calendly.initPopupWidget({ url: CALENDLY_URL });
+      } else {
+        window.open('https://calendly.com/noblezamaribelle/30min', '_blank', 'noopener');
+      }
+    }
+
+    document.querySelectorAll('[data-calendly="true"]').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.preventDefault();
+        openCalendlyPopup();
+      });
+    });
+
     // Top Live Activity Feed Ticker
     const tickerItems = [
       "Housecall Pro: Emergency AC No-Cool booked in 42 seconds (Dallas, TX)",
@@ -2912,7 +2951,7 @@
       document.getElementById('bookedJobs').textContent = bookedJobsCount + ' jobs/mo';
       document.getElementById('monthlyLoss').textContent = '$' + monthly.toLocaleString();
       document.getElementById('annualLoss').textContent = '$' + (monthly * 12).toLocaleString() + '/year';
-      document.getElementById('calcCtaBtn').textContent = 'Reclaim $' + monthly.toLocaleString() + '/mo — Inquire Now';
+      document.getElementById('calcCtaBtn').textContent = 'Reclaim $' + monthly.toLocaleString() + '/mo — Book 30-Min Audit';
     }
 
     missedInput.addEventListener('input', updateCalculator);
