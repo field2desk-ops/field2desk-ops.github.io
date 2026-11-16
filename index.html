@@ -46,6 +46,13 @@
       color: var(--navy);
       line-height: 1.65;
       -webkit-font-smoothing: antialiased;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    main {
+      flex: 1;
     }
 
     h1, h2, h3, h4, .brand-name {
@@ -57,6 +64,55 @@
       max-width: 1200px;
       margin: 0 auto;
       padding: 0 28px;
+    }
+
+    /* Page View Switching */
+    .page-view {
+      display: none;
+      animation: pageFadeIn 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .page-view.active {
+      display: block;
+    }
+
+    @keyframes pageFadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(12px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Scroll Reveal Animations */
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.65s cubic-bezier(0.16, 1, 0.3, 1), transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .delay-1 { transition-delay: 0.08s; }
+    .delay-2 { transition-delay: 0.16s; }
+    .delay-3 { transition-delay: 0.24s; }
+
+    /* Subtle Floating Animation for Hero Card */
+    @keyframes gentleFloat {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-6px); }
+    }
+
+    /* Pulse Dot */
+    @keyframes pulseGlow {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(30, 178, 166, 0.5); }
+      50% { box-shadow: 0 0 0 6px rgba(30, 178, 166, 0); }
     }
 
     /* Navigation */
@@ -82,6 +138,7 @@
       align-items: center;
       gap: 12px;
       text-decoration: none;
+      cursor: pointer;
     }
 
     .brand-name {
@@ -98,19 +155,31 @@
     .nav-links {
       display: flex;
       align-items: center;
-      gap: 24px;
+      gap: 8px;
     }
 
-    .nav-links a:not(.btn) {
+    .nav-item {
+      background: transparent;
+      border: none;
       color: #CBD5E1;
-      text-decoration: none;
+      font-family: 'Inter', sans-serif;
       font-size: 0.9rem;
       font-weight: 500;
-      transition: color 0.2s ease;
+      padding: 8px 14px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.2s ease;
     }
 
-    .nav-links a:not(.btn):hover {
+    .nav-item:hover {
       color: #FFFFFF;
+      background: rgba(255, 255, 255, 0.06);
+    }
+
+    .nav-item.active {
+      color: #FFFFFF;
+      background: rgba(30, 178, 166, 0.18);
+      font-weight: 600;
     }
 
     .mobile-toggle {
@@ -129,20 +198,18 @@
       border-top: 1px solid rgba(255, 255, 255, 0.08);
       padding: 18px 28px 24px;
       flex-direction: column;
-      gap: 14px;
+      gap: 10px;
     }
 
     .mobile-drawer.open {
       display: flex;
     }
 
-    .mobile-drawer a:not(.btn) {
-      color: #E2E8F0;
-      text-decoration: none;
+    .mobile-drawer .nav-item {
+      text-align: left;
+      width: 100%;
+      padding: 10px 12px;
       font-size: 0.98rem;
-      font-weight: 500;
-      padding: 6px 0;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
     }
 
     /* Buttons */
@@ -156,7 +223,7 @@
       font-weight: 600;
       font-size: 0.92rem;
       text-decoration: none;
-      transition: all 0.2s ease;
+      transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
       cursor: pointer;
       border: none;
       font-family: 'Inter', sans-serif;
@@ -170,7 +237,8 @@
 
     .btn-teal:hover {
       background-color: var(--teal-dark);
-      transform: translateY(-1px);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(30, 178, 166, 0.36);
     }
 
     .btn-navy {
@@ -181,7 +249,7 @@
 
     .btn-navy:hover {
       background-color: var(--navy-mid);
-      transform: translateY(-1px);
+      transform: translateY(-2px);
     }
 
     .btn-outline {
@@ -193,11 +261,39 @@
     .btn-outline:hover {
       border-color: var(--navy);
       background-color: var(--bg-stone);
+      transform: translateY(-1px);
     }
 
     .nav-cta {
       padding: 9px 18px;
       font-size: 0.88rem;
+      margin-left: 8px;
+    }
+
+    /* Page Banner Header for Inner Pages */
+    .page-banner {
+      background: var(--navy);
+      background-image: radial-gradient(circle at 85% 20%, rgba(30, 178, 166, 0.16) 0%, transparent 50%);
+      color: #FFFFFF;
+      padding: 64px 0 58px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .page-banner .kicker {
+      color: var(--teal);
+    }
+
+    .page-banner h1 {
+      font-size: 2.75rem;
+      font-weight: 800;
+      margin-bottom: 14px;
+      line-height: 1.15;
+    }
+
+    .page-banner p {
+      color: #CBD5E1;
+      font-size: 1.08rem;
+      max-width: 650px;
     }
 
     /* Hero Section */
@@ -233,10 +329,11 @@
     }
 
     .live-dot {
-      width: 7px;
-      height: 7px;
+      width: 8px;
+      height: 8px;
       border-radius: 50%;
       background: var(--teal);
+      animation: pulseGlow 2s infinite;
     }
 
     .hero h1 {
@@ -306,6 +403,11 @@
       height: 100%;
       object-fit: cover;
       display: block;
+      transition: transform 0.6s ease;
+    }
+
+    .hero-photo-frame:hover img {
+      transform: scale(1.03);
     }
 
     .floating-card {
@@ -319,6 +421,7 @@
       border-radius: 16px;
       padding: 18px 20px;
       box-shadow: var(--shadow-float);
+      animation: gentleFloat 5s ease-in-out infinite;
     }
 
     .fc-top {
@@ -361,6 +464,7 @@
       background: var(--bg-cream);
       color: var(--slate);
       cursor: pointer;
+      transition: all 0.15s ease;
     }
 
     .fc-tab.active {
@@ -418,11 +522,17 @@
       border: 1px solid var(--border);
       padding: 6px 14px;
       border-radius: 8px;
+      transition: border-color 0.2s ease, transform 0.2s ease;
+    }
+
+    .tool-tag:hover {
+      border-color: var(--teal);
+      transform: translateY(-2px);
     }
 
     /* Common Section Layout */
     section {
-      padding: 90px 0;
+      padding: 84px 0;
     }
 
     .section-head {
@@ -467,15 +577,16 @@
       border-radius: 18px;
       overflow: hidden;
       box-shadow: var(--shadow-card);
-      transition: transform 0.2s ease;
+      transition: transform 0.28s ease, box-shadow 0.28s ease;
     }
 
     .trade-card:hover {
-      transform: translateY(-4px);
+      transform: translateY(-6px);
+      box-shadow: var(--shadow-float);
     }
 
     .trade-img {
-      height: 195px;
+      height: 200px;
       width: 100%;
       object-fit: cover;
       display: block;
@@ -580,6 +691,7 @@
       background: var(--bg-white);
       color: var(--slate);
       cursor: pointer;
+      transition: all 0.18s ease;
     }
 
     .sim-btn.active {
@@ -693,12 +805,6 @@
     }
 
     /* Security & Data Protection Grid */
-    .security-section {
-      background: var(--bg-white);
-      border-top: 1px solid var(--border);
-      border-bottom: 1px solid var(--border);
-    }
-
     .security-grid {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
@@ -706,10 +812,16 @@
     }
 
     .sec-card {
-      background: var(--bg-cream);
+      background: var(--bg-white);
       border: 1px solid var(--border);
       border-radius: 16px;
       padding: 26px 22px;
+      box-shadow: var(--shadow-sm);
+      transition: transform 0.25s ease;
+    }
+
+    .sec-card:hover {
+      transform: translateY(-4px);
     }
 
     .sec-icon {
@@ -739,6 +851,7 @@
     /* Day in the Life Shift Timeline */
     .timeline-section {
       background: var(--bg-stone);
+      border-top: 1px solid var(--border);
       border-bottom: 1px solid var(--border);
     }
 
@@ -754,6 +867,11 @@
       border-radius: 16px;
       padding: 26px 22px;
       box-shadow: var(--shadow-sm);
+      transition: transform 0.25s ease;
+    }
+
+    .time-card:hover {
+      transform: translateY(-4px);
     }
 
     .time-pill {
@@ -911,6 +1029,11 @@
       justify-content: space-between;
       box-shadow: var(--shadow-card);
       position: relative;
+      transition: transform 0.25s ease;
+    }
+
+    .tier:hover {
+      transform: translateY(-4px);
     }
 
     .tier.popular {
@@ -976,6 +1099,55 @@
       font-weight: 800;
     }
 
+    /* About Us Story Grid */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1.05fr 0.95fr;
+      gap: 48px;
+      align-items: center;
+    }
+
+    .about-story h2 {
+      font-size: 2.2rem;
+      margin-bottom: 16px;
+      line-height: 1.2;
+    }
+
+    .about-story p {
+      font-size: 1rem;
+      color: var(--slate);
+      margin-bottom: 18px;
+    }
+
+    .about-highlights {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-top: 28px;
+    }
+
+    .hl-box {
+      background: var(--bg-white);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 18px 20px;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .hl-box strong {
+      display: block;
+      font-family: 'Outfit', sans-serif;
+      font-size: 1.35rem;
+      color: var(--teal-dark);
+      margin-bottom: 2px;
+    }
+
+    .hl-box span {
+      font-size: 0.85rem;
+      color: var(--slate);
+      font-weight: 500;
+    }
+
     /* FAQ */
     .faq-list {
       max-width: 780px;
@@ -1029,43 +1201,49 @@
       color: var(--slate);
     }
 
-    /* Inquiry Form + Direct Social Contact Split */
-    .contact-section {
-      background: var(--navy);
-      color: #FFFFFF;
-      padding: 92px 0;
+    /* Contact Page Layout */
+    .contact-page-sec {
+      padding: 72px 0 92px;
     }
 
     .contact-grid {
       display: grid;
-      grid-template-columns: 0.92fr 1.08fr;
+      grid-template-columns: 0.9fr 1.1fr;
       gap: 48px;
       align-items: start;
     }
 
-    .contact-info h2 {
-      font-size: 2.35rem;
-      font-weight: 800;
-      line-height: 1.16;
-      margin-bottom: 16px;
+    .contact-info-box {
+      background: var(--navy);
+      color: #FFFFFF;
+      border-radius: 22px;
+      padding: 40px 34px;
+      box-shadow: var(--shadow-float);
     }
 
-    .contact-info p {
+    .contact-info-box h2 {
+      font-size: 2rem;
+      font-weight: 800;
+      line-height: 1.2;
+      margin-bottom: 14px;
+    }
+
+    .contact-info-box p {
       color: #CBD5E1;
-      font-size: 1.04rem;
-      margin-bottom: 28px;
+      font-size: 0.98rem;
+      margin-bottom: 26px;
     }
 
     .direct-channels {
       display: flex;
       flex-direction: column;
       gap: 14px;
-      margin-bottom: 30px;
+      margin-bottom: 28px;
     }
 
     .channel-box {
-      background: rgba(255, 255, 255, 0.06);
-      border: 1px solid rgba(255, 255, 255, 0.12);
+      background: rgba(255, 255, 255, 0.07);
+      border: 1px solid rgba(255, 255, 255, 0.14);
       border-radius: 14px;
       padding: 18px 20px;
       display: flex;
@@ -1074,11 +1252,12 @@
       gap: 14px;
       text-decoration: none;
       color: #FFFFFF;
-      transition: background 0.2s ease;
+      transition: background 0.2s ease, transform 0.2s ease;
     }
 
     .channel-box:hover {
-      background: rgba(255, 255, 255, 0.11);
+      background: rgba(255, 255, 255, 0.12);
+      transform: translateX(4px);
     }
 
     .channel-box strong {
@@ -1087,27 +1266,28 @@
     }
 
     .channel-box span {
-      font-size: 0.84rem;
+      font-size: 0.83rem;
       color: #94A3B8;
     }
 
     .intake-card {
       background: var(--bg-white);
       color: var(--navy);
-      border-radius: 20px;
-      padding: 36px;
-      box-shadow: var(--shadow-float);
+      border: 1px solid var(--border);
+      border-radius: 22px;
+      padding: 40px 36px;
+      box-shadow: var(--shadow-card);
     }
 
     .intake-card h3 {
-      font-size: 1.4rem;
+      font-size: 1.45rem;
       margin-bottom: 6px;
     }
 
     .intake-card > p {
-      font-size: 0.9rem;
+      font-size: 0.92rem;
       color: var(--slate);
-      margin-bottom: 22px;
+      margin-bottom: 24px;
     }
 
     .form-row {
@@ -1165,6 +1345,29 @@
       display: none;
     }
 
+    /* Bottom Mini CTA Strip on Inner Pages */
+    .bottom-cta-strip {
+      background: var(--navy);
+      color: #FFFFFF;
+      border-radius: 20px;
+      padding: 44px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 28px;
+      flex-wrap: wrap;
+    }
+
+    .bottom-cta-strip h3 {
+      font-size: 1.65rem;
+      margin-bottom: 6px;
+    }
+
+    .bottom-cta-strip p {
+      color: #CBD5E1;
+      font-size: 0.98rem;
+    }
+
     /* Footer */
     footer {
       border-top: 1px solid var(--border);
@@ -1184,11 +1387,12 @@
 
     .footer-links {
       display: flex;
-      gap: 24px;
+      gap: 22px;
       align-items: center;
+      flex-wrap: wrap;
     }
 
-    .footer-links a,
+    .footer-link-btn,
     .careers-btn {
       color: var(--muted);
       text-decoration: none;
@@ -1200,7 +1404,7 @@
       cursor: pointer;
     }
 
-    .footer-links a:hover,
+    .footer-link-btn:hover,
     .careers-btn:hover {
       color: var(--teal-dark);
     }
@@ -1251,6 +1455,7 @@
       .timeline-grid,
       .calc-card,
       .tiers-grid,
+      .about-grid,
       .contact-grid,
       .form-row {
         grid-template-columns: 1fr;
@@ -1263,6 +1468,7 @@
       .floating-card {
         position: static;
         margin-top: 16px;
+        animation: none;
       }
 
       .nav-links {
@@ -1287,7 +1493,7 @@
 
   <header>
     <div class="container nav-wrap">
-      <a href="#" class="brand">
+      <a class="brand" data-target="home">
         <!-- Custom Field2Desk Emblem -->
         <svg width="42" height="42" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
           <rect width="80" height="80" rx="16" fill="#0D2546" stroke="rgba(255,255,255,0.12)" stroke-width="1.5"/>
@@ -1311,13 +1517,13 @@
         <div class="brand-name">Field<span>2</span>Desk</div>
       </a>
 
-      <nav class="nav-links">
-        <a href="#trades">Trades</a>
-        <a href="#playbook">Live Playbook</a>
-        <a href="#security">Security</a>
-        <a href="#calculator">ROI Calculator</a>
-        <a href="#coverage">Coverage</a>
-        <a href="#contact" class="btn btn-teal nav-cta">Request Discovery Chat</a>
+      <nav class="nav-links" aria-label="Main Navigation">
+        <button type="button" class="nav-item active" data-target="home">Home</button>
+        <button type="button" class="nav-item" data-target="services">Services & Playbook</button>
+        <button type="button" class="nav-item" data-target="pricing">ROI & Coverage</button>
+        <button type="button" class="nav-item" data-target="about">About Us</button>
+        <button type="button" class="nav-item" data-target="contact">Contact Us</button>
+        <button type="button" class="btn btn-teal nav-cta" data-target="contact">Request Discovery Chat</button>
       </nav>
 
       <button type="button" class="mobile-toggle" id="mobileMenuBtn" aria-label="Toggle Menu">
@@ -1326,519 +1532,604 @@
     </div>
 
     <div class="mobile-drawer" id="mobileDrawer">
-      <a href="#trades">Trades</a>
-      <a href="#playbook">Live Playbook</a>
-      <a href="#security">Security & Privacy</a>
-      <a href="#calculator">ROI Calculator</a>
-      <a href="#coverage">Coverage Options</a>
-      <a href="#contact" class="btn btn-teal" style="margin-top: 6px;">Request Discovery Chat</a>
+      <button type="button" class="nav-item active" data-target="home">Home</button>
+      <button type="button" class="nav-item" data-target="services">Services & Playbook</button>
+      <button type="button" class="nav-item" data-target="pricing">ROI & Coverage</button>
+      <button type="button" class="nav-item" data-target="about">About Us</button>
+      <button type="button" class="nav-item" data-target="contact">Contact Us</button>
+      <button type="button" class="btn btn-teal" data-target="contact" style="margin-top: 8px; width: 100%;">Request Discovery Chat</button>
     </div>
   </header>
 
-  <section class="hero">
-    <div class="container hero-grid">
-      <div>
-        <div class="eyebrow"><span class="live-dot"></span> Dedicated Front-Office Operations for US Trade Teams</div>
-        <h1>Keep Your Trucks Moving. We'll Run the <span>Phones & Dispatch.</span></h1>
-        <p class="hero-lead">We embed trained call coordinators and dispatchers directly into your Housecall Pro, ServiceTitan, or Jobber workflow—so every homeowner gets answered live and your technicians stay on schedule.</p>
-        <div class="hero-actions">
-          <a href="#contact" class="btn btn-navy">Submit Shop Inquiry</a>
-          <a href="#calculator" class="btn btn-outline">Estimate Missed-Call Revenue</a>
-        </div>
-        <div class="trust-strip">
-          <div class="trust-item">
-            <strong>&lt; 3 Rings</strong>
-            <span>Live Call Answer Speed</span>
-          </div>
-          <div class="trust-item">
-            <strong>100% Native</strong>
-            <span>Works Inside Your CRM</span>
-          </div>
-          <div class="trust-item">
-            <strong>3–5 Days</strong>
-            <span>From Audit to Go-Live</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- Real Field Photo + Floating Live Dispatch Widget -->
-      <div class="hero-visual">
-        <div class="hero-photo-frame">
-          <img src="https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?auto=format&fit=crop&w=950&q=80" alt="HVAC technician inspecting equipment while remote dispatch manages bookings" />
-        </div>
-        <div class="floating-card">
-          <div class="fc-top">
-            <span class="fc-title">Live Desk Queue</span>
-            <span class="fc-pill">● US Shift Active</span>
-          </div>
-          <div class="fc-tabs">
-            <button type="button" class="fc-tab active" data-view="call">Inbound Call</button>
-            <button type="button" class="fc-tab" data-view="board">Dispatch Board</button>
-            <button type="button" class="fc-tab" data-view="quote">Quote Follow-Up</button>
-          </div>
-          <div class="fc-body" id="fcBody">
-            <strong>Emergency No-Cool Booked — Miller Residence</strong>
-            <p>Answered on Ring 2 • Diagnostic fee confirmed • Scheduled 10:00–12:00 in Housecall Pro.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <div class="tools-bar">
-    <div class="container tools-flex">
-      <span class="tools-label">Seamless Integration With Your Existing Stack</span>
-      <div class="tool-tags">
-        <span class="tool-tag">Housecall Pro</span>
-        <span class="tool-tag">ServiceTitan</span>
-        <span class="tool-tag">Jobber</span>
-        <span class="tool-tag">GoHighLevel</span>
-        <span class="tool-tag">Quo / OpenPhone</span>
-        <span class="tool-tag">RingCentral</span>
-      </div>
-    </div>
-  </div>
-
-  <!-- Trade Specialties With Real Photos -->
-  <section id="trades">
-    <div class="container">
-      <div class="section-head">
-        <span class="kicker">Trade-Specific Expertise</span>
-        <h2>Built Specifically for Residential & Light Commercial Contractors</h2>
-        <p>We don't use generic call-center scripts. Our coordinators speak the day-to-day language of home-service dispatching.</p>
-      </div>
-      <div class="trades-grid">
-        <div class="trade-card">
-          <img class="trade-img" src="https://images.unsplash.com/photo-1621905251189-08b45d6a269e?auto=format&fit=crop&w=800&q=80" alt="HVAC technician servicing outdoor condenser unit" />
-          <div class="trade-body">
-            <span class="trade-badge">HVAC & Refrigeration</span>
-            <h3>No-Cool Triage & Seasonal Tune-Ups</h3>
-            <p>We capture system age, thermostat symptoms, and attic/closet access notes, prioritize emergency heat/AC outages, and fill shoulder-season maintenance boards.</p>
-          </div>
-        </div>
-        <div class="trade-card">
-          <img class="trade-img" src="https://images.unsplash.com/photo-1585704032915-c3400ca199e7?auto=format&fit=crop&w=800&q=80" alt="Plumber repairing residential pipe system" />
-          <div class="trade-body">
-            <span class="trade-badge">Plumbing & Drain</span>
-            <h3>Urgent Leak & Main-Line Dispatch</h3>
-            <p>When a homeowner has an active slab leak or sewer backup, speed wins the job. We calm the caller, confirm dispatch fees, and route your nearest open truck immediately.</p>
-          </div>
-        </div>
-        <div class="trade-card">
-          <img class="trade-img" src="https://images.unsplash.com/photo-1621905252507-b35492cc74b4?auto=format&fit=crop&w=800&q=80" alt="Electrician inspecting residential breaker panel" />
-          <div class="trade-body">
-            <span class="trade-badge">Electrical & Multi-Trade</span>
-            <h3>Panel Upgrades, EV Chargers & Repairs</h3>
-            <p>We qualify troubleshooting calls vs. install estimates, collect panel photos via SMS before arrival, and keep multi-truck schedules tightly grouped by zip code.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Behind the Desk Photo + Interactive Playbook Simulator -->
-  <section id="playbook" class="playbook-section">
-    <div class="container">
-      <div class="section-head">
-        <span class="kicker">Inside Our Workflow</span>
-        <h2>See How a Field2Desk Coordinator Handles Your Calls</h2>
-        <p>Click through real scenarios below to see how we protect your booking rate and keep owners out of the weeds.</p>
-      </div>
-      <div class="playbook-split">
-        <div class="desk-photo-wrap">
-          <img src="https://images.unsplash.com/photo-1553877522-43269d4ea984?auto=format&fit=crop&w=850&q=80" alt="Operations coordinator managing live dispatch board and customer calls" />
-          <div class="desk-caption">
-            <strong>Proactive Desk Standard</strong>
-            We spot incoming texts, missed calls, and schedule gaps inside Quo & Housecall Pro before the owner ever has to ask.
-          </div>
-        </div>
-
-        <div class="sim-box">
-          <div class="sim-tabs">
-            <button type="button" class="sim-btn active" data-play="emergency">1. Urgent "No-Cool" Call</button>
-            <button type="button" class="sim-btn" data-play="delay">2. Tech Running Late</button>
-            <button type="button" class="sim-btn" data-play="estimate">3. Unsold $4,800 Quote</button>
-          </div>
-          <div class="sim-panel" id="simPanel">
-            <div class="sim-step">
-              <div class="sim-label">Step 1 • Live Pickup (&lt; 3 Rings)</div>
-              <div class="sim-text">"Thank you for calling [Your Company Name], this is your dispatch desk—how can we help get you comfortable today?"</div>
+  <main>
+    <!-- ==================== VIEW 1: HOME ==================== -->
+    <div class="page-view active" id="view-home">
+      <section class="hero">
+        <div class="container hero-grid">
+          <div class="reveal">
+            <div class="eyebrow"><span class="live-dot"></span> Dedicated Front-Office Operations for US Trade Teams</div>
+            <h1>Keep Your Trucks Moving. We'll Run the <span>Phones & Dispatch.</span></h1>
+            <p class="hero-lead">We embed trained call coordinators and dispatchers directly into your Housecall Pro, ServiceTitan, or Jobber workflow—so every homeowner gets answered live and your technicians stay on schedule.</p>
+            <div class="hero-actions">
+              <button type="button" class="btn btn-navy" data-target="contact">Submit Shop Inquiry</button>
+              <button type="button" class="btn btn-outline" data-target="pricing">Calculate Missed-Call ROI</button>
             </div>
-            <div class="sim-step">
-              <div class="sim-label">Step 2 • Qualification & Fee Approval</div>
-              <div class="sim-text">Confirms homeowner address, equipment age (11-year-old split system), and gets upfront approval on your $89 diagnostic dispatch fee.</div>
+            <div class="trust-strip">
+              <div class="trust-item">
+                <strong>&lt; 3 Rings</strong>
+                <span>Live Call Answer Speed</span>
+              </div>
+              <div class="trust-item">
+                <strong>100% Native</strong>
+                <span>Works Inside Your CRM</span>
+              </div>
+              <div class="trust-item">
+                <strong>3–5 Days</strong>
+                <span>From Audit to Go-Live</span>
+              </div>
             </div>
-            <div class="sim-step">
-              <div class="sim-label">Step 3 • Instant CRM & Tech Sync</div>
-              <div class="sim-text">Books into the 1:00–3:00 PM slot in Housecall Pro, tags the assigned tech, and triggers an automated confirmation text to the homeowner.</div>
+          </div>
+
+          <div class="hero-visual reveal delay-1">
+            <div class="hero-photo-frame">
+              <img src="https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?auto=format&fit=crop&w=950&q=80" alt="HVAC technician inspecting equipment while remote dispatch manages bookings" />
+            </div>
+            <div class="floating-card">
+              <div class="fc-top">
+                <span class="fc-title">Live Desk Queue</span>
+                <span class="fc-pill">● US Shift Active</span>
+              </div>
+              <div class="fc-tabs">
+                <button type="button" class="fc-tab active" data-view="call">Inbound Call</button>
+                <button type="button" class="fc-tab" data-view="board">Dispatch Board</button>
+                <button type="button" class="fc-tab" data-view="quote">Quote Follow-Up</button>
+              </div>
+              <div class="fc-body" id="fcBody">
+                <strong>Emergency No-Cool Booked — Miller Residence</strong>
+                <p>Answered on Ring 2 • Diagnostic fee confirmed • Scheduled 10:00–12:00 in Housecall Pro.</p>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-    </div>
-  </section>
+      </section>
 
-  <!-- Before vs After Comparison Table -->
-  <section id="comparison">
-    <div class="container">
-      <div class="section-head">
-        <span class="kicker">The Operational Shift</span>
-        <h2>Stop Running Your Front Desk From the Driver's Seat</h2>
-        <p>Compare handling phones between jobs against having a dedicated coordinator owning your desk all shift.</p>
-      </div>
-      <div class="compare-wrap">
-        <table class="compare-table">
-          <thead>
-            <tr>
-              <th>Daily Bottleneck</th>
-              <th>Handling Phones Yourself</th>
-              <th>With a Field2Desk Coordinator</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>Inbound Calls While On-Site</td>
-              <td>Goes to voicemail; 85% of callers hang up and dial the next shop on Google.</td>
-              <td>Answered live in under 3 rings using your company greeting and booking rules.</td>
-            </tr>
-            <tr>
-              <td>Dispatch Board & Drive Time</td>
-              <td>Technicians zigzag across town; delayed jobs create angry afternoon callbacks.</td>
-              <td>Routes grouped by zip code with proactive customer ETA texts when jobs shift.</td>
-            </tr>
-            <tr>
-              <td>Open Estimates & Quotes</td>
-              <td>Big replacement quotes sit untouched for weeks because evenings are spent invoicing.</td>
-              <td>Systematic 48-hour follow-up calls and texts until the homeowner books or decides.</td>
-            </tr>
-            <tr>
-              <td>Cost & Overhead</td>
-              <td>$45,000–$60,000+/yr plus payroll taxes and benefits for a single in-house receptionist.</td>
-              <td>Fraction of local in-house overhead with flexible part-time or full-shift coverage.</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-  </section>
-
-  <!-- Shop Protection & Data Security -->
-  <section id="security" class="security-section">
-    <div class="container">
-      <div class="section-head">
-        <span class="kicker">Trust & Governance</span>
-        <h2>How We Protect Your Shop, Data & Territory</h2>
-        <p>Handing over your customer lines is a big step. We build strict operational guardrails into every engagement.</p>
-      </div>
-      <div class="security-grid">
-        <div class="sec-card">
-          <div class="sec-icon">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-          </div>
-          <h3>Role-Based CRM Access</h3>
-          <p>We work under a restricted dispatcher/CSR user login—full access to scheduling and notes, zero access to bank accounts, payroll, or bulk exports.</p>
-        </div>
-        <div class="sec-card">
-          <div class="sec-icon">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="10" r="3"/><path d="M12 21.7C17.3 17 20 13 20 10a8 8 0 1 0-16 0c0 3 2.7 7 8 11.7z"/></svg>
-          </div>
-          <h3>Zip-Code Exclusivity</h3>
-          <p>Your dedicated coordinator works exclusively on your brand and will never answer phones or manage dispatch for a competing contractor in your service area.</p>
-        </div>
-        <div class="sec-card">
-          <div class="sec-icon">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
-          </div>
-          <h3>Signed Confidentiality</h3>
-          <p>Every coordinator signs a binding NDA and data-privacy agreement before touching your pricebook, customer list, or VoIP phone lines.</p>
-        </div>
-        <div class="sec-card">
-          <div class="sec-icon">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-          </div>
-          <h3>Recorded Call QA Audits</h3>
-          <p>We review call recordings and booking accuracy during your first two weeks to fine-tune objection handling, diagnostic fee scripts, and tone.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- A Day in the Life US Shift Timeline -->
-  <section class="timeline-section">
-    <div class="container">
-      <div class="section-head">
-        <span class="kicker">Daily Shift Cadence</span>
-        <h2>What Happens During a Typical US Business Day</h2>
-        <p>Structured, repeatable execution from morning dispatch through end-of-day reporting.</p>
-      </div>
-      <div class="timeline-grid">
-        <div class="time-card">
-          <span class="time-pill">7:30 AM – 10:00 AM</span>
-          <h3>Morning Triage & Confirmations</h3>
-          <p>Clear overnight voicemails and web forms, confirm first-call arrival windows with homeowners, and verify every tech is en route.</p>
-        </div>
-        <div class="time-card">
-          <span class="time-pill">10:00 AM – 2:00 PM</span>
-          <h3>Peak Inbound & Board Control</h3>
-          <p>Answer live service calls, slot same-day emergencies into open gaps, and rebalance afternoon jobs if a morning repair runs long.</p>
-        </div>
-        <div class="time-card">
-          <span class="time-pill">2:00 PM – 4:30 PM</span>
-          <h3>48-Hour Quote & Tune-Up Calls</h3>
-          <p>Follow up on open replacement estimates, call overdue maintenance club members, and send Google review links on completed jobs.</p>
-        </div>
-        <div class="time-card">
-          <span class="time-pill">4:30 PM – 6:00 PM</span>
-          <h3>Next-Day Prep & EOD Summary</h3>
-          <p>Lock tomorrow's dispatch board, verify parts-pending callbacks, and send you a clean daily KPI summary of calls, bookings, and revenue.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ROI Calculator -->
-  <section id="calculator">
-    <div class="container">
-      <div class="section-head">
-        <span class="kicker">Revenue Calculator</span>
-        <h2>See What Missed Calls Are Costing Your Shop</h2>
-        <p>Adjust the sliders below to estimate how much monthly revenue is slipping to competitors when calls go to voicemail.</p>
-      </div>
-      <div class="calc-card">
-        <div>
-          <div class="slider-row">
-            <div class="slider-labels">
-              <label for="missedCalls">Missed calls per week (on-site, lunch, overflow)</label>
-              <span class="slider-badge"><span id="missedCallsVal">6</span> calls/wk</span>
-            </div>
-            <input type="range" id="missedCalls" min="1" max="30" value="6" />
-          </div>
-
-          <div class="slider-row">
-            <div class="slider-labels">
-              <label for="avgTicket">Average service or repair ticket ($)</label>
-              <span class="slider-badge">$<span id="avgTicketVal">450</span></span>
-            </div>
-            <input type="range" id="avgTicket" min="150" max="2500" step="50" value="450" />
-          </div>
-
-          <div class="slider-row">
-            <div class="slider-labels">
-              <label for="bookRate">Live call-to-booking conversion rate (%)</label>
-              <span class="slider-badge"><span id="bookRateVal">60</span>%</span>
-            </div>
-            <input type="range" id="bookRate" min="30" max="90" step="5" value="60" />
+      <div class="tools-bar">
+        <div class="container tools-flex">
+          <span class="tools-label">Seamless Integration With Your Existing Stack</span>
+          <div class="tool-tags">
+            <span class="tool-tag">Housecall Pro</span>
+            <span class="tool-tag">ServiceTitan</span>
+            <span class="tool-tag">Jobber</span>
+            <span class="tool-tag">GoHighLevel</span>
+            <span class="tool-tag">Quo / OpenPhone</span>
+            <span class="tool-tag">Looker Studio KPIs</span>
           </div>
         </div>
+      </div>
 
-        <div class="calc-summary">
-          <div class="cap">Estimated Monthly Revenue Recoverable</div>
-          <div class="num" id="monthlyLoss">$7,015</div>
-          <div class="sub">That's <strong id="annualLoss" style="color:#FFFFFF;">$84,180/year</strong> in booked service calls.</div>
-          <div class="calc-breakdown">
-            <div class="cb-item">
-              <span>Missed Calls / Mo</span>
-              <strong id="monthlyCalls">26 calls</strong>
-            </div>
-            <div class="cb-item">
-              <span>Jobs Booked Live</span>
-              <strong id="bookedJobs">16 jobs/mo</strong>
-            </div>
+      <section>
+        <div class="container">
+          <div class="section-head reveal">
+            <span class="kicker">The Operational Shift</span>
+            <h2>Stop Running Your Front Desk From the Driver's Seat</h2>
+            <p>Compare handling phones between jobs against having a dedicated coordinator owning your desk all shift.</p>
           </div>
-          <a href="#contact" id="calcCtaBtn" class="btn btn-teal" style="width: 100%;">Reclaim $7,015/mo — Inquire Below</a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Coverage Packages -->
-  <section id="coverage" style="background: var(--bg-white); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);">
-    <div class="container">
-      <div class="section-head">
-        <span class="kicker">Coverage Options</span>
-        <h2>Flexible Support That Scales With Your Fleet</h2>
-        <p>Start with peak-window overflow coverage or lock in a full-time coordinator for your entire US business day.</p>
-      </div>
-      <div class="tiers-grid">
-        <div class="tier">
-          <div>
-            <div class="tier-trucks">Ideal for 1–3 Trucks</div>
-            <h3>Part-Time Overflow & Admin</h3>
-            <p class="tier-sub">Capture midday calls, clear voicemails, and stay on top of open quotes.</p>
-            <ul class="tier-list">
-              <li><span>✓</span>4 hours/day peak-window live call answering</li>
-              <li><span>✓</span>Morning voicemail & web-lead callbacks</li>
-              <li><span>✓</span>48-hour open estimate follow-ups</li>
-              <li><span>✓</span>Direct booking in your existing CRM</li>
-            </ul>
+          <div class="compare-wrap reveal delay-1">
+            <table class="compare-table">
+              <thead>
+                <tr>
+                  <th>Daily Bottleneck</th>
+                  <th>Handling Phones Yourself</th>
+                  <th>With a Field2Desk Coordinator</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Inbound Calls While On-Site</td>
+                  <td>Goes to voicemail; 85% of callers hang up and dial the next shop on Google.</td>
+                  <td>Answered live in under 3 rings using your company greeting and booking rules.</td>
+                </tr>
+                <tr>
+                  <td>Dispatch Board & Drive Time</td>
+                  <td>Technicians zigzag across town; delayed jobs create angry afternoon callbacks.</td>
+                  <td>Routes grouped by zip code with proactive customer ETA texts when jobs shift.</td>
+                </tr>
+                <tr>
+                  <td>Open Estimates & Quotes</td>
+                  <td>Big replacement quotes sit untouched for weeks because evenings are spent invoicing.</td>
+                  <td>Systematic 48-hour follow-up calls and texts until the homeowner books or decides.</td>
+                </tr>
+                <tr>
+                  <td>Cost & Overhead</td>
+                  <td>$45,000–$60,000+/yr plus payroll taxes and benefits for a single in-house receptionist.</td>
+                  <td>Fraction of local in-house overhead with flexible part-time or full-shift coverage.</td>
+                </tr>
+              </tbody>
+            </table>
           </div>
-          <a href="#contact" class="btn btn-outline" style="width: 100%;">Select Part-Time Inquiry</a>
-        </div>
 
-        <div class="tier popular">
-          <span class="pop-pill">Most Popular</span>
-          <div>
-            <div class="tier-trucks">Ideal for 3–8 Trucks</div>
-            <h3>Dedicated Full-Time Desk</h3>
-            <p class="tier-sub">One trained coordinator running your phones and dispatch board all shift.</p>
-            <ul class="tier-list">
-              <li><span>✓</span>Full 8-hour US shift live inbound answering</li>
-              <li><span>✓</span>Active dispatch board & route management</li>
-              <li><span>✓</span>Customer ETA texts & review requests</li>
-              <li><span>✓</span>End-of-day KPI & job tracker reporting</li>
-            </ul>
-          </div>
-          <a href="#contact" class="btn btn-navy" style="width: 100%;">Select Full-Time Inquiry</a>
-        </div>
-
-        <div class="tier">
-          <div>
-            <div class="tier-trucks">Ideal for 8+ Trucks</div>
-            <h3>Multi-Tech Dispatch Pod</h3>
-            <p class="tier-sub">Extended morning-to-evening coverage with split CSR and dispatch roles.</p>
-            <ul class="tier-list">
-              <li><span>✓</span>Dedicated Call Handler + Senior Dispatcher</li>
-              <li><span>✓</span>Extended early-morning & evening coverage</li>
-              <li><span>✓</span>Outbound tune-up & membership campaigns</li>
-              <li><span>✓</span>Custom SOP playbook & weekly ops review</li>
-            </ul>
-          </div>
-          <a href="#contact" class="btn btn-outline" style="width: 100%;">Request Custom Setup</a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- FAQ -->
-  <section id="faq">
-    <div class="container">
-      <div class="section-head">
-        <span class="kicker">FAQ</span>
-        <h2>Common Questions From Shop Owners</h2>
-        <p>Clear answers on how remote dispatching plugs into your day-to-day workflow.</p>
-      </div>
-      <div class="faq-list">
-        <details class="faq-box">
-          <summary>Do we have to change our phone number or field service software?</summary>
-          <p>Not at all. We log directly into the exact tools you already use—Housecall Pro, ServiceTitan, Jobber, Quo (OpenPhone), or RingCentral. Customers keep calling your local business number.</p>
-        </details>
-        <details class="faq-box">
-          <summary>Will callers feel like they are speaking to a generic call center?</summary>
-          <p>No. Unlike big answering services where random agents read off a generic script, you get a dedicated coordinator trained specifically on your service zones, pricing tiers, and brand tone.</p>
-        </details>
-        <details class="faq-box">
-          <summary>How do you handle emergency calls vs. routine maintenance?</summary>
-          <p>During onboarding, we map out your exact triage rules—defining what qualifies as a same-day emergency (no-heat, active leaks, extreme-heat AC failure), which tech takes priority, and when to escalate to you.</p>
-        </details>
-        <details class="faq-box">
-          <summary>How fast can we get someone trained on our board?</summary>
-          <p>Once we complete a 15-minute alignment call to review your booking rules and CRM permissions, we typically finish onboarding and go live on your phones within 3 to 5 business days.</p>
-        </details>
-      </div>
-    </div>
-  </section>
-
-  <!-- Contact Section with Full Intake Form + Direct Social Channels -->
-  <section id="contact" class="contact-section">
-    <div class="container contact-grid">
-      <div class="contact-info">
-        <span class="kicker" style="color: var(--teal);">Get Started</span>
-        <h2>Ready to Take Phones & Dispatch Off Your Plate?</h2>
-        <p>Fill out the quick shop intake form or message us directly on LinkedIn or Facebook. We'll review your current call flow and walk through how we can help—zero pressure.</p>
-
-        <div class="direct-channels">
-          <a href="https://www.linkedin.com/company/144131146/" target="_blank" rel="noopener" class="channel-box">
+          <div class="bottom-cta-strip reveal" style="margin-top: 56px;">
             <div>
-              <strong>Message Field2Desk on LinkedIn</strong>
-              <span>Connect directly with our operations partners</span>
+              <h3>Want to see how we handle live calls and dispatch changes?</h3>
+              <p>Explore our trade-specific workflows and interactive call playbook.</p>
             </div>
-            <span style="color: var(--teal); font-weight: 700;">Open →</span>
-          </a>
-          <a href="https://www.facebook.com/profile.php?id=61595046637750" target="_blank" rel="noopener" class="channel-box">
-            <div>
-              <strong>Message Field2Desk on Facebook</strong>
-              <span>Fast responses during US & PH business hours</span>
-            </div>
-            <span style="color: var(--teal); font-weight: 700;">Open →</span>
-          </a>
+            <button type="button" class="btn btn-teal" data-target="services">Explore Services & Playbook →</button>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- ==================== VIEW 2: SERVICES & PLAYBOOK ==================== -->
+    <div class="page-view" id="view-services">
+      <div class="page-banner">
+        <div class="container reveal">
+          <span class="kicker">Capabilities & Live Playbook</span>
+          <h1>End-to-End Front-Office Operations for Trade Crews</h1>
+          <p>We don't read off generic call-center scripts. Our coordinators speak the day-to-day language of HVAC, plumbing, and electrical dispatching.</p>
         </div>
       </div>
 
-      <div class="intake-card">
-        <h3>Shop Operations Inquiry</h3>
-        <p>Tell us a bit about your fleet and current CRM so we can prepare for a quick 15-minute intro chat.</p>
-
-        <form id="inquiryForm">
-          <div class="form-row">
-            <div class="form-group">
-              <label for="ownerName">Your Name *</label>
-              <input type="text" id="ownerName" placeholder="e.g. Mike Reynolds" required />
+      <section>
+        <div class="container">
+          <div class="section-head reveal">
+            <span class="kicker">Trade-Specific Expertise</span>
+            <h2>Built for Residential & Light Commercial Contractors</h2>
+            <p>Tailored triage rules, diagnostic fee scripts, and route management for your specific trade.</p>
+          </div>
+          <div class="trades-grid">
+            <div class="trade-card reveal delay-1">
+              <img class="trade-img" src="https://images.unsplash.com/photo-1621905251189-08b45d6a269e?auto=format&fit=crop&w=800&q=80" alt="HVAC technician servicing outdoor condenser unit" />
+              <div class="trade-body">
+                <span class="trade-badge">HVAC & Refrigeration</span>
+                <h3>No-Cool Triage & Seasonal Tune-Ups</h3>
+                <p>We capture system age, thermostat symptoms, and attic/closet access notes, prioritize emergency heat/AC outages, and fill shoulder-season maintenance boards.</p>
+              </div>
             </div>
-            <div class="form-group">
-              <label for="companyName">Company Name *</label>
-              <input type="text" id="companyName" placeholder="e.g. Apex Heating & Air" required />
+            <div class="trade-card reveal delay-2">
+              <img class="trade-img" src="https://images.unsplash.com/photo-1585704032915-c3400ca199e7?auto=format&fit=crop&w=800&q=80" alt="Plumber repairing residential pipe system" />
+              <div class="trade-body">
+                <span class="trade-badge">Plumbing & Drain</span>
+                <h3>Urgent Leak & Main-Line Dispatch</h3>
+                <p>When a homeowner has an active slab leak or sewer backup, speed wins the job. We calm the caller, confirm dispatch fees, and route your nearest open truck immediately.</p>
+              </div>
+            </div>
+            <div class="trade-card reveal delay-3">
+              <img class="trade-img" src="https://images.unsplash.com/photo-1621905252507-b35492cc74b4?auto=format&fit=crop&w=800&q=80" alt="Electrician inspecting residential breaker panel" />
+              <div class="trade-body">
+                <span class="trade-badge">Electrical & Multi-Trade</span>
+                <h3>Panel Upgrades, EV Chargers & Repairs</h3>
+                <p>We qualify troubleshooting calls vs. install estimates, collect panel photos via SMS before arrival, and keep multi-truck schedules tightly grouped by zip code.</p>
+              </div>
             </div>
           </div>
+        </div>
+      </section>
 
-          <div class="form-row">
-            <div class="form-group">
-              <label for="contactEmail">Work Email or Phone *</label>
-              <input type="text" id="contactEmail" placeholder="mike@apexhvac.com / (555) 234-5678" required />
+      <section class="playbook-section">
+        <div class="container">
+          <div class="section-head reveal">
+            <span class="kicker">Interactive Call Simulator</span>
+            <h2>See How a Field2Desk Coordinator Handles Your Calls</h2>
+            <p>Click through real scenarios below to see how we protect your booking rate and keep owners out of the weeds.</p>
+          </div>
+          <div class="playbook-split">
+            <div class="desk-photo-wrap reveal">
+              <img src="https://images.unsplash.com/photo-1553877522-43269d4ea984?auto=format&fit=crop&w=850&q=80" alt="Operations coordinator managing live dispatch board and customer calls" />
+              <div class="desk-caption">
+                <strong>Proactive Desk Standard</strong>
+                We spot incoming texts, missed calls, and schedule gaps inside Quo & Housecall Pro before the owner ever has to ask.
+              </div>
             </div>
-            <div class="form-group">
-              <label for="truckCount">Active Service Trucks</label>
-              <select id="truckCount">
-                <option value="1-2 Trucks">1–2 Trucks</option>
-                <option value="3-5 Trucks" selected>3–5 Trucks</option>
-                <option value="6-10 Trucks">6–10 Trucks</option>
-                <option value="10+ Trucks">10+ Trucks</option>
-              </select>
+
+            <div class="sim-box reveal delay-1">
+              <div class="sim-tabs">
+                <button type="button" class="sim-btn active" data-play="emergency">1. Urgent "No-Cool" Call</button>
+                <button type="button" class="sim-btn" data-play="delay">2. Tech Running Late</button>
+                <button type="button" class="sim-btn" data-play="estimate">3. Unsold $4,800 Quote</button>
+              </div>
+              <div class="sim-panel" id="simPanel">
+                <div class="sim-step">
+                  <div class="sim-label">Step 1 • Live Pickup (&lt; 3 Rings)</div>
+                  <div class="sim-text">"Thank you for calling [Your Company Name], this is your dispatch desk—how can we help get you comfortable today?"</div>
+                </div>
+                <div class="sim-step">
+                  <div class="sim-label">Step 2 • Qualification & Fee Approval</div>
+                  <div class="sim-text">Confirms homeowner address, equipment age (11-year-old split system), and gets upfront approval on your $89 diagnostic dispatch fee.</div>
+                </div>
+                <div class="sim-step">
+                  <div class="sim-label">Step 3 • Instant CRM & Tech Sync</div>
+                  <div class="sim-text">Books into the 1:00–3:00 PM slot in Housecall Pro, tags the assigned tech, and triggers an automated confirmation text to the homeowner.</div>
+                </div>
+              </div>
             </div>
           </div>
+        </div>
+      </section>
 
-          <div class="form-row">
-            <div class="form-group">
-              <label for="crmTool">Current CRM / Phone System</label>
-              <select id="crmTool">
-                <option value="Housecall Pro">Housecall Pro</option>
-                <option value="ServiceTitan">ServiceTitan</option>
-                <option value="Jobber">Jobber</option>
-                <option value="GoHighLevel">GoHighLevel</option>
-                <option value="Quo / OpenPhone / Other">Quo / OpenPhone / Other</option>
-              </select>
+      <section class="timeline-section">
+        <div class="container">
+          <div class="section-head reveal">
+            <span class="kicker">Daily Shift Cadence</span>
+            <h2>What Happens During a Typical US Business Day</h2>
+            <p>Structured, repeatable execution from morning dispatch through end-of-day reporting.</p>
+          </div>
+          <div class="timeline-grid">
+            <div class="time-card reveal delay-1">
+              <span class="time-pill">7:30 AM – 10:00 AM</span>
+              <h3>Morning Triage & Confirmations</h3>
+              <p>Clear overnight voicemails and web forms, confirm first-call arrival windows with homeowners, and verify every tech is en route.</p>
             </div>
-            <div class="form-group">
-              <label for="coverageNeed">Coverage Interest</label>
-              <select id="coverageNeed">
-                <option value="Full-Time Dedicated Desk (8 hrs/day)">Full-Time Dedicated Desk (8 hrs/day)</option>
-                <option value="Part-Time Overflow & Admin (4 hrs/day)">Part-Time Overflow & Admin (4 hrs/day)</option>
-                <option value="Multi-Tech Dispatch Pod">Multi-Tech Dispatch Pod</option>
-              </select>
+            <div class="time-card reveal delay-2">
+              <span class="time-pill">10:00 AM – 2:00 PM</span>
+              <h3>Peak Inbound & Board Control</h3>
+              <p>Answer live service calls, slot same-day emergencies into open gaps, and rebalance afternoon jobs if a morning repair runs long.</p>
+            </div>
+            <div class="time-card reveal delay-3">
+              <span class="time-pill">2:00 PM – 4:30 PM</span>
+              <h3>48-Hour Quote & Tune-Up Calls</h3>
+              <p>Follow up on open replacement estimates, call overdue maintenance club members, and send Google review links on completed jobs.</p>
+            </div>
+            <div class="time-card reveal delay-1">
+              <span class="time-pill">4:30 PM – 6:00 PM</span>
+              <h3>Next-Day Prep & EOD Summary</h3>
+              <p>Lock tomorrow's dispatch board, verify parts-pending callbacks, and send you a clean daily KPI summary of calls, bookings, and revenue.</p>
             </div>
           </div>
-
-          <div class="form-group">
-            <label for="bottleneckNote">Biggest Front-Office Bottleneck Right Now</label>
-            <textarea id="bottleneckNote" rows="3" placeholder="e.g. Missing inbound calls while on-site, dispatch board changes, or following up on open estimates..."></textarea>
-          </div>
-
-          <div class="form-actions">
-            <button type="submit" class="btn btn-teal" style="flex: 1;">Send Inquiry via Email</button>
-            <button type="button" id="copyInquiryBtn" class="btn btn-outline">Copy Summary for DM</button>
-          </div>
-          <div class="form-status" id="formStatus"></div>
-        </form>
-      </div>
+        </div>
+      </section>
     </div>
-  </section>
+
+    <!-- ==================== VIEW 3: ROI & COVERAGE ==================== -->
+    <div class="page-view" id="view-pricing">
+      <div class="page-banner">
+        <div class="container reveal">
+          <span class="kicker">ROI & Engagement Tiers</span>
+          <h1>Transparent Coverage Built Around Your Fleet Size</h1>
+          <p>See how much voicemail is costing your shop right now—and choose the shift structure that fits your truck count.</p>
+        </div>
+      </div>
+
+      <section>
+        <div class="container">
+          <div class="section-head reveal">
+            <span class="kicker">Revenue Calculator</span>
+            <h2>Calculate What Missed Calls Are Costing Your Shop</h2>
+            <p>Adjust the sliders below to estimate how much monthly revenue is slipping to competitors when calls go to voicemail.</p>
+          </div>
+          <div class="calc-card reveal delay-1">
+            <div>
+              <div class="slider-row">
+                <div class="slider-labels">
+                  <label for="missedCalls">Missed calls per week (on-site, lunch, overflow)</label>
+                  <span class="slider-badge"><span id="missedCallsVal">6</span> calls/wk</span>
+                </div>
+                <input type="range" id="missedCalls" min="1" max="30" value="6" />
+              </div>
+
+              <div class="slider-row">
+                <div class="slider-labels">
+                  <label for="avgTicket">Average service or repair ticket ($)</label>
+                  <span class="slider-badge">$<span id="avgTicketVal">450</span></span>
+                </div>
+                <input type="range" id="avgTicket" min="150" max="2500" step="50" value="450" />
+              </div>
+
+              <div class="slider-row">
+                <div class="slider-labels">
+                  <label for="bookRate">Live call-to-booking conversion rate (%)</label>
+                  <span class="slider-badge"><span id="bookRateVal">60</span>%</span>
+                </div>
+                <input type="range" id="bookRate" min="30" max="90" step="5" value="60" />
+              </div>
+            </div>
+
+            <div class="calc-summary">
+              <div class="cap">Estimated Monthly Revenue Recoverable</div>
+              <div class="num" id="monthlyLoss">$7,015</div>
+              <div class="sub">That's <strong id="annualLoss" style="color:#FFFFFF;">$84,180/year</strong> in booked service calls.</div>
+              <div class="calc-breakdown">
+                <div class="cb-item">
+                  <span>Missed Calls / Mo</span>
+                  <strong id="monthlyCalls">26 calls</strong>
+                </div>
+                <div class="cb-item">
+                  <span>Jobs Booked Live</span>
+                  <strong id="bookedJobs">16 jobs/mo</strong>
+                </div>
+              </div>
+              <button type="button" id="calcCtaBtn" class="btn btn-teal" data-target="contact" style="width: 100%;">Reclaim $7,015/mo — Inquire Now</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section style="background: var(--bg-white); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);">
+        <div class="container">
+          <div class="section-head reveal">
+            <span class="kicker">Coverage Options</span>
+            <h2>Flexible Support That Scales With Your Fleet</h2>
+            <p>Start with peak-window overflow coverage or lock in a full-time coordinator for your entire US business day.</p>
+          </div>
+          <div class="tiers-grid">
+            <div class="tier reveal delay-1">
+              <div>
+                <div class="tier-trucks">Ideal for 1–3 Trucks</div>
+                <h3>Part-Time Overflow & Admin</h3>
+                <p class="tier-sub">Capture midday calls, clear voicemails, and stay on top of open quotes.</p>
+                <ul class="tier-list">
+                  <li><span>✓</span>4 hours/day peak-window live call answering</li>
+                  <li><span>✓</span>Morning voicemail & web-lead callbacks</li>
+                  <li><span>✓</span>48-hour open estimate follow-ups</li>
+                  <li><span>✓</span>Direct booking in your existing CRM</li>
+                </ul>
+              </div>
+              <button type="button" class="btn btn-outline" data-target="contact" style="width: 100%;">Select Part-Time Inquiry</button>
+            </div>
+
+            <div class="tier popular reveal delay-2">
+              <span class="pop-pill">Most Popular</span>
+              <div>
+                <div class="tier-trucks">Ideal for 3–8 Trucks</div>
+                <h3>Dedicated Full-Time Desk</h3>
+                <p class="tier-sub">One trained coordinator running your phones and dispatch board all shift.</p>
+                <ul class="tier-list">
+                  <li><span>✓</span>Full 8-hour US shift live inbound answering</li>
+                  <li><span>✓</span>Active dispatch board & route management</li>
+                  <li><span>✓</span>Customer ETA texts & review requests</li>
+                  <li><span>✓</span>End-of-day KPI & job tracker reporting</li>
+                </ul>
+              </div>
+              <button type="button" class="btn btn-navy" data-target="contact" style="width: 100%;">Select Full-Time Inquiry</button>
+            </div>
+
+            <div class="tier reveal delay-3">
+              <div>
+                <div class="tier-trucks">Ideal for 8+ Trucks</div>
+                <h3>Multi-Tech Dispatch Pod</h3>
+                <p class="tier-sub">Extended morning-to-evening coverage with split CSR and dispatch roles.</p>
+                <ul class="tier-list">
+                  <li><span>✓</span>Dedicated Call Handler + Senior Dispatcher</li>
+                  <li><span>✓</span>Extended early-morning & evening coverage</li>
+                  <li><span>✓</span>Outbound tune-up & membership campaigns</li>
+                  <li><span>✓</span>Custom SOP playbook & weekly ops review</li>
+                </ul>
+              </div>
+              <button type="button" class="btn btn-outline" data-target="contact" style="width: 100%;">Request Custom Setup</button>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- ==================== VIEW 4: ABOUT US ==================== -->
+    <div class="page-view" id="view-about">
+      <div class="page-banner">
+        <div class="container reveal">
+          <span class="kicker">About Field2Desk</span>
+          <h1>Built by Operators Who Know the Dispatch Board Inside Out</h1>
+          <p>We founded Field2Desk after seeing firsthand how many great US HVAC and plumbing owners were burning out trying to answer phones from the field.</p>
+        </div>
+      </div>
+
+      <section>
+        <div class="container about-grid">
+          <div class="about-story reveal">
+            <span class="kicker">Our Story & Mission</span>
+            <h2>Bridging the Gap Between Field Execution and Front-Desk Excellence</h2>
+            <p>Most virtual assistant agencies hand you an untrained generalist and expect you to spend weeks teaching them what a capacitor, slab leak, or diagnostic fee is. We built <strong>Field2Desk</strong> to be the exact opposite.</p>
+            <p>Our background comes directly from running daily US home-service operations—managing live customer lines in Quo, building tight technician routes in Housecall Pro, automating follow-up pipelines in GoHighLevel, and tracking job profitability on Looker Studio dashboards.</p>
+            <p>We believe a business owner should never have to ask, <em>"Did we ever get back to that customer?"</em> Our mission is to stay five steps ahead of your board so you can focus on leading crews and growing your shop.</p>
+
+            <div class="about-highlights">
+              <div class="hl-box">
+                <strong>100% Dedicated</strong>
+                <span>One coordinator assigned exclusively to your shop's territory</span>
+              </div>
+              <div class="hl-box">
+                <strong>Data-Driven Ops</strong>
+                <span>Daily job trackers, booking KPIs, and clean CRM hygiene</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="desk-photo-wrap reveal delay-1">
+            <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=900&q=80" alt="Field2Desk operations team collaborating on dispatch workflows" />
+            <div class="desk-caption">
+              <strong>Real Operations Partnership</strong>
+              We act as an extension of your in-house team—protecting your reputation on every call.
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section style="background: var(--bg-white); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);">
+        <div class="container">
+          <div class="section-head reveal">
+            <span class="kicker">Trust & Governance</span>
+            <h2>How We Protect Your Shop, Data & Territory</h2>
+            <p>Handing over your customer lines is a big step. We build strict operational guardrails into every engagement.</p>
+          </div>
+          <div class="security-grid">
+            <div class="sec-card reveal delay-1">
+              <div class="sec-icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+              </div>
+              <h3>Role-Based CRM Access</h3>
+              <p>We work under a restricted dispatcher/CSR user login—full access to scheduling and notes, zero access to bank accounts, payroll, or bulk exports.</p>
+            </div>
+            <div class="sec-card reveal delay-2">
+              <div class="sec-icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="10" r="3"/><path d="M12 21.7C17.3 17 20 13 20 10a8 8 0 1 0-16 0c0 3 2.7 7 8 11.7z"/></svg>
+              </div>
+              <h3>Zip-Code Exclusivity</h3>
+              <p>Your dedicated coordinator works exclusively on your brand and will never answer phones or manage dispatch for a competing contractor in your service area.</p>
+            </div>
+            <div class="sec-card reveal delay-3">
+              <div class="sec-icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+              </div>
+              <h3>Signed Confidentiality</h3>
+              <p>Every coordinator signs a binding NDA and data-privacy agreement before touching your pricebook, customer list, or VoIP phone lines.</p>
+            </div>
+            <div class="sec-card reveal delay-1">
+              <div class="sec-icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+              </div>
+              <h3>Recorded Call QA Audits</h3>
+              <p>We review call recordings and booking accuracy during your first two weeks to fine-tune objection handling, diagnostic fee scripts, and tone.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <div class="container">
+          <div class="section-head reveal">
+            <span class="kicker">FAQ</span>
+            <h2>Common Questions From Shop Owners</h2>
+            <p>Clear answers on how remote dispatching plugs into your day-to-day workflow.</p>
+          </div>
+          <div class="faq-list reveal delay-1">
+            <details class="faq-box">
+              <summary>Do we have to change our phone number or field service software?</summary>
+              <p>Not at all. We log directly into the exact tools you already use—Housecall Pro, ServiceTitan, Jobber, Quo (OpenPhone), or RingCentral. Customers keep calling your local business number.</p>
+            </details>
+            <details class="faq-box">
+              <summary>Will callers feel like they are speaking to a generic call center?</summary>
+              <p>No. Unlike big answering services where random agents read off a generic script, you get a dedicated coordinator trained specifically on your service zones, pricing tiers, and brand tone.</p>
+            </details>
+            <details class="faq-box">
+              <summary>How do you handle emergency calls vs. routine maintenance?</summary>
+              <p>During onboarding, we map out your exact triage rules—defining what qualifies as a same-day emergency (no-heat, active leaks, extreme-heat AC failure), which tech takes priority, and when to escalate to you.</p>
+            </details>
+            <details class="faq-box">
+              <summary>How fast can we get someone trained on our board?</summary>
+              <p>Once we complete a 15-minute alignment call to review your booking rules and CRM permissions, we typically finish onboarding and go live on your phones within 3 to 5 business days.</p>
+            </details>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- ==================== VIEW 5: CONTACT US ==================== -->
+    <div class="page-view" id="view-contact">
+      <div class="page-banner">
+        <div class="container reveal">
+          <span class="kicker">Contact Us</span>
+          <h1>Let's Take Phones & Dispatch Off Your Plate</h1>
+          <p>Submit your shop details below or send us a direct message on LinkedIn or Facebook for a fast, no-pressure workflow chat.</p>
+        </div>
+      </div>
+
+      <section class="contact-page-sec">
+        <div class="container contact-grid">
+          <div class="contact-info-box reveal">
+            <span class="kicker" style="color: var(--teal);">Direct Channels</span>
+            <h2>Connect With Our Operations Team</h2>
+            <p>Prefer a quick message over forms? Reach out on LinkedIn or Facebook and we'll respond promptly during US and PH hours.</p>
+
+            <div class="direct-channels">
+              <a href="https://www.linkedin.com/company/144131146/" target="_blank" rel="noopener" class="channel-box">
+                <div>
+                  <strong>Message Field2Desk on LinkedIn</strong>
+                  <span>Connect directly with our operations partners</span>
+                </div>
+                <span style="color: var(--teal); font-weight: 700;">Open →</span>
+              </a>
+              <a href="https://www.facebook.com/profile.php?id=61595046637750" target="_blank" rel="noopener" class="channel-box">
+                <div>
+                  <strong>Message Field2Desk on Facebook</strong>
+                  <span>Fast responses for US shop inquiries</span>
+                </div>
+                <span style="color: var(--teal); font-weight: 700;">Open →</span>
+              </a>
+            </div>
+
+            <div style="border-top: 1px solid rgba(255,255,255,0.12); padding-top: 22px;">
+              <strong style="display:block; font-size:0.95rem; margin-bottom:8px; color:#FFFFFF;">What Happens After You Reach Out:</strong>
+              <p style="font-size:0.88rem; color:#CBD5E1; margin-bottom:0;">1. 15-minute workflow & CRM alignment chat.<br>2. Custom booking & escalation playbook setup.<br>3. Live shift launch on your phones in 3–5 days.</p>
+            </div>
+          </div>
+
+          <div class="intake-card reveal delay-1">
+            <h3>Shop Operations Inquiry</h3>
+            <p>Tell us a bit about your fleet and current CRM so we can prepare for a quick 15-minute intro chat.</p>
+
+            <form id="inquiryForm">
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="ownerName">Your Name *</label>
+                  <input type="text" id="ownerName" placeholder="e.g. Mike Reynolds" required />
+                </div>
+                <div class="form-group">
+                  <label for="companyName">Company Name *</label>
+                  <input type="text" id="companyName" placeholder="e.g. Apex Heating & Air" required />
+                </div>
+              </div>
+
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="contactEmail">Work Email or Phone *</label>
+                  <input type="text" id="contactEmail" placeholder="mike@apexhvac.com / (555) 234-5678" required />
+                </div>
+                <div class="form-group">
+                  <label for="truckCount">Active Service Trucks</label>
+                  <select id="truckCount">
+                    <option value="1-2 Trucks">1–2 Trucks</option>
+                    <option value="3-5 Trucks" selected>3–5 Trucks</option>
+                    <option value="6-10 Trucks">6–10 Trucks</option>
+                    <option value="10+ Trucks">10+ Trucks</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="crmTool">Current CRM / Phone System</label>
+                  <select id="crmTool">
+                    <option value="Housecall Pro">Housecall Pro</option>
+                    <option value="ServiceTitan">ServiceTitan</option>
+                    <option value="Jobber">Jobber</option>
+                    <option value="GoHighLevel">GoHighLevel</option>
+                    <option value="Quo / OpenPhone / Other">Quo / OpenPhone / Other</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label for="coverageNeed">Coverage Interest</label>
+                  <select id="coverageNeed">
+                    <option value="Full-Time Dedicated Desk (8 hrs/day)">Full-Time Dedicated Desk (8 hrs/day)</option>
+                    <option value="Part-Time Overflow & Admin (4 hrs/day)">Part-Time Overflow & Admin (4 hrs/day)</option>
+                    <option value="Multi-Tech Dispatch Pod">Multi-Tech Dispatch Pod</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="bottleneckNote">Biggest Front-Office Bottleneck Right Now</label>
+                <textarea id="bottleneckNote" rows="3" placeholder="e.g. Missing inbound calls while on-site, dispatch board changes, or following up on open estimates..."></textarea>
+              </div>
+
+              <div class="form-actions">
+                <button type="submit" class="btn btn-teal" style="flex: 1;">Send Inquiry via Email</button>
+                <button type="button" id="copyInquiryBtn" class="btn btn-outline">Copy Summary for DM</button>
+              </div>
+              <div class="form-status" id="formStatus"></div>
+            </form>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
 
   <footer>
     <div class="container footer-flex">
       <p>&copy; 2026 Field2Desk Operations. Remote Dispatch & Front-Office Support for US Trade Businesses.</p>
       <div class="footer-links">
-        <a href="#trades">Trades</a>
-        <a href="#security">Security</a>
-        <a href="#calculator">ROI Calculator</a>
+        <button type="button" class="footer-link-btn" data-target="home">Home</button>
+        <button type="button" class="footer-link-btn" data-target="services">Services</button>
+        <button type="button" class="footer-link-btn" data-target="pricing">ROI & Pricing</button>
+        <button type="button" class="footer-link-btn" data-target="about">About Us</button>
+        <button type="button" class="footer-link-btn" data-target="contact">Contact Us</button>
         <button type="button" class="careers-btn" id="openCareers">Hiring VAs? Apply Here</button>
       </div>
     </div>
@@ -1860,15 +2151,52 @@
   </div>
 
   <script>
-    // Mobile Menu Toggle
-    const mobileBtn = document.getElementById('mobileMenuBtn');
+    // Scroll Reveal Observer
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.12 });
+
+    function observeCurrentPage() {
+      document.querySelectorAll('.page-view.active .reveal').forEach(el => {
+        el.classList.remove('visible');
+        revealObserver.observe(el);
+      });
+    }
+
+    // Multi-Page View Router
     const mobileDrawer = document.getElementById('mobileDrawer');
-    mobileBtn.addEventListener('click', () => {
+    function switchPage(pageId) {
+      document.querySelectorAll('.page-view').forEach(view => {
+        view.classList.toggle('active', view.id === 'view-' + pageId);
+      });
+
+      document.querySelectorAll('.nav-item').forEach(btn => {
+        btn.classList.toggle('active', btn.dataset.target === pageId);
+      });
+
+      mobileDrawer.classList.remove('open');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      observeCurrentPage();
+    }
+
+    document.querySelectorAll('[data-target]').forEach(trigger => {
+      trigger.addEventListener('click', (e) => {
+        e.preventDefault();
+        switchPage(trigger.dataset.target);
+      });
+    });
+
+    // Mobile Menu Toggle
+    document.getElementById('mobileMenuBtn').addEventListener('click', () => {
       mobileDrawer.classList.toggle('open');
     });
-    mobileDrawer.querySelectorAll('a').forEach(link => {
-      link.addEventListener('click', () => mobileDrawer.classList.remove('open'));
-    });
+
+    // Initial Reveal Trigger
+    observeCurrentPage();
 
     // Hero Floating Card Interactive Tabs
     const views = {
@@ -1952,7 +2280,7 @@
       document.getElementById('bookedJobs').textContent = bookedJobsCount + ' jobs/mo';
       document.getElementById('monthlyLoss').textContent = '$' + monthly.toLocaleString();
       document.getElementById('annualLoss').textContent = '$' + (monthly * 12).toLocaleString() + '/year';
-      document.getElementById('calcCtaBtn').textContent = 'Reclaim $' + monthly.toLocaleString() + '/mo — Inquire Below';
+      document.getElementById('calcCtaBtn').textContent = 'Reclaim $' + monthly.toLocaleString() + '/mo — Inquire Now';
     }
 
     missedInput.addEventListener('input', updateCalculator);
@@ -1960,7 +2288,7 @@
     rateInput.addEventListener('input', updateCalculator);
     updateCalculator();
 
-    // Intake Form Handler (Email Launch + 1-Click DM Copy)
+    // Intake Form Handler
     function buildInquiryText() {
       const name = document.getElementById('ownerName').value.trim() || 'Shop Owner';
       const company = document.getElementById('companyName').value.trim() || 'Not specified';
