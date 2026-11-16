@@ -3,26 +3,25 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Field2Desk | Remote Dispatch & Call Operations for US HVAC & Plumbing Teams</title>
+  <title>Field2Desk | Remote Dispatch & Operations for US HVAC & Plumbing Teams</title>
   <meta name="description" content="Dedicated remote call answering, Housecall Pro & ServiceTitan dispatching, and back-office operations for US HVAC, plumbing, and electrical companies." />
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%230A1F38'/%3E%3Cpath d='M20 33v-3a12 12 0 0 1 24 0v3' fill='none' stroke='%231FB6A6' stroke-width='4.5' stroke-linecap='round'/%3E%3Crect x='15' y='30' width='7' height='12' rx='3.5' fill='%23FFFFFF'/%3E%3Crect x='42' y='30' width='7' height='12' rx='3.5' fill='%23FFFFFF'/%3E%3Cpath d='M45 42v3a5 5 0 0 1-5 5h-6' fill='none' stroke='%231FB6A6' stroke-width='3.5' stroke-linecap='round'/%3E%3Ccircle cx='32' cy='50' r='3' fill='%23FFFFFF'/%3E%3C/svg%3E" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
     :root {
       --navy: #0A1F38;
-      --navy-deep: #061526;
-      --navy-light: #133154;
+      --navy-light: #122E50;
+      --navy-card: #0F294A;
       --teal: #1FB6A6;
-      --teal-dark: #169487;
+      --teal-dark: #179688;
       --teal-soft: rgba(31, 182, 166, 0.12);
       --bg-light: #F6F9FC;
       --text-dark: #0F172A;
       --text-muted: #475569;
       --white: #FFFFFF;
       --border: #E2E8F0;
-      --shadow-sm: 0 4px 12px rgba(10, 31, 56, 0.05);
-      --shadow-lg: 0 20px 40px rgba(10, 31, 56, 0.12);
     }
 
     * {
@@ -40,19 +39,18 @@
       color: var(--text-dark);
       background-color: var(--white);
       line-height: 1.6;
-      -webkit-font-smoothing: antialiased;
     }
 
     .container {
-      max-width: 1120px;
+      max-width: 1140px;
       margin: 0 auto;
       padding: 0 24px;
     }
 
     /* Navbar */
     header {
-      background-color: rgba(10, 31, 56, 0.96);
-      backdrop-filter: blur(10px);
+      background-color: rgba(10, 31, 56, 0.97);
+      backdrop-filter: blur(8px);
       padding: 16px 0;
       position: sticky;
       top: 0;
@@ -67,7 +65,7 @@
     }
 
     .brand {
-      display: flex;
+      display: inline-flex;
       align-items: center;
       gap: 10px;
       font-size: 1.45rem;
@@ -83,14 +81,14 @@
 
     .nav-links {
       display: flex;
-      gap: 26px;
+      gap: 24px;
       align-items: center;
     }
 
     .nav-links a {
       color: #CBD5E1;
       text-decoration: none;
-      font-size: 0.93rem;
+      font-size: 0.92rem;
       font-weight: 500;
       transition: color 0.2s;
     }
@@ -99,27 +97,24 @@
       color: var(--white);
     }
 
-    /* Buttons */
     .btn {
       display: inline-flex;
       align-items: center;
       justify-content: center;
       gap: 8px;
-      padding: 13px 24px;
-      border-radius: 10px;
+      padding: 12px 24px;
+      border-radius: 8px;
       font-weight: 600;
       font-size: 0.95rem;
       text-decoration: none;
       transition: all 0.2s ease;
       cursor: pointer;
       border: none;
-      font-family: inherit;
     }
 
     .btn-primary {
       background-color: var(--teal);
       color: var(--white);
-      box-shadow: 0 6px 18px rgba(31, 182, 166, 0.28);
     }
 
     .btn-primary:hover {
@@ -128,36 +123,45 @@
     }
 
     .btn-outline {
-      background-color: rgba(255, 255, 255, 0.04);
+      background-color: transparent;
       color: var(--white);
-      border: 1.5px solid rgba(255, 255, 255, 0.25);
+      border: 1.5px solid rgba(255, 255, 255, 0.3);
     }
 
     .btn-outline:hover {
       border-color: var(--teal);
       color: var(--teal);
-      background-color: rgba(31, 182, 166, 0.08);
+    }
+
+    .btn-dark-outline {
+      background-color: transparent;
+      color: var(--navy);
+      border: 1.5px solid var(--border);
+      width: 100%;
+    }
+
+    .btn-dark-outline:hover {
+      border-color: var(--teal);
+      color: var(--teal-dark);
+      background-color: var(--teal-soft);
     }
 
     .nav-cta {
       padding: 9px 18px;
-      font-size: 0.88rem;
-      box-shadow: none;
+      font-size: 0.9rem;
     }
 
     /* Hero */
     .hero {
-      background: radial-gradient(circle at 85% 20%, rgba(31, 182, 166, 0.16), transparent 45%),
-                  linear-gradient(135deg, var(--navy-deep) 0%, var(--navy) 55%, var(--navy-light) 100%);
+      background: linear-gradient(135deg, var(--navy) 0%, var(--navy-light) 100%);
       color: var(--white);
-      padding: 84px 0 96px;
-      overflow: hidden;
+      padding: 80px 0 92px;
     }
 
     .hero-grid {
       display: grid;
       grid-template-columns: 1.15fr 0.85fr;
-      gap: 48px;
+      gap: 44px;
       align-items: center;
     }
 
@@ -165,10 +169,10 @@
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      background: rgba(31, 182, 166, 0.14);
+      background: rgba(31, 182, 166, 0.15);
       color: var(--teal);
       font-weight: 600;
-      font-size: 0.84rem;
+      font-size: 0.85rem;
       padding: 6px 14px;
       border-radius: 999px;
       margin-bottom: 20px;
@@ -180,12 +184,13 @@
       height: 8px;
       background-color: var(--teal);
       border-radius: 50%;
+      display: inline-block;
       box-shadow: 0 0 0 4px rgba(31, 182, 166, 0.25);
     }
 
     .hero h1 {
-      font-size: 2.95rem;
-      line-height: 1.13;
+      font-size: 2.8rem;
+      line-height: 1.15;
       font-weight: 800;
       letter-spacing: -0.03em;
       margin-bottom: 20px;
@@ -206,37 +211,18 @@
       display: flex;
       gap: 14px;
       flex-wrap: wrap;
-      margin-bottom: 32px;
     }
 
-    .hero-trust {
-      display: flex;
-      gap: 24px;
-      flex-wrap: wrap;
-      font-size: 0.88rem;
-      color: #94A3B8;
-    }
-
-    .hero-trust span {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-    }
-
-    .hero-trust strong {
-      color: var(--white);
-    }
-
-    /* Live Dispatch Board Mockup */
-    .board-card {
-      background: #0E2744;
+    /* Live Dispatch Preview Widget */
+    .dispatch-widget {
+      background: rgba(15, 41, 74, 0.85);
       border: 1px solid rgba(255, 255, 255, 0.14);
-      border-radius: 18px;
+      border-radius: 16px;
       padding: 22px;
-      box-shadow: var(--shadow-lg);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
     }
 
-    .board-header {
+    .widget-header {
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -245,8 +231,8 @@
       border-bottom: 1px solid rgba(255, 255, 255, 0.1);
     }
 
-    .board-title {
-      font-size: 0.92rem;
+    .widget-title {
+      font-size: 0.9rem;
       font-weight: 700;
       color: var(--white);
       display: flex;
@@ -254,126 +240,121 @@
       gap: 8px;
     }
 
-    .live-pill {
-      background: rgba(31, 182, 166, 0.2);
+    .widget-status {
+      font-size: 0.75rem;
+      font-weight: 600;
       color: var(--teal);
-      font-size: 0.72rem;
-      font-weight: 700;
-      padding: 3px 9px;
+      background: rgba(31, 182, 166, 0.15);
+      padding: 3px 10px;
       border-radius: 999px;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
     }
 
-    .dispatch-item {
+    .ticket-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .ticket {
       background: rgba(255, 255, 255, 0.05);
       border: 1px solid rgba(255, 255, 255, 0.08);
-      border-radius: 12px;
+      border-radius: 10px;
       padding: 13px 15px;
-      margin-bottom: 12px;
       display: flex;
       justify-content: space-between;
       align-items: center;
       gap: 12px;
     }
 
-    .dispatch-item:last-child {
-      margin-bottom: 0;
-    }
-
-    .job-info strong {
+    .ticket-info strong {
       display: block;
-      font-size: 0.92rem;
+      font-size: 0.9rem;
       color: var(--white);
       margin-bottom: 2px;
     }
 
-    .job-info small {
-      color: #94A3B8;
+    .ticket-info span {
       font-size: 0.8rem;
+      color: #94A3B8;
     }
 
-    .status-tag {
+    .pill {
       font-size: 0.75rem;
-      font-weight: 600;
+      font-weight: 700;
       padding: 4px 10px;
       border-radius: 6px;
       white-space: nowrap;
     }
 
-    .status-booked {
+    .pill-booked {
       background: rgba(31, 182, 166, 0.2);
       color: #5EEAD4;
     }
 
-    .status-enroute {
-      background: rgba(56, 189, 248, 0.18);
+    .pill-route {
+      background: rgba(56, 189, 248, 0.2);
       color: #7DD3FC;
     }
 
-    .status-followup {
-      background: rgba(250, 204, 21, 0.16);
-      color: #FDE047;
+    .pill-won {
+      background: rgba(74, 222, 128, 0.2);
+      color: #86EFAC;
+    }
+
+    .widget-footer {
+      margin-top: 14px;
+      padding-top: 12px;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.8rem;
+      color: #94A3B8;
+    }
+
+    .widget-footer strong {
+      color: var(--teal);
     }
 
     /* Tools Strip */
     .tools-strip {
       background-color: var(--bg-light);
       border-bottom: 1px solid var(--border);
-      padding: 28px 0;
+      padding: 26px 0;
       text-align: center;
     }
 
     .tools-label {
-      font-size: 0.78rem;
+      font-size: 0.8rem;
       text-transform: uppercase;
-      letter-spacing: 0.09em;
+      letter-spacing: 0.08em;
       color: var(--text-muted);
-      font-weight: 700;
-      margin-bottom: 14px;
+      font-weight: 600;
+      margin-bottom: 12px;
     }
 
     .tools-list {
       display: flex;
       justify-content: center;
       flex-wrap: wrap;
-      gap: 12px 28px;
+      gap: 12px 32px;
       font-weight: 700;
       color: var(--navy);
-      font-size: 1rem;
-    }
-
-    .tools-list span {
-      background: var(--white);
-      border: 1px solid var(--border);
-      padding: 6px 14px;
-      border-radius: 8px;
-      font-size: 0.9rem;
+      font-size: 1.02rem;
     }
 
     /* Sections */
     section {
-      padding: 84px 0;
+      padding: 80px 0;
     }
 
     .section-header {
       text-align: center;
       max-width: 660px;
-      margin: 0 auto 52px;
-    }
-
-    .eyebrow {
-      display: inline-block;
-      color: var(--teal-dark);
-      font-weight: 700;
-      font-size: 0.82rem;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      margin-bottom: 8px;
+      margin: 0 auto 48px;
     }
 
     .section-header h2 {
-      font-size: 2.15rem;
+      font-size: 2.1rem;
       font-weight: 800;
       color: var(--navy);
       letter-spacing: -0.02em;
@@ -395,27 +376,28 @@
     .card {
       background: var(--white);
       border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 32px 26px;
-      transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+      border-radius: 14px;
+      padding: 30px 26px;
+      transition: transform 0.2s, box-shadow 0.2s;
     }
 
     .card:hover {
       transform: translateY(-4px);
-      box-shadow: var(--shadow-lg);
-      border-color: rgba(31, 182, 166, 0.45);
+      box-shadow: 0 12px 24px rgba(10, 31, 56, 0.06);
     }
 
     .icon-box {
-      width: 48px;
-      height: 48px;
-      border-radius: 12px;
+      width: 46px;
+      height: 46px;
+      border-radius: 10px;
       background: var(--teal-soft);
       color: var(--teal-dark);
       display: flex;
       align-items: center;
       justify-content: center;
-      margin-bottom: 20px;
+      font-weight: 800;
+      font-size: 1.15rem;
+      margin-bottom: 18px;
     }
 
     .card h3 {
@@ -427,27 +409,9 @@
     .card p {
       color: var(--text-muted);
       font-size: 0.95rem;
-      margin-bottom: 16px;
     }
 
-    .card ul {
-      list-style: none;
-      border-top: 1px solid var(--border);
-      padding-top: 14px;
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-      font-size: 0.88rem;
-      color: var(--text-dark);
-    }
-
-    .card ul li::before {
-      content: "✓ ";
-      color: var(--teal-dark);
-      font-weight: 700;
-    }
-
-    /* ROI Calculator Section */
+    /* ROI Calculator */
     .calc-section {
       background-color: var(--bg-light);
       border-top: 1px solid var(--border);
@@ -457,17 +421,17 @@
     .calc-box {
       background: var(--white);
       border: 1px solid var(--border);
-      border-radius: 20px;
+      border-radius: 18px;
       padding: 40px;
-      box-shadow: var(--shadow-sm);
       display: grid;
-      grid-template-columns: 1.1fr 0.9fr;
+      grid-template-columns: 1.15fr 0.85fr;
       gap: 40px;
       align-items: center;
+      box-shadow: 0 10px 30px rgba(10, 31, 56, 0.04);
     }
 
     .slider-group {
-      margin-bottom: 26px;
+      margin-bottom: 24px;
     }
 
     .slider-group:last-child {
@@ -478,9 +442,9 @@
       display: flex;
       justify-content: space-between;
       font-weight: 600;
-      margin-bottom: 10px;
       color: var(--navy);
-      font-size: 0.96rem;
+      margin-bottom: 8px;
+      font-size: 0.95rem;
     }
 
     .slider-val {
@@ -493,77 +457,114 @@
       accent-color: var(--teal);
       height: 6px;
       background: #E2E8F0;
-      border-radius: 999px;
+      border-radius: 5px;
       cursor: pointer;
     }
 
     .calc-result {
-      background: linear-gradient(135deg, var(--navy) 0%, var(--navy-light) 100%);
+      background: var(--navy);
       color: var(--white);
-      border-radius: 16px;
-      padding: 32px;
+      border-radius: 14px;
+      padding: 32px 28px;
       text-align: center;
     }
 
-    .calc-result small {
-      color: #94A3B8;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      font-size: 0.78rem;
-      font-weight: 700;
-    }
-
-    .lost-amount {
-      font-size: 2.75rem;
-      font-weight: 800;
-      color: var(--teal);
-      margin: 8px 0;
-      line-height: 1.1;
-    }
-
-    .calc-result p {
-      color: #CBD5E1;
-      font-size: 0.92rem;
-      margin-bottom: 22px;
-    }
-
-    /* Steps Grid */
-    .steps-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 24px;
-    }
-
-    .step {
-      background: var(--bg-light);
-      padding: 28px;
-      border-radius: 16px;
-      border: 1px solid var(--border);
-    }
-
-    .step-num {
-      display: inline-block;
-      background: var(--navy);
-      color: var(--teal);
-      font-weight: 800;
+    .calc-result .label {
       font-size: 0.85rem;
-      padding: 4px 12px;
-      border-radius: 6px;
-      margin-bottom: 14px;
-    }
-
-    .step h3 {
-      font-size: 1.15rem;
-      color: var(--navy);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: #94A3B8;
       margin-bottom: 8px;
     }
 
-    .step p {
-      color: var(--text-muted);
-      font-size: 0.94rem;
+    .calc-result .big-num {
+      font-size: 2.75rem;
+      font-weight: 800;
+      color: var(--teal);
+      line-height: 1.1;
+      margin-bottom: 8px;
     }
 
-    /* FAQ */
+    .calc-result .sub-num {
+      font-size: 0.92rem;
+      color: #CBD5E1;
+      margin-bottom: 22px;
+    }
+
+    /* Engagement Tiers */
+    .tiers-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      align-items: stretch;
+    }
+
+    .tier-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 32px 28px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      position: relative;
+    }
+
+    .tier-card.featured {
+      border: 2px solid var(--teal);
+      box-shadow: 0 16px 36px rgba(31, 182, 166, 0.12);
+    }
+
+    .popular-tag {
+      position: absolute;
+      top: -13px;
+      left: 28px;
+      background: var(--teal);
+      color: var(--white);
+      font-size: 0.75rem;
+      font-weight: 700;
+      padding: 4px 12px;
+      border-radius: 999px;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    .tier-card h3 {
+      font-size: 1.25rem;
+      color: var(--navy);
+      margin-bottom: 6px;
+    }
+
+    .tier-subtitle {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      margin-bottom: 20px;
+      padding-bottom: 18px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .tier-features {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-bottom: 28px;
+    }
+
+    .tier-features li {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: 0.93rem;
+      color: var(--text-dark);
+    }
+
+    .tier-features li span {
+      color: var(--teal-dark);
+      font-weight: 800;
+    }
+
+    /* FAQ Accordion */
     .faq-section {
       background-color: var(--bg-light);
       border-top: 1px solid var(--border);
@@ -577,189 +578,205 @@
       gap: 14px;
     }
 
-    details {
+    details.faq-item {
       background: var(--white);
       border: 1px solid var(--border);
       border-radius: 12px;
       padding: 18px 22px;
+      transition: border-color 0.2s;
     }
 
-    summary {
+    details.faq-item[open] {
+      border-color: var(--teal);
+    }
+
+    details.faq-item summary {
       font-weight: 700;
       color: var(--navy);
+      font-size: 1.02rem;
       cursor: pointer;
       list-style: none;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      font-size: 1rem;
+      gap: 16px;
     }
 
-    summary::-webkit-details-marker {
+    details.faq-item summary::-webkit-details-marker {
       display: none;
     }
 
-    summary::after {
+    details.faq-item summary::after {
       content: "+";
       font-size: 1.35rem;
+      font-weight: 600;
       color: var(--teal-dark);
-      font-weight: 700;
     }
 
-    details[open] summary::after {
+    details.faq-item[open] summary::after {
       content: "−";
     }
 
-    details p {
+    details.faq-item p {
       margin-top: 12px;
       color: var(--text-muted);
-      font-size: 0.94rem;
-      border-top: 1px solid var(--border);
-      padding-top: 12px;
+      font-size: 0.95rem;
+      line-height: 1.65;
     }
 
-    /* Contact Section */
-    .contact-grid {
-      display: grid;
-      grid-template-columns: 0.9fr 1.1fr;
-      gap: 40px;
-      background: var(--navy);
+    /* Contact / CTA */
+    .cta-box {
+      background: linear-gradient(135deg, var(--navy) 0%, var(--navy-light) 100%);
       color: var(--white);
-      border-radius: 22px;
-      padding: 48px;
-      box-shadow: var(--shadow-lg);
+      border-radius: 20px;
+      padding: 56px 40px;
+      text-align: center;
     }
 
-    .contact-info h2 {
-      font-size: 2rem;
+    .cta-box h2 {
+      font-size: 2.1rem;
       font-weight: 800;
-      line-height: 1.2;
       margin-bottom: 14px;
     }
 
-    .contact-info p {
+    .cta-box p {
       color: #CBD5E1;
-      font-size: 0.98rem;
-      margin-bottom: 28px;
+      max-width: 580px;
+      margin: 0 auto 30px;
+      font-size: 1.05rem;
     }
 
-    .direct-channels {
+    .cta-buttons {
       display: flex;
-      flex-direction: column;
-      gap: 12px;
-    }
-
-    .channel-btn {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      background: rgba(255, 255, 255, 0.06);
-      border: 1px solid rgba(255, 255, 255, 0.14);
-      padding: 14px 18px;
-      border-radius: 12px;
-      color: var(--white);
-      text-decoration: none;
-      font-weight: 600;
-      font-size: 0.95rem;
-      transition: all 0.2s;
-    }
-
-    .channel-btn:hover {
-      background: rgba(31, 182, 166, 0.15);
-      border-color: var(--teal);
-    }
-
-    .channel-btn small {
-      display: block;
-      font-weight: 400;
-      font-size: 0.8rem;
-      color: #94A3B8;
-    }
-
-    /* Form */
-    .contact-form {
-      background: var(--white);
-      color: var(--text-dark);
-      padding: 30px;
-      border-radius: 16px;
-    }
-
-    .form-row {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 14px;
-    }
-
-    .form-group {
-      margin-bottom: 16px;
-    }
-
-    .form-group label {
-      display: block;
-      font-size: 0.85rem;
-      font-weight: 600;
-      color: var(--navy);
-      margin-bottom: 6px;
-    }
-
-    .form-group input,
-    .form-group select,
-    .form-group textarea {
-      width: 100%;
-      padding: 11px 14px;
-      border: 1.5px solid var(--border);
-      border-radius: 8px;
-      font-family: inherit;
-      font-size: 0.94rem;
-      color: var(--text-dark);
-      transition: border-color 0.2s;
-    }
-
-    .form-group input:focus,
-    .form-group select:focus,
-    .form-group textarea:focus {
-      outline: none;
-      border-color: var(--teal);
-    }
-
-    .form-submit {
-      width: 100%;
-      padding: 14px;
-      font-size: 1rem;
+      justify-content: center;
+      gap: 16px;
+      flex-wrap: wrap;
     }
 
     /* Footer */
     footer {
       border-top: 1px solid var(--border);
       padding: 36px 0;
-      text-align: center;
       color: var(--text-muted);
       font-size: 0.9rem;
+    }
+
+    .footer-wrap {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 20px;
+      align-items: center;
+    }
+
+    .footer-links a,
+    .careers-trigger {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-weight: 500;
+      background: none;
+      border: none;
+      font-family: inherit;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: color 0.2s;
+    }
+
+    .footer-links a:hover,
+    .careers-trigger:hover {
+      color: var(--teal-dark);
+    }
+
+    /* Careers Modal */
+    .modal-backdrop {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(10, 31, 56, 0.72);
+      z-index: 200;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .modal-backdrop.active {
+      display: flex;
+    }
+
+    .modal-card {
+      background: var(--white);
+      border-radius: 16px;
+      max-width: 500px;
+      width: 100%;
+      padding: 32px;
+      position: relative;
+      box-shadow: 0 24px 48px rgba(0, 0, 0, 0.25);
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 16px;
+      right: 18px;
+      background: none;
+      border: none;
+      font-size: 1.5rem;
+      color: var(--text-muted);
+      cursor: pointer;
+    }
+
+    .modal-card h3 {
+      color: var(--navy);
+      font-size: 1.35rem;
+      margin-bottom: 8px;
+    }
+
+    .modal-card p {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      margin-bottom: 16px;
+    }
+
+    .modal-list {
+      list-style: none;
+      margin-bottom: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      font-size: 0.92rem;
+      color: var(--text-dark);
+    }
+
+    .modal-list li::before {
+      content: "✓ ";
+      color: var(--teal-dark);
+      font-weight: 800;
     }
 
     @media (max-width: 900px) {
       .hero-grid,
       .services-grid,
       .calc-box,
-      .steps-grid,
-      .contact-grid {
+      .tiers-grid {
         grid-template-columns: 1fr;
       }
 
       .hero h1 {
-        font-size: 2.25rem;
-      }
-
-      .contact-grid {
-        padding: 30px 22px;
-      }
-
-      .form-row {
-        grid-template-columns: 1fr;
+        font-size: 2.2rem;
       }
 
       .nav-links a:not(.btn) {
         display: none;
+      }
+
+      .footer-wrap {
+        flex-direction: column;
+        text-align: center;
       }
     }
   </style>
@@ -769,21 +786,22 @@
   <header>
     <div class="container nav-wrap">
       <a href="#" class="brand">
-        <svg width="32" height="32" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-          <rect width="36" height="36" rx="9" fill="#1FB6A6" fill-opacity="0.18"/>
-          <path d="M10 19V17C10 12.5817 13.5817 9 18 9C22.4183 9 26 12.5817 26 17V19" stroke="#1FB6A6" stroke-width="2.4" stroke-linecap="round"/>
-          <rect x="8" y="17" width="4.5" height="7" rx="2.2" fill="#FFFFFF"/>
-          <rect x="23.5" y="17" width="4.5" height="7" rx="2.2" fill="#FFFFFF"/>
-          <path d="M25.5 24C25.5 26.2 23.7 27.5 21 27.5H18" stroke="#1FB6A6" stroke-width="2.2" stroke-linecap="round"/>
+        <svg width="32" height="32" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <rect width="64" height="64" rx="14" fill="#122E50" stroke="#1FB6A6" stroke-width="3"/>
+          <path d="M20 33v-3a12 12 0 0 1 24 0v3" stroke="#1FB6A6" stroke-width="4.5" stroke-linecap="round"/>
+          <rect x="14" y="29" width="7" height="13" rx="3.5" fill="#FFFFFF"/>
+          <rect x="43" y="29" width="7" height="13" rx="3.5" fill="#FFFFFF"/>
+          <path d="M46 42v3a5 5 0 0 1-5 5h-7" stroke="#1FB6A6" stroke-width="3.5" stroke-linecap="round"/>
+          <circle cx="32" cy="50" r="3" fill="#FFFFFF"/>
         </svg>
-        <span>Field<span style="color:#1FB6A6;">2</span>Desk</span>
+        <div>Field<span>2</span>Desk</div>
       </a>
       <nav class="nav-links">
         <a href="#services">Services</a>
         <a href="#calculator">Missed-Call Calculator</a>
-        <a href="#how-it-works">Process</a>
+        <a href="#packages">Coverage</a>
         <a href="#faq">FAQ</a>
-        <a href="#contact" class="btn btn-primary nav-cta">Book a Chat</a>
+        <a href="#contact" class="btn btn-primary nav-cta">Get in Touch</a>
       </nav>
     </div>
   </header>
@@ -791,55 +809,47 @@
   <section class="hero">
     <div class="container hero-grid">
       <div>
-        <div class="badge">
-          <span class="pulse-dot"></span>
-          Built for US HVAC, Plumbing & Electrical Shops
-        </div>
-        <h1>Stop Losing Jobs to <span>Missed Calls & Dispatch Chaos.</span></h1>
-        <p>We plug dedicated remote call handlers, dispatchers, and back-office coordinators directly into your workflow so every homeowner gets answered live and your trucks stay booked.</p>
+        <span class="badge"><span class="pulse-dot"></span> Built for US HVAC, Plumbing & Electrical Teams</span>
+        <h1>Stop Losing Hours to <span>Phones & Dispatch.</span></h1>
+        <p>We plug dedicated remote call handlers, dispatchers, and back-office coordinators directly into your shop so your techs stay moving and no customer call goes to voicemail.</p>
         <div class="hero-actions">
-          <a href="#contact" class="btn btn-primary">Get a Free Workflow Quote</a>
+          <a href="#contact" class="btn btn-primary">Message Our Team</a>
           <a href="#calculator" class="btn btn-outline">Calculate Missed Revenue</a>
-        </div>
-        <div class="hero-trust">
-          <span><strong>100% Live</strong> US Business Hours</span>
-          <span><strong>Zero</strong> Long-Term Lock-In</span>
-          <span><strong>Fast</strong> 5-Day Onboarding</span>
         </div>
       </div>
 
-      <div class="board-card" aria-label="Sample Live Dispatch Board">
-        <div class="board-header">
-          <div class="board-title">Monday Dispatch Board (EST)</div>
-          <span class="live-pill">Live Sync</span>
+      <!-- Live Dispatch Board Preview -->
+      <div class="dispatch-widget" aria-label="Sample live dispatch board managed by Field2Desk">
+        <div class="widget-header">
+          <div class="widget-title">Live Shop Dispatch Board</div>
+          <span class="widget-status">● Active US Shift</span>
         </div>
-        <div class="dispatch-item">
-          <div class="job-info">
-            <strong>8:30 AM — No-Cool AC Diagnostic</strong>
-            <small>Tech: Marcus R. &bull; Homeowner confirmed via SMS</small>
+        <div class="ticket-list">
+          <div class="ticket">
+            <div class="ticket-info">
+              <strong>Emergency AC No-Cool — Miller Res.</strong>
+              <span>Booked via Housecall Pro • Window 10:00–12:00</span>
+            </div>
+            <span class="pill pill-booked">Booked Live</span>
           </div>
-          <span class="status-tag status-enroute">En Route</span>
+          <div class="ticket">
+            <div class="ticket-info">
+              <strong>Water Heater Leak — Tech #2 (Marcus)</strong>
+              <span>Customer texted arrival ETA • Route optimized</span>
+            </div>
+            <span class="pill pill-route">En Route</span>
+          </div>
+          <div class="ticket">
+            <div class="ticket-info">
+              <strong>$6,850 Heat Pump Quote Follow-Up</strong>
+              <span>48-hr follow-up call completed • Deposit paid</span>
+            </div>
+            <span class="pill pill-won">Estimate Won</span>
+          </div>
         </div>
-        <div class="dispatch-item">
-          <div class="job-info">
-            <strong>10:15 AM — Water Heater Leak Repair</strong>
-            <small>Booked live from inbound call &bull; Housecall Pro</small>
-          </div>
-          <span class="status-tag status-booked">Booked</span>
-        </div>
-        <div class="dispatch-item">
-          <div class="job-info">
-            <strong>1:00 PM — System Replacement Estimate</strong>
-            <small>Tech: Devon K. &bull; Quote follow-up scheduled</small>
-          </div>
-          <span class="status-tag status-booked">Confirmed</span>
-        </div>
-        <div class="dispatch-item">
-          <div class="job-info">
-            <strong>3:30 PM — Open Estimate Follow-Up</strong>
-            <small>$6,400 ductwork proposal &bull; Call queued</small>
-          </div>
-          <span class="status-tag status-followup">Follow-Up</span>
+        <div class="widget-footer">
+          <span>Avg. Ring Answer: <strong>&lt; 3 Rings</strong></span>
+          <span>Voicemails Left: <strong>0</strong></span>
         </div>
       </div>
     </div>
@@ -847,15 +857,14 @@
 
   <div class="tools-strip">
     <div class="container">
-      <div class="tools-label">We Work Directly Inside Your Existing Tools</div>
+      <div class="tools-label">Seamless Integration With Your Existing Stack</div>
       <div class="tools-list">
         <span>Housecall Pro</span>
         <span>ServiceTitan</span>
         <span>Jobber</span>
         <span>GoHighLevel</span>
         <span>Quo / OpenPhone</span>
-        <span>RingCentral</span>
-        <span>Google Sheets</span>
+        <span>Google Workspace</span>
       </div>
     </div>
   </div>
@@ -863,144 +872,150 @@
   <section id="services">
     <div class="container">
       <div class="section-header">
-        <span class="eyebrow">What We Handle</span>
-        <h2>Your Complete Remote Front Desk</h2>
-        <p>You focus on leading technicians and closing installs. We keep the phones answered, the board balanced, and your CRM spotless.</p>
+        <h2>Back-Office Ops Built for the Trades</h2>
+        <p>You focus on running crews and closing high-ticket installs. We handle the daily front-desk bottleneck.</p>
       </div>
       <div class="services-grid">
         <div class="card">
-          <div class="icon-box">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-          </div>
+          <div class="icon-box">01</div>
           <h3>Live Call Answering & Booking</h3>
-          <p>Homeowners with a broken AC or burst pipe call the next company if they hit voicemail. We pick up fast and lock in the appointment.</p>
-          <ul>
-            <li>Inbound service call intake & triage</li>
-            <li>Emergency vs. routine job prioritization</li>
-            <li>Direct calendar booking in your CRM</li>
-          </ul>
+          <p>Friendly, trained call specialists answer your business line, qualify urgent vs. routine service calls, and book jobs straight onto your calendar.</p>
         </div>
-
         <div class="card">
-          <div class="icon-box">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
-          </div>
-          <h3>Real-Time Tech Dispatching</h3>
-          <p>Keep windshield time low and billable hours high with a dedicated dispatcher watching your board all day long.</p>
-          <ul>
-            <li>Zone-based route optimization</li>
-            <li>Customer arrival window SMS & calls</li>
-            <li>Same-day schedule reshuffling</li>
-          </ul>
+          <div class="icon-box">02</div>
+          <h3>Real-Time Dispatching</h3>
+          <p>We monitor your dispatch board all day, confirm technician arrival windows with homeowners, and adjust routes smoothly when jobs run long.</p>
         </div>
-
         <div class="card">
-          <div class="icon-box">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
-          </div>
-          <h3>Estimates, Admin & KPI Tracking</h3>
-          <p>Stop leaving thousands of dollars sitting in unsent or unfollowed-up quotes at the end of every week.</p>
-          <ul>
-            <li>Outbound follow-ups on open quotes</li>
-            <li>Maintenance membership reminders</li>
-            <li>Daily job tracker & KPI reporting</li>
-          </ul>
+          <div class="icon-box">03</div>
+          <h3>Admin, Estimates & Follow-Ups</h3>
+          <p>From chasing open quotes and membership renewals to keeping job trackers and daily KPI sheets clean, nothing falls through the cracks.</p>
         </div>
       </div>
     </div>
   </section>
 
+  <!-- Interactive Missed-Call Revenue Calculator -->
   <section id="calculator" class="calc-section">
     <div class="container">
       <div class="section-header">
-        <span class="eyebrow">Revenue Leak Estimator</span>
         <h2>How Much Are Missed Calls Costing Your Shop?</h2>
-        <p>Adjust the sliders below to see what happens when even a handful of calls go to voicemail each week.</p>
+        <p>85% of homeowners who hit voicemail call the next contractor on Google. Adjust the sliders to see what answering live recovers.</p>
       </div>
       <div class="calc-box">
         <div>
           <div class="slider-group">
             <div class="slider-top">
-              <span>Missed Calls Per Week</span>
-              <span class="slider-val" id="callsVal">8 calls / wk</span>
+              <label for="missedCalls">Missed calls per week (on-site, lunch, after-hours)</label>
+              <span class="slider-val"><span id="missedCallsVal">6</span> calls/wk</span>
             </div>
-            <input type="range" id="callsSlider" min="2" max="30" value="8" />
+            <input type="range" id="missedCalls" min="1" max="30" value="6" />
           </div>
+
           <div class="slider-group">
             <div class="slider-top">
-              <span>Average Service Ticket Value</span>
-              <span class="slider-val" id="ticketVal">$450</span>
+              <label for="avgTicket">Average service or repair ticket ($)</label>
+              <span class="slider-val">$<span id="avgTicketVal">450</span></span>
             </div>
-            <input type="range" id="ticketSlider" min="150" max="1500" step="25" value="450" />
+            <input type="range" id="avgTicket" min="150" max="2500" step="50" value="450" />
           </div>
+
           <div class="slider-group">
             <div class="slider-top">
-              <span>Booking Rate When Answered Live</span>
-              <span class="slider-val" id="rateVal">45%</span>
+              <label for="bookRate">Live booking conversion rate (%)</label>
+              <span class="slider-val"><span id="bookRateVal">60</span>%</span>
             </div>
-            <input type="range" id="rateSlider" min="20" max="80" step="5" value="45" />
+            <input type="range" id="bookRate" min="30" max="90" step="5" value="60" />
           </div>
         </div>
 
         <div class="calc-result">
-          <small>Estimated Monthly Revenue Left on the Table</small>
-          <div class="lost-amount" id="monthlyLoss">$6,480</div>
-          <p>That's <strong id="yearlyLoss" style="color:#FFFFFF;">$77,760/year</strong> in booked jobs going to competitors who picked up on the second ring.</p>
-          <a href="#contact" class="btn btn-primary" style="width:100%;">Capture Those Calls With Field2Desk</a>
+          <div class="label">Estimated Monthly Revenue Left on the Table</div>
+          <div class="big-num" id="monthlyLoss">$7,020</div>
+          <div class="sub-num">That's <strong id="annualLoss" style="color:#FFFFFF;">$84,240/year</strong> walking straight to competitors.</div>
+          <a href="#contact" class="btn btn-primary" style="width: 100%;">Stop Losing Calls — Chat With Us</a>
         </div>
       </div>
     </div>
   </section>
 
-  <section id="how-it-works">
+  <!-- Engagement Packages -->
+  <section id="packages">
     <div class="container">
       <div class="section-header">
-        <span class="eyebrow">Simple Onboarding</span>
-        <h2>Up and Running in 3 Easy Steps</h2>
-        <p>No messy software switchovers. We adapt to your pricing book, service areas, and dispatch rules.</p>
+        <h2>Flexible Coverage That Scales With Your Trucks</h2>
+        <p>Start with overflow support or plug in a full-time coordinator—no bloated agency retainers.</p>
       </div>
-      <div class="steps-grid">
-        <div class="step">
-          <span class="step-num">Step 01</span>
-          <h3>15-Minute Workflow Chat</h3>
-          <p>We review your current call flow, CRM setup, and the exact tasks eating up your mornings and evenings.</p>
+      <div class="tiers-grid">
+        <div class="tier-card">
+          <div>
+            <h3>Overflow & Admin Support</h3>
+            <p class="tier-subtitle">Part-Time • Ideal for 1–3 Truck Shops</p>
+            <ul class="tier-features">
+              <li><span>✓</span><span>4 hours/day peak-window call coverage</span></li>
+              <li><span>✓</span><span>Weekend voicemail & web-lead callbacks</span></li>
+              <li><span>✓</span><span>Open estimate & maintenance follow-ups</span></li>
+              <li><span>✓</span><span>Direct booking inside your CRM</span></li>
+            </ul>
+          </div>
+          <a href="#contact" class="btn btn-dark-outline">Inquire About Part-Time</a>
         </div>
-        <div class="step">
-          <span class="step-num">Step 02</span>
-          <h3>Playbook & Tool Integration</h3>
-          <p>We document your booking scripts, service zip codes, and dispatch rules, then connect to your phone system and CRM.</p>
+
+        <div class="tier-card featured">
+          <span class="popular-tag">Most Popular</span>
+          <div>
+            <h3>Dedicated Full-Time Desk</h3>
+            <p class="tier-subtitle">Full US Shift • Ideal for 3–8 Truck Shops</p>
+            <ul class="tier-features">
+              <li><span>✓</span><span>Full 8-hour US shift live call answering</span></li>
+              <li><span>✓</span><span>Active dispatch board & route management</span></li>
+              <li><span>✓</span><span>Customer ETA texts & review requests</span></li>
+              <li><span>✓</span><span>Daily KPI & job tracker reporting</span></li>
+            </ul>
+          </div>
+          <a href="#contact" class="btn btn-primary" style="width:100%;">Inquire About Full-Time</a>
         </div>
-        <div class="step">
-          <span class="step-num">Step 03</span>
-          <h3>Live Coverage on Your Board</h3>
-          <p>Your dedicated coordinator goes live during your US business hours—answering calls, booking jobs, and keeping techs moving.</p>
+
+        <div class="tier-card">
+          <div>
+            <h3>Multi-Tech Dispatch Pod</h3>
+            <p class="tier-subtitle">Extended Hours • Growing Operations</p>
+            <ul class="tier-features">
+              <li><span>✓</span><span>Dedicated CSR + Senior Dispatch Coordinator</span></li>
+              <li><span>✓</span><span>Extended morning & evening coverage</span></li>
+              <li><span>✓</span><span>Outbound membership & tune-up campaigns</span></li>
+              <li><span>✓</span><span>Custom SOP playbook & KPI dashboards</span></li>
+            </ul>
+          </div>
+          <a href="#contact" class="btn btn-dark-outline">Request Custom Setup</a>
         </div>
       </div>
     </div>
   </section>
 
+  <!-- FAQ Accordion -->
   <section id="faq" class="faq-section">
     <div class="container">
       <div class="section-header">
-        <span class="eyebrow">Common Questions</span>
-        <h2>Frequently Asked Questions</h2>
+        <h2>Common Questions From Shop Owners</h2>
+        <p>Straight answers on how remote dispatching actually works day-to-day.</p>
       </div>
       <div class="faq-list">
-        <details open>
-          <summary>Do your coordinators already know Housecall Pro and ServiceTitan?</summary>
-          <p>Yes. Our team has hands-on experience working inside Housecall Pro, ServiceTitan, Jobber, GoHighLevel, and VoIP tools like Quo/OpenPhone and RingCentral—so we don't need weeks of hand-holding to navigate a dispatch board.</p>
+        <details class="faq-item">
+          <summary>Do we have to switch our phone number or CRM software?</summary>
+          <p>Not at all. We log directly into the tools you already pay for—whether that's Housecall Pro, ServiceTitan, Jobber, Quo (OpenPhone), RingCentral, or Google Workspace. Your customers keep calling your exact local business number.</p>
         </details>
-        <details>
-          <summary>What hours do you cover?</summary>
-          <p>We align directly with your US shop hours—whether you run Eastern, Central, Mountain, or Pacific time—including full-day weekday coverage, overflow call handling, or weekend/after-hours booking support.</p>
+        <details class="faq-item">
+          <summary>Will callers feel like they're talking to a scripted call center?</summary>
+          <p>No. You get a dedicated coordinator trained specifically on your company's service areas, pricing structure, and brand tone—not a shared pool of random agents reading off a generic script.</p>
         </details>
-        <details>
-          <summary>How will our customers experience the calls?</summary>
-          <p>We train specifically on home-service phone etiquette—warm, calm, clear communication with homeowners dealing with stressful AC breakdowns or plumbing leaks, following your exact company greeting and pricing rules.</p>
+        <details class="faq-item">
+          <summary>How do you know how to dispatch our specific technicians?</summary>
+          <p>During our quick onboarding call, we map out your service zones, which techs handle installs vs. service calls, drive-time buffers, and emergency escalation rules so your board stays tight.</p>
         </details>
-        <details>
-          <summary>Do we have to sign a 12-month contract?</summary>
-          <p>No. We operate on straightforward monthly agreements because we earn your business every single week on your dispatch board.</p>
+        <details class="faq-item">
+          <summary>How fast can we get someone on our phones?</summary>
+          <p>Once we complete a 15-minute workflow audit and align on your booking rules, we can typically have your coordinator trained on your CRM and answering calls within 3 to 5 business days.</p>
         </details>
       </div>
     </div>
@@ -1008,115 +1023,87 @@
 
   <section id="contact">
     <div class="container">
-      <div class="contact-grid">
-        <div class="contact-info">
-          <span class="badge">Let's Talk Operations</span>
-          <h2>Ready to Free Up Your Front Desk?</h2>
-          <p>Send us a quick note using the form, or message our team directly on Facebook or WhatsApp for a fast response.</p>
-
-          <div class="direct-channels">
-            <a href="https://web.facebook.com/profile.php?id=61595046637750" target="_blank" rel="noopener" class="channel-btn">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="#1FB6A6"><path d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 4.84 3.44 8.87 8 9.8V15H8v-3h2V9.5C10 7.57 11.57 6 13.5 6H16v3h-2c-.55 0-1 .45-1 1v2h3v3h-3v6.95c5.05-.5 9-4.76 9-9.95z"/></svg>
-              <div>
-                Message Us on Facebook
-                <small>Official Field2Desk Business Page</small>
-              </div>
-            </a>
-
-            <a href="https://wa.me/639513318128?text=Hi%20Field2Desk!%20I'd%20like%20to%20learn%20more%20about%20remote%20dispatch%20%26%20call%20support%20for%20our%20team." target="_blank" rel="noopener" class="channel-btn">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="#1FB6A6"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91C21.95 6.45 17.5 2 12.04 2zm5.82 14.01c-.24.68-1.41 1.3-1.95 1.38-.5.08-1.13.11-1.82-.11-.42-.13-.96-.31-1.65-.61-2.91-1.25-4.81-4.18-4.96-4.37-.14-.19-1.18-1.57-1.18-3 0-1.43.75-2.13 1.01-2.42.27-.29.58-.36.77-.36.19 0 .39 0 .56.01.18.01.42-.07.66.5.24.58.82 2.01.89 2.15.07.15.12.32.02.51-.1.19-.15.31-.29.48-.15.17-.31.38-.44.51-.15.15-.3.31-.13.6.17.29.76 1.25 1.63 2.03 1.12 1 2.07 1.31 2.36 1.45.29.15.46.12.63-.07.17-.19.73-.85.92-1.14.19-.29.39-.24.65-.15.27.1 1.69.8 1.98.94.29.15.48.22.55.34.07.12.07.7-.17 1.38z"/></svg>
-              <div>
-                Chat on WhatsApp
-                <small>+63 951 331 8128</small>
-              </div>
-            </a>
-          </div>
+      <div class="cta-box">
+        <h2>Ready to Take Phones & Dispatch Off Your Plate?</h2>
+        <p>Reach out directly on LinkedIn or Facebook for a quick, no-pressure chat about how we can support your team.</p>
+        <div class="cta-buttons">
+          <a href="https://www.linkedin.com/company/144131146/" target="_blank" rel="noopener" class="btn btn-primary">Message Us on LinkedIn</a>
+          <a href="https://www.facebook.com/profile.php?id=61595046637750" target="_blank" rel="noopener" class="btn btn-outline">Message Us on Facebook</a>
         </div>
-
-        <form class="contact-form" action="https://formsubmit.co/noblezamaribelle@gmail.com" method="POST">
-          <input type="hidden" name="_subject" value="New Field2Desk Website Inquiry!" />
-          <input type="hidden" name="_captcha" value="false" />
-          <div class="form-row">
-            <div class="form-group">
-              <label for="name">Your Name *</label>
-              <input type="text" id="name" name="name" placeholder="Mike Reynolds" required />
-            </div>
-            <div class="form-group">
-              <label for="company">Company Name *</label>
-              <input type="text" id="company" name="company" placeholder="Apex Heating & Air" required />
-            </div>
-          </div>
-
-          <div class="form-row">
-            <div class="form-group">
-              <label for="email">Work Email *</label>
-              <input type="email" id="email" name="email" placeholder="mike@apexhvac.com" required />
-            </div>
-            <div class="form-group">
-              <label for="phone">Phone / SMS</label>
-              <input type="tel" id="phone" name="phone" placeholder="(555) 234-5678" />
-            </div>
-          </div>
-
-          <div class="form-group">
-            <label for="crm">Current Dispatch / CRM Software</label>
-            <select id="crm" name="crm">
-              <option value="Housecall Pro">Housecall Pro</option>
-              <option value="ServiceTitan">ServiceTitan</option>
-              <option value="Jobber">Jobber</option>
-              <option value="GoHighLevel">GoHighLevel</option>
-              <option value="Other / Spreadsheets">Other / Spreadsheets</option>
-            </select>
-          </div>
-
-          <div class="form-group">
-            <label for="message">What do you need the most help with? *</label>
-            <textarea id="message" name="message" rows="3" placeholder="e.g., Inbound call answering, tech dispatching, open quote follow-ups..." required></textarea>
-          </div>
-
-          <button type="submit" class="btn btn-primary form-submit">Send Inquiry</button>
-        </form>
       </div>
     </div>
   </section>
 
   <footer>
-    <div class="container">
-      <p>&copy; 2026 Field2Desk Operations. Remote Dispatch &amp; Back-Office Support for US Home Service Teams.</p>
+    <div class="container footer-wrap">
+      <p>&copy; 2026 Field2Desk Operations. Remote Dispatch & Back-Office Support for US Home Service Teams.</p>
+      <div class="footer-links">
+        <a href="#services">Services</a>
+        <a href="#calculator">Calculator</a>
+        <button type="button" class="careers-trigger" id="openCareers">Hiring VAs? Apply Here</button>
+      </div>
     </div>
   </footer>
 
-  <script>
-    const callsSlider = document.getElementById('callsSlider');
-    const ticketSlider = document.getElementById('ticketSlider');
-    const rateSlider = document.getElementById('rateSlider');
+  <!-- Careers Modal for PH VA Applicants -->
+  <div class="modal-backdrop" id="careersModal" role="dialog" aria-modal="true" aria-labelledby="careersTitle">
+    <div class="modal-card">
+      <button type="button" class="modal-close" id="closeCareers" aria-label="Close modal">&times;</button>
+      <h3 id="careersTitle">Join the Field2Desk Remote Team</h3>
+      <p>We're hiring experienced Philippine-based Customer Service & Dispatch Virtual Assistants for US home-service clients.</p>
+      <ul class="modal-list">
+        <li>Graveyard / Night Shift (US Business Hours)</li>
+        <li>Strong English voice communication & CRM experience</li>
+        <li>100% Work From Anywhere in the PH</li>
+      </ul>
+      <a href="https://www.facebook.com/profile.php?id=61595046637750" target="_blank" rel="noopener" class="btn btn-primary" style="width: 100%;">DM Us Your Resume (PDF) on Facebook</a>
+    </div>
+  </div>
 
-    const callsVal = document.getElementById('callsVal');
-    const ticketVal = document.getElementById('ticketVal');
-    const rateVal = document.getElementById('rateVal');
+  <script>
+    // Missed-Call Revenue Calculator Logic
+    const missedInput = document.getElementById('missedCalls');
+    const ticketInput = document.getElementById('avgTicket');
+    const rateInput = document.getElementById('bookRate');
+
+    const missedVal = document.getElementById('missedCallsVal');
+    const ticketVal = document.getElementById('avgTicketVal');
+    const rateVal = document.getElementById('bookRateVal');
     const monthlyLoss = document.getElementById('monthlyLoss');
-    const yearlyLoss = document.getElementById('yearlyLoss');
+    const annualLoss = document.getElementById('annualLoss');
 
     function updateCalculator() {
-      const calls = Number(callsSlider.value);
-      const ticket = Number(ticketSlider.value);
-      const rate = Number(rateSlider.value) / 100;
+      const calls = Number(missedInput.value);
+      const ticket = Number(ticketInput.value);
+      const rate = Number(rateInput.value) / 100;
 
-      callsVal.textContent = `${calls} calls / wk`;
-      ticketVal.textContent = `$${ticket.toLocaleString()}`;
-      rateVal.textContent = `${rateSlider.value}%`;
+      missedVal.textContent = calls;
+      ticketVal.textContent = ticket.toLocaleString();
+      rateVal.textContent = Math.round(rate * 100);
 
-      const monthly = Math.round(calls * 4 * ticket * rate);
-      const yearly = monthly * 12;
+      // 4.33 weeks per month average
+      const monthly = Math.round(calls * 4.33 * ticket * rate);
+      const annual = monthly * 12;
 
-      monthlyLoss.textContent = `$${monthly.toLocaleString()}`;
-      yearlyLoss.textContent = `$${yearly.toLocaleString()}/year`;
+      monthlyLoss.textContent = '$' + monthly.toLocaleString();
+      annualLoss.textContent = '$' + annual.toLocaleString() + '/year';
     }
 
-    callsSlider.addEventListener('input', updateCalculator);
-    ticketSlider.addEventListener('input', updateCalculator);
-    rateSlider.addEventListener('input', updateCalculator);
+    missedInput.addEventListener('input', updateCalculator);
+    ticketInput.addEventListener('input', updateCalculator);
+    rateInput.addEventListener('input', updateCalculator);
     updateCalculator();
+
+    // Careers Modal Logic
+    const modal = document.getElementById('careersModal');
+    const openBtn = document.getElementById('openCareers');
+    const closeBtn = document.getElementById('closeCareers');
+
+    openBtn.addEventListener('click', () => modal.classList.add('active'));
+    closeBtn.addEventListener('click', () => modal.classList.remove('active'));
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) modal.classList.remove('active');
+    });
   </script>
 
 </body>
