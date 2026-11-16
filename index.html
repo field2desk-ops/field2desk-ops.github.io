@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Field2Desk | Dedicated Dispatch & Front-Office Operations for US Trade Teams</title>
-  <meta name="description" content="Dedicated remote call handling, live dispatching, and back-office operations for US HVAC, plumbing, and electrical contractors." />
+  <meta name="description" content="Founder-led remote call handling, live dispatching, and back-office operations for US HVAC, plumbing, and electrical contractors." />
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2307162C'/%3E%3Cpath d='M16 34v-3a16 16 0 0 1 32 0v3' fill='none' stroke='%231EB2A6' stroke-width='3.5' stroke-linecap='round'/%3E%3Crect x='11' y='30' width='6' height='12' rx='3' fill='%231EB2A6'/%3E%3Crect x='47' y='30' width='6' height='12' rx='3' fill='%231EB2A6'/%3E%3Cpolygon points='32,16 43,23 43,39 32,46 21,39 21,23' fill='none' stroke='%23FFFFFF' stroke-width='2.5'/%3E%3Crect x='29' y='25' width='6' height='11' rx='3' fill='%231EB2A6'/%3E%3Cpath d='M16 42c2 5 6 7 11 7' fill='none' stroke='%23FFFFFF' stroke-width='2.5' stroke-linecap='round'/%3E%3Ccircle cx='28' cy='49' r='2.5' fill='%23FFFFFF'/%3E%3C/svg%3E" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -125,7 +125,7 @@
     /* Page View Switching */
     .page-view {
       display: none;
-      animation: pageFadeIn 0.42s cubic-bezier(0.16, 1, 0.3, 1);
+      animation: pageFadeIn 0.45s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
     .page-view.active {
@@ -140,13 +140,13 @@
     /* Scroll Reveal Animations */
     .reveal {
       opacity: 0;
-      transform: translateY(28px);
+      transform: translateY(28px) scale(0.99);
       transition: opacity 0.65s cubic-bezier(0.16, 1, 0.3, 1), transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
     .reveal.visible {
       opacity: 1;
-      transform: translateY(0);
+      transform: translateY(0) scale(1);
     }
 
     .delay-1 { transition-delay: 0.08s; }
@@ -171,6 +171,11 @@
     @keyframes eqBar {
       0%, 100% { height: 6px; }
       50% { height: 18px; }
+    }
+
+    @keyframes slideInRow {
+      from { opacity: 0; transform: translateX(-10px); }
+      to { opacity: 1; transform: translateX(0); }
     }
 
     /* Navigation */
@@ -326,6 +331,39 @@
       padding: 9px 18px;
       font-size: 0.86rem;
       margin-left: 8px;
+    }
+
+    /* Floating Bottom-Right Quick-Book Pill */
+    .floating-book-pill {
+      position: fixed;
+      right: 24px;
+      bottom: 24px;
+      z-index: 95;
+      background: var(--navy);
+      color: #FFFFFF;
+      border: 1px solid rgba(45, 212, 191, 0.45);
+      border-radius: 999px;
+      padding: 12px 20px;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.86rem;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      box-shadow: 0 14px 34px rgba(5, 16, 32, 0.35);
+      cursor: pointer;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .floating-book-pill:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 18px 40px rgba(5, 16, 32, 0.45);
+      border-color: var(--teal-bright);
+    }
+
+    .floating-book-pill span {
+      color: var(--teal-bright);
+      font-weight: 700;
     }
 
     /* Page Banner Header for Inner Pages */
@@ -614,60 +652,109 @@
       color: var(--slate);
     }
 
-    /* Tools Integration Bar */
-    .tools-bar {
+    /* Interactive CRM & Stack Explorer Bar */
+    .crm-explorer {
       background: var(--bg-white);
       border-bottom: 1px solid var(--border);
-      padding: 24px 0;
+      padding: 36px 0;
     }
 
-    .tools-flex {
+    .crm-top-row {
       display: flex;
       justify-content: space-between;
       align-items: center;
       flex-wrap: wrap;
       gap: 16px;
+      margin-bottom: 22px;
     }
 
     .tools-label {
-      font-size: 0.76rem;
+      font-size: 0.78rem;
       font-weight: 700;
       text-transform: uppercase;
       letter-spacing: 0.08em;
       color: var(--muted);
     }
 
-    .tool-tags {
+    .crm-tabs {
       display: flex;
       flex-wrap: wrap;
-      gap: 10px;
+      gap: 8px;
     }
 
-    .tool-tag {
-      font-size: 0.85rem;
+    .crm-tab-btn {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.86rem;
       font-weight: 600;
       color: var(--navy);
       background: var(--bg-cream);
-      border: 1px solid var(--border);
-      padding: 7px 14px;
-      border-radius: 8px;
+      border: 1px solid var(--border-strong);
+      padding: 8px 16px;
+      border-radius: 9px;
+      cursor: pointer;
       display: inline-flex;
       align-items: center;
       gap: 7px;
       transition: all 0.2s ease;
     }
 
-    .tool-tag i {
+    .crm-tab-btn i {
       width: 7px;
       height: 7px;
       border-radius: 50%;
-      background: var(--teal);
+      background: var(--muted);
     }
 
-    .tool-tag:hover {
-      border-color: var(--teal);
-      transform: translateY(-2px);
-      background: var(--teal-tint);
+    .crm-tab-btn.active {
+      background: var(--navy);
+      color: #FFFFFF;
+      border-color: var(--navy);
+      box-shadow: 0 4px 12px rgba(10, 29, 55, 0.14);
+    }
+
+    .crm-tab-btn.active i {
+      background: var(--teal-bright);
+    }
+
+    .crm-detail-box {
+      background: var(--bg-cream);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 22px 26px;
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 24px;
+      align-items: center;
+    }
+
+    .crm-detail-box h4 {
+      font-size: 1.12rem;
+      color: var(--navy);
+      margin-bottom: 4px;
+    }
+
+    .crm-detail-box p {
+      font-size: 0.9rem;
+      color: var(--slate);
+    }
+
+    .crm-checks {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--navy);
+    }
+
+    .crm-checks span {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .crm-checks b {
+      color: var(--teal-dark);
     }
 
     /* Common Section Layout */
@@ -720,13 +807,13 @@
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      transition: transform 0.25s ease, box-shadow 0.25s ease;
+      transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
     }
 
     .bento-card:hover {
       transform: translateY(-6px);
       box-shadow: var(--shadow-float);
-      border-color: var(--border-strong);
+      border-color: var(--teal);
     }
 
     .bento-visual {
@@ -773,10 +860,12 @@
       border-radius: 9px;
       margin-bottom: 8px;
       font-size: 0.8rem;
+      animation: slideInRow 0.3s ease;
     }
 
-    .route-slot:last-child {
-      margin-bottom: 0;
+    .route-slot.urgent {
+      border-color: var(--teal);
+      background: var(--teal-tint);
     }
 
     .slot-dot {
@@ -785,6 +874,27 @@
       border-radius: 50%;
       background: var(--teal);
       flex-shrink: 0;
+    }
+
+    .sim-dispatch-btn {
+      width: 100%;
+      margin-top: 8px;
+      padding: 7px 12px;
+      border-radius: 8px;
+      border: 1px dashed var(--teal-dark);
+      background: var(--teal-tint);
+      color: var(--teal-dark);
+      font-family: 'Inter', sans-serif;
+      font-size: 0.76rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+
+    .sim-dispatch-btn:hover {
+      background: var(--teal);
+      color: var(--navy-950);
+      border-style: solid;
     }
 
     .kpi-bar-row {
@@ -1288,6 +1398,54 @@
       font-size: 0.89rem;
       color: var(--slate);
       line-height: 1.6;
+    }
+
+    /* 4-Day Onboarding Roadmap */
+    .roadmap-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+    }
+
+    .road-card {
+      background: var(--bg-white);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 26px 22px;
+      box-shadow: var(--shadow-sm);
+      position: relative;
+      transition: transform 0.25s ease, border-color 0.25s ease;
+    }
+
+    .road-card:hover {
+      transform: translateY(-4px);
+      border-color: var(--teal);
+    }
+
+    .road-day {
+      display: inline-block;
+      font-family: 'Outfit', sans-serif;
+      font-size: 0.78rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--teal-dark);
+      background: var(--teal-tint);
+      border: 1px solid var(--teal-border);
+      padding: 4px 10px;
+      border-radius: 6px;
+      margin-bottom: 12px;
+    }
+
+    .road-card h3 {
+      font-size: 1.12rem;
+      margin-bottom: 8px;
+      color: var(--navy);
+    }
+
+    .road-card p {
+      font-size: 0.89rem;
+      color: var(--slate);
     }
 
     /* Day in the Life Shift Timeline */
@@ -1901,12 +2059,14 @@
 
     @media (max-width: 980px) {
       .hero-grid,
+      .crm-detail-box,
       .bento-grid,
       .arch-flow,
       .proof-compare-grid,
       .trades-grid,
       .playbook-split,
       .security-grid,
+      .roadmap-grid,
       .timeline-grid,
       .calc-card,
       .tiers-grid,
@@ -1942,6 +2102,13 @@
       .compare-table td {
         padding: 14px 16px;
         font-size: 0.85rem;
+      }
+
+      .floating-book-pill {
+        right: 16px;
+        bottom: 16px;
+        padding: 10px 16px;
+        font-size: 0.82rem;
       }
     }
   </style>
@@ -2018,9 +2185,9 @@
       <section class="hero">
         <div class="container hero-grid">
           <div class="reveal">
-            <div class="eyebrow"><span class="live-dot"></span> Dedicated Front-Office Operations for US Trade Teams</div>
+            <div class="eyebrow"><span class="live-dot"></span> Founder-Led Front-Office Operations for US Trade Teams</div>
             <h1>Keep Your Trucks Moving. We'll Run the <span>Phones & Dispatch.</span></h1>
-            <p class="hero-lead">We embed trained call coordinators and dispatchers directly into your Housecall Pro, ServiceTitan, or Jobber workflow—so every homeowner gets answered live and your technicians stay billable.</p>
+            <p class="hero-lead">We embed directly into your Housecall Pro, ServiceTitan, Jobber, or GoHighLevel workflow—answering homeowners live in under 3 rings and keeping your technicians tightly routed all shift.</p>
             <div class="hero-actions">
               <button type="button" class="btn btn-navy" data-calendly="true">Book a 30-Min Workflow Audit</button>
               <button type="button" class="btn btn-outline" data-target="pricing">Calculate Missed-Call Loss →</button>
@@ -2035,7 +2202,7 @@
                 <span>Inside Your Existing CRM</span>
               </div>
               <div class="trust-item">
-                <strong>3–5 Days</strong>
+                <strong>4 Days</strong>
                 <span>Turnkey Shop Go-Live</span>
               </div>
             </div>
@@ -2046,7 +2213,7 @@
             <div class="top-float-badge">
               <div class="eq-bars"><i></i><i></i><i></i><i></i></div>
               <div>
-                <strong>98.4% Live Answer Rate</strong>
+                <strong><span class="count-up" data-target="98.4" data-decimals="1">98.4</span>% Live Answer Rate</strong>
                 <span>Zero Voicemail Drop-Off</span>
               </div>
             </div>
@@ -2074,22 +2241,34 @@
         </div>
       </section>
 
-      <!-- Tech Stack Integration Bar -->
-      <div class="tools-bar">
-        <div class="container tools-flex">
-          <span class="tools-label">Plugs Directly Into Your Existing Software</span>
-          <div class="tool-tags">
-            <span class="tool-tag"><i></i>Housecall Pro</span>
-            <span class="tool-tag"><i></i>ServiceTitan</span>
-            <span class="tool-tag"><i></i>Jobber</span>
-            <span class="tool-tag"><i></i>GoHighLevel</span>
-            <span class="tool-tag"><i></i>Quo / OpenPhone</span>
-            <span class="tool-tag"><i></i>Looker Studio KPIs</span>
+      <!-- Interactive CRM & Phone Stack Compatibility Explorer -->
+      <div class="crm-explorer">
+        <div class="container">
+          <div class="crm-top-row">
+            <span class="tools-label">Click Your Software Stack to See How We Plug In</span>
+            <div class="crm-tabs">
+              <button type="button" class="crm-tab-btn active" data-crm="hcp"><i></i>Housecall Pro</button>
+              <button type="button" class="crm-tab-btn" data-crm="st"><i></i>ServiceTitan</button>
+              <button type="button" class="crm-tab-btn" data-crm="jobber"><i></i>Jobber</button>
+              <button type="button" class="crm-tab-btn" data-crm="ghl"><i></i>GoHighLevel</button>
+              <button type="button" class="crm-tab-btn" data-crm="quo"><i></i>Quo / OpenPhone</button>
+            </div>
+          </div>
+          <div class="crm-detail-box" id="crmDetailBox">
+            <div>
+              <h4>Housecall Pro Daily Dispatch & Booking</h4>
+              <p>We log in under a restricted dispatcher user role to book inbound calls, assign tech tags, trigger automated SMS arrival windows, and keep your job map clean.</p>
+            </div>
+            <div class="crm-checks">
+              <span><b>✓</b> Live calendar slotting by zip code</span>
+              <span><b>✓</b> Automated "On My Way" & review texts</span>
+              <span><b>✓</b> Unscheduled & open estimate follow-up</span>
+            </div>
           </div>
         </div>
       </div>
 
-      <!-- 3-Pillar Bento Grid with Custom UI Graphics -->
+      <!-- 3-Pillar Bento Grid with Interactive Dispatch Simulator -->
       <section>
         <div class="container">
           <div class="section-head reveal">
@@ -2117,21 +2296,22 @@
               </div>
             </div>
 
-            <!-- Bento 2 -->
+            <!-- Bento 2: Interactive Live Dispatch Slotter -->
             <div class="bento-card reveal delay-2">
               <div>
-                <div class="bento-visual">
+                <div class="bento-visual" id="liveBoardVisual">
                   <div class="route-slot">
                     <span class="slot-dot"></span>
                     <div><strong>Tech #1 (Marcus)</strong> • Zip 75001<br><small style="color:var(--muted);">10:00 AM Completed • Next ETA Sent</small></div>
                   </div>
-                  <div class="route-slot">
+                  <div class="route-slot" id="secondRouteSlot">
                     <span class="slot-dot" style="background:#3B82F6;"></span>
-                    <div><strong>Tech #2 (Devon)</strong> • Zip 75006<br><small style="color:var(--muted);">Pulled 2:00 PM slot forward (Saved 35m)</small></div>
+                    <div><strong>Tech #2 (Devon)</strong> • Zip 75006<br><small style="color:var(--muted);">1:00 PM Open Gap Available</small></div>
                   </div>
+                  <button type="button" class="sim-dispatch-btn" id="simDispatchBtn">+ Simulate Emergency "No-Cool" Call</button>
                 </div>
                 <h3>Active Dispatch & Route Control</h3>
-                <p>We watch your board all day, group calls by zip code to cut windshield time, send proactive ETA texts to homeowners, and reshuffle slots when a big repair runs long.</p>
+                <p>We watch your board all day, group calls by zip code to cut windshield time, send proactive ETA texts to homeowners, and slot urgent calls into open gaps in real time.</p>
               </div>
             </div>
 
@@ -2190,7 +2370,7 @@
         </div>
       </section>
 
-      <!-- Real Client Chat UI + Side-by-Side Comparison Split -->
+      <!-- Real Chat UI + Side-by-Side Comparison Split -->
       <section>
         <div class="container">
           <div class="section-head reveal">
@@ -2200,12 +2380,11 @@
           </div>
 
           <div class="proof-compare-grid">
-            <!-- Real Chat Recreation -->
             <div class="chat-proof-card reveal">
               <div>
                 <div class="chat-header-bar">
                   <strong>Live Client Slack / Quo Thread</strong>
-                  <span>Verified HVAC Workflow</span>
+                  <span>Daily HVAC Workflow</span>
                 </div>
 
                 <div class="chat-bubbles">
@@ -2234,7 +2413,6 @@
               </div>
             </div>
 
-            <!-- Comparison Table -->
             <div class="compare-wrap reveal delay-1">
               <table class="compare-table">
                 <thead>
@@ -2290,7 +2468,7 @@
         <div class="container reveal">
           <span class="kicker">Capabilities & Live Playbook</span>
           <h1>End-to-End Front-Office Operations for Trade Crews</h1>
-          <p>We don't read off generic call-center scripts. Our coordinators speak the day-to-day language of HVAC, plumbing, and electrical dispatching.</p>
+          <p>We don't read off generic call-center scripts. We speak the day-to-day language of HVAC, plumbing, and electrical dispatching.</p>
         </div>
       </div>
 
@@ -2334,7 +2512,7 @@
         <div class="container">
           <div class="section-head reveal">
             <span class="kicker">Interactive Call Simulator</span>
-            <h2>See How a Field2Desk Coordinator Handles Your Calls</h2>
+            <h2>See How Field2Desk Handles Your Live Calls</h2>
             <p>Click through real scenarios below to see how we protect your booking rate and keep owners out of the weeds.</p>
           </div>
           <div class="playbook-split">
@@ -2366,6 +2544,39 @@
                   <div class="sim-text">Books into the 1:00–3:00 PM slot in Housecall Pro, tags the assigned tech, and triggers an automated confirmation text to the homeowner.</div>
                 </div>
               </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 4-Day Turnkey Onboarding Roadmap -->
+      <section>
+        <div class="container">
+          <div class="section-head reveal">
+            <span class="kicker">Zero-Friction Launch</span>
+            <h2>From Intro Call to Live Phones in 4 Business Days</h2>
+            <p>We handle the SOP mapping and script setup so you don't lose a single hour in the field.</p>
+          </div>
+          <div class="roadmap-grid">
+            <div class="road-card reveal delay-1">
+              <span class="road-day">Day 1 • Alignment</span>
+              <h3>30-Min Board & Call Audit</h3>
+              <p>We review your service zones, diagnostic fees, technician skill tags, and current call bottlenecks on a quick video chat.</p>
+            </div>
+            <div class="road-card reveal delay-2">
+              <span class="road-day">Day 2 • Playbook</span>
+              <h3>Custom Triage & Fee Script</h3>
+              <p>We build your shop's emergency escalation matrix, objection responses, and booking rules for your approval.</p>
+            </div>
+            <div class="road-card reveal delay-3">
+              <span class="road-day">Day 3 • Sandbox Test</span>
+              <h3>CRM Access & Mock Calls</h3>
+              <p>We test live call routing on your VoIP line and run sample bookings in your CRM to verify SMS alerts and tech notifications.</p>
+            </div>
+            <div class="road-card reveal delay-1">
+              <span class="road-day">Day 4 • Go-Live</span>
+              <h3>Full Shift Desk Takeover</h3>
+              <p>We go live on your inbound lines, start chasing open 48-hour quotes, and send your first End-of-Day KPI summary.</p>
             </div>
           </div>
         </div>
@@ -2473,7 +2684,7 @@
           <div class="section-head reveal">
             <span class="kicker">Coverage Options</span>
             <h2>Flexible Support That Scales With Your Fleet</h2>
-            <p>Start with peak-window overflow coverage or lock in a full-time coordinator for your entire US business day.</p>
+            <p>Start with peak-window overflow coverage or lock in full-shift coverage for your entire US business day.</p>
           </div>
           <div class="tiers-grid">
             <div class="tier reveal delay-1">
@@ -2496,7 +2707,7 @@
               <div>
                 <div class="tier-trucks">Ideal for 3–8 Trucks</div>
                 <h3>Dedicated Full-Time Desk</h3>
-                <p class="tier-sub">One trained coordinator running your phones and dispatch board all shift.</p>
+                <p class="tier-sub">Direct founder-led coverage running your phones and dispatch board all shift.</p>
                 <ul class="tier-list">
                   <li><span>✓</span>Full 8-hour US shift live inbound answering</li>
                   <li><span>✓</span>Active dispatch board & route management</li>
@@ -2510,58 +2721,58 @@
             <div class="tier reveal delay-3">
               <div>
                 <div class="tier-trucks">Ideal for 8+ Trucks</div>
-                <h3>Multi-Tech Dispatch Pod</h3>
-                <p class="tier-sub">Extended morning-to-evening coverage with split CSR and dispatch roles.</p>
+                <h3>Multi-Tech Extended Coverage</h3>
+                <p class="tier-sub">Extended morning-to-evening coverage with split CSR and dispatch workflows.</p>
                 <ul class="tier-list">
-                  <li><span>✓</span>Dedicated Call Handler + Senior Dispatcher</li>
-                  <li><span>✓</span>Extended early-morning & evening coverage</li>
+                  <li><span>✓</span>Extended early-morning & evening call handling</li>
+                  <li><span>✓</span>Multi-truck route optimization & tech sync</li>
                   <li><span>✓</span>Outbound tune-up & membership campaigns</li>
                   <li><span>✓</span>Custom SOP playbook & weekly ops review</li>
                 </ul>
               </div>
-              <button type="button" class="btn btn-outline" data-calendly="true" style="width: 100%;">Schedule Custom Pod Call</button>
+              <button type="button" class="btn btn-outline" data-calendly="true" style="width: 100%;">Schedule Custom Scope Call</button>
             </div>
           </div>
         </div>
       </section>
     </div>
 
-    <!-- ==================== VIEW 4: ABOUT US ==================== -->
+    <!-- ==================== VIEW 4: ABOUT US (FOUNDER-LED BOUTIQUE) ==================== -->
     <div class="page-view" id="view-about">
       <div class="page-banner">
         <div class="container reveal">
           <span class="kicker">About Field2Desk</span>
-          <h1>Built by Operators Who Know the Dispatch Board Inside Out</h1>
-          <p>We founded Field2Desk after seeing firsthand how many great US HVAC and plumbing owners were burning out trying to answer phones from the field.</p>
+          <h1>A Founder-Led Operations Partner Built for US Trade Teams</h1>
+          <p>No bloated agency layers. No untrained junior hand-offs. You work directly with operators who run US HVAC dispatch boards and KPI trackers every single day.</p>
         </div>
       </div>
 
       <section>
         <div class="container about-grid">
           <div class="about-story reveal">
-            <span class="kicker">Our Story & Mission</span>
-            <h2>Bridging the Gap Between Field Execution and Front-Desk Excellence</h2>
-            <p>Most virtual assistant agencies hand you an untrained generalist and expect you to spend weeks teaching them what a capacitor, slab leak, or diagnostic fee is. We built <strong>Field2Desk</strong> to be the exact opposite.</p>
-            <p>Our background comes directly from running daily US home-service operations—managing live customer lines in Quo, building tight technician routes in Housecall Pro, automating follow-up pipelines in GoHighLevel, and tracking job profitability on Looker Studio dashboards.</p>
-            <p>We believe a business owner should never have to ask, <em>"Did we ever get back to that customer?"</em> Our mission is to stay five steps ahead of your board so you can focus on leading crews and growing your shop.</p>
+            <span class="kicker">Why We Built Field2Desk</span>
+            <h2>Hands-On Dispatch & CRM Mastery—Not Generic Virtual Assistance</h2>
+            <p>Most virtual assistant agencies hand you an untrained generalist and expect you to spend weeks teaching them what a capacitor, slab leak, or diagnostic dispatch fee is. We founded <strong>Field2Desk</strong> to be the exact opposite.</p>
+            <p>Our background comes directly from running daily US cooling and home-service operations—managing live customer lines in Quo, building tight technician routes in Housecall Pro, automating follow-up pipelines in GoHighLevel, and tracking job profitability on Looker Studio dashboards.</p>
+            <p>Because we operate as a focused, founder-led boutique partnership, you get direct accountability on every call and every slot on your board. We believe an owner should never have to ask, <em>"Did we ever get back to that customer?"</em></p>
 
             <div class="about-highlights">
               <div class="hl-box">
-                <strong>100% Dedicated</strong>
-                <span>One coordinator assigned exclusively to your shop's territory</span>
+                <strong>Direct Accountability</strong>
+                <span>Work directly with the founders—zero hand-offs to untrained reps</span>
               </div>
               <div class="hl-box">
-                <strong>Data-Driven Ops</strong>
-                <span>Daily job trackers, booking KPIs, and clean CRM hygiene</span>
+                <strong>Territory Exclusive</strong>
+                <span>We never support a competing contractor in your service zip codes</span>
               </div>
             </div>
           </div>
 
           <div class="desk-photo-wrap reveal delay-1">
-            <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=900&q=80" alt="Field2Desk operations team collaborating on dispatch workflows" />
+            <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=900&q=80" alt="Field2Desk operations partners collaborating on dispatch workflows" />
             <div class="desk-caption">
-              <strong>Real Operations Partnership</strong>
-              We act as an extension of your in-house team—protecting your reputation on every call.
+              <strong>Boutique Operations Partnership</strong>
+              We act as a direct extension of your front office—protecting your reputation on every call.
             </div>
           </div>
         </div>
@@ -2587,14 +2798,14 @@
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="10" r="3"/><path d="M12 21.7C17.3 17 20 13 20 10a8 8 0 1 0-16 0c0 3 2.7 7 8 11.7z"/></svg>
               </div>
               <h3>Zip-Code Exclusivity</h3>
-              <p>Your dedicated coordinator works exclusively on your brand and will never answer phones or manage dispatch for a competing contractor in your service area.</p>
+              <p>We work exclusively on your brand in your territory and will never answer phones or manage dispatch for a competing contractor in your service area.</p>
             </div>
             <div class="sec-card reveal delay-3">
               <div class="sec-icon">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
               </div>
               <h3>Signed Confidentiality</h3>
-              <p>Every coordinator signs a binding NDA and data-privacy agreement before touching your pricebook, customer list, or VoIP phone lines.</p>
+              <p>We sign a binding NDA and data-privacy agreement before touching your pricebook, customer list, or VoIP phone lines.</p>
             </div>
             <div class="sec-card reveal delay-1">
               <div class="sec-icon">
@@ -2621,15 +2832,15 @@
             </details>
             <details class="faq-box">
               <summary>Will callers feel like they are speaking to a generic call center?</summary>
-              <p>No. Unlike big answering services where random agents read off a generic script, you get a dedicated coordinator trained specifically on your service zones, pricing tiers, and brand tone.</p>
+              <p>No. Unlike big answering services where random agents read off a generic script, we learn your exact service zones, pricing tiers, and brand tone so callers feel like they reached your own front desk.</p>
             </details>
             <details class="faq-box">
               <summary>How do you handle emergency calls vs. routine maintenance?</summary>
               <p>During onboarding, we map out your exact triage rules—defining what qualifies as a same-day emergency (no-heat, active leaks, extreme-heat AC failure), which tech takes priority, and when to escalate to you.</p>
             </details>
             <details class="faq-box">
-              <summary>How fast can we get someone trained on our board?</summary>
-              <p>Once we complete a 30-minute alignment call to review your booking rules and CRM permissions, we typically finish onboarding and go live on your phones within 3 to 5 business days.</p>
+              <summary>How fast can we get set up on our board?</summary>
+              <p>Once we complete a 30-minute alignment call to review your booking rules and CRM permissions, we typically finish onboarding and go live on your phones within 4 business days.</p>
             </details>
           </div>
         </div>
@@ -2650,7 +2861,7 @@
         <div class="container contact-grid">
           <div class="contact-info-box reveal">
             <span class="kicker" style="color: var(--teal-bright);">Instant Scheduling & Direct Channels</span>
-            <h2>Connect With Our Operations Team</h2>
+            <h2>Connect Directly With Us</h2>
             <p>Pick a time directly on our calendar or drop us a quick message on LinkedIn or Facebook.</p>
 
             <div class="direct-channels">
@@ -2665,7 +2876,7 @@
               <a href="https://www.linkedin.com/company/144131146/" target="_blank" rel="noopener" class="channel-box">
                 <div>
                   <strong>Message Field2Desk on LinkedIn</strong>
-                  <span>Connect directly with our operations partners</span>
+                  <span>Connect directly with the founders</span>
                 </div>
                 <span style="color: var(--teal-bright); font-weight: 700;">Open →</span>
               </a>
@@ -2680,14 +2891,14 @@
             </div>
 
             <div style="border-top: 1px solid rgba(255,255,255,0.12); padding-top: 22px;">
-              <strong style="display:block; font-size:0.95rem; margin-bottom:8px; color:#FFFFFF;">What Happens After You Reach Out:</strong>
-              <p style="font-size:0.88rem; color:#CBD5E1; margin-bottom:0;">1. 30-minute workflow & CRM alignment chat.<br>2. Custom booking & escalation playbook setup.<br>3. Live shift launch on your phones in 3–5 days.</p>
+              <strong style="display:block; font-size:0.95rem; margin-bottom:8px; color:#FFFFFF;">4-Day Turnkey Launch:</strong>
+              <p style="font-size:0.88rem; color:#CBD5E1; margin-bottom:0;">Day 1: 30-minute workflow & CRM alignment chat.<br>Day 2–3: Custom triage script & sandbox test.<br>Day 4: Live shift launch on your phones.</p>
             </div>
           </div>
 
           <div class="intake-card reveal delay-1">
             <h3>Shop Operations Inquiry</h3>
-            <p>Tell us a bit about your fleet and current CRM—or click "Schedule on Calendly" after filling out your details.</p>
+            <p>Tell us a bit about your fleet and current CRM so we can prepare for our intro chat.</p>
 
             <form id="inquiryForm">
               <div class="form-row">
@@ -2733,7 +2944,7 @@
                   <select id="coverageNeed">
                     <option value="Full-Time Dedicated Desk (8 hrs/day)">Full-Time Dedicated Desk (8 hrs/day)</option>
                     <option value="Part-Time Overflow & Admin (4 hrs/day)">Part-Time Overflow & Admin (4 hrs/day)</option>
-                    <option value="Multi-Tech Dispatch Pod">Multi-Tech Dispatch Pod</option>
+                    <option value="Multi-Tech Extended Coverage">Multi-Tech Extended Coverage</option>
                   </select>
                 </div>
               </div>
@@ -2755,6 +2966,12 @@
     </div>
   </main>
 
+  <!-- Floating Bottom-Right Quick-Book Pill -->
+  <button type="button" class="floating-book-pill" data-calendly="true" aria-label="Book a 30-Min Audit on Calendly">
+    <span class="live-dot" style="width:7px;height:7px;"></span>
+    Book 30-Min Audit <span>→</span>
+  </button>
+
   <footer>
     <div class="container footer-flex">
       <p>&copy; 2026 Field2Desk Operations. Remote Dispatch & Front-Office Support for US Trade Businesses.</p>
@@ -2764,23 +2981,23 @@
         <button type="button" class="footer-link-btn" data-target="pricing">ROI & Pricing</button>
         <button type="button" class="footer-link-btn" data-target="about">About Us</button>
         <button type="button" class="footer-link-btn" data-target="contact">Contact Us</button>
-        <button type="button" class="careers-btn" id="openCareers">Hiring VAs? Apply Here</button>
+        <button type="button" class="careers-btn" id="openCareers">Talent Pool</button>
       </div>
     </div>
   </footer>
 
-  <!-- Careers Modal -->
+  <!-- Talent Pool Modal -->
   <div class="modal-bg" id="careersModal" role="dialog" aria-modal="true" aria-labelledby="careersHeading">
     <div class="modal-panel">
       <button type="button" class="modal-close" id="closeCareers" aria-label="Close modal">&times;</button>
-      <h3 id="careersHeading" style="font-size:1.35rem; margin-bottom:8px;">Join the Field2Desk Team</h3>
-      <p style="font-size:0.94rem; color:var(--slate); margin-bottom:18px;">We are hiring Philippine-based Customer Service & Dispatch Coordinators for US HVAC and plumbing companies.</p>
+      <h3 id="careersHeading" style="font-size:1.35rem; margin-bottom:8px;">Field2Desk Talent Pool</h3>
+      <p style="font-size:0.94rem; color:var(--slate); margin-bottom:18px;">We maintain a vetted bench of Philippine-based Customer Service & Dispatch Coordinators for upcoming US HVAC and plumbing shop launches.</p>
       <ul class="tier-list" style="margin-bottom:24px;">
         <li><span>✓</span>US Business Hours (Night Shift PH)</li>
         <li><span>✓</span>Clear, natural English phone communication</li>
         <li><span>✓</span>100% Remote Work-From-Home Setup</li>
       </ul>
-      <a href="https://www.facebook.com/profile.php?id=61595046637750" target="_blank" rel="noopener" class="btn btn-navy" style="width: 100%;">DM Your Resume (PDF) on Facebook</a>
+      <a href="https://www.facebook.com/profile.php?id=61595046637750" target="_blank" rel="noopener" class="btn btn-navy" style="width: 100%;">Send Your Resume (PDF) on Facebook</a>
     </div>
   </div>
 
@@ -2803,6 +3020,24 @@
       });
     });
 
+    // Animated Number Counters
+    function runCounters() {
+      document.querySelectorAll('.count-up').forEach(el => {
+        const target = parseFloat(el.dataset.target);
+        const decimals = parseInt(el.dataset.decimals || '0', 10);
+        const duration = 1200;
+        const start = performance.now();
+        function step(now) {
+          const progress = Math.min((now - start) / duration, 1);
+          const eased = 1 - Math.pow(1 - progress, 3);
+          el.textContent = (target * eased).toFixed(decimals);
+          if (progress < 1) requestAnimationFrame(step);
+        }
+        requestAnimationFrame(step);
+      });
+    }
+    runCounters();
+
     // Top Live Activity Feed Ticker
     const tickerItems = [
       "Housecall Pro: Emergency AC No-Cool booked in 42 seconds (Dallas, TX)",
@@ -2821,6 +3056,76 @@
         tickerEl.style.opacity = 1;
       }, 250);
     }, 4500);
+
+    // Interactive CRM & Stack Explorer
+    const crmData = {
+      hcp: {
+        title: "Housecall Pro Daily Dispatch & Booking",
+        desc: "We log in under a restricted dispatcher user role to book inbound calls, assign tech tags, trigger automated SMS arrival windows, and keep your job map clean.",
+        checks: ["Live calendar slotting by zip code", "Automated 'On My Way' & review texts", "Unscheduled & open estimate follow-up"]
+      },
+      st: {
+        title: "ServiceTitan Call Booking & Capacity Planning",
+        desc: "We handle inbound call booking screens, tag priority emergency vs. maintenance calls, manage adjustable capacity windows, and keep unsold estimate queues moving.",
+        checks: ["Priority job tagging & business unit routing", "Real-time technician capacity balancing", "48-hour open estimate outbound calls"]
+      },
+      jobber: {
+        title: "Jobber Request Triage, Quoting & Scheduling",
+        desc: "We convert incoming phone and web requests into scheduled visits, group recurring maintenance routes tightly, and follow up on sent quotes until approved.",
+        checks: ["Instant web request & phone-to-visit booking", "Batch quote follow-ups & deposit reminders", "Automated client visit reminders & follow-ups"]
+      },
+      ghl: {
+        title: "GoHighLevel Speed-to-Lead & Pipeline Management",
+        desc: "We respond to missed-call text-backs, Facebook/Google lead forms, and SMS conversations in under 60 seconds—moving warm leads straight onto your dispatch calendar.",
+        checks: ["Under-60-second SMS & web lead response", "Automated 5-star Google review campaigns", "Pipeline stage hygiene & reactivation calls"]
+      },
+      quo: {
+        title: "Quo (OpenPhone) Shared Inbox & Call Triage",
+        desc: "We monitor your shared business phone lines and SMS threads all shift, resolving homeowner questions proactively and logging clean call summaries into your CRM.",
+        checks: ["Sub-3-ring live call answering in your brand name", "Proactive SMS thread monitoring & ETA updates", "Clean call notes & voicemail zero policy"]
+      }
+    };
+
+    const crmBox = document.getElementById('crmDetailBox');
+    document.querySelectorAll('.crm-tab-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.crm-tab-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        const info = crmData[btn.dataset.crm];
+        crmBox.innerHTML = `
+          <div>
+            <h4>${info.title}</h4>
+            <p>${info.desc}</p>
+          </div>
+          <div class="crm-checks">
+            ${info.checks.map(c => `<span><b>✓</b> ${c}</span>`).join('')}
+          </div>
+        `;
+      });
+    });
+
+    // Live Dispatch Simulator inside Bento Card 2
+    let emergencySimulated = false;
+    const simDispatchBtn = document.getElementById('simDispatchBtn');
+    const secondRouteSlot = document.getElementById('secondRouteSlot');
+    simDispatchBtn.addEventListener('click', () => {
+      emergencySimulated = !emergencySimulated;
+      if (emergencySimulated) {
+        secondRouteSlot.classList.add('urgent');
+        secondRouteSlot.innerHTML = `
+          <span class="slot-dot" style="background:var(--teal);"></span>
+          <div><strong>Tech #2 (Devon)</strong> • Emergency No-Cool Slotted<br><small style="color:var(--teal-dark); font-weight:600;">1:00 PM Booked • $89 Fee Approved • SMS Sent</small></div>
+        `;
+        simDispatchBtn.textContent = "✓ Dispatched! Click to Reset Board";
+      } else {
+        secondRouteSlot.classList.remove('urgent');
+        secondRouteSlot.innerHTML = `
+          <span class="slot-dot" style="background:#3B82F6;"></span>
+          <div><strong>Tech #2 (Devon)</strong> • Zip 75006<br><small style="color:var(--muted);">1:00 PM Open Gap Available</small></div>
+        `;
+        simDispatchBtn.textContent = '+ Simulate Emergency "No-Cool" Call';
+      }
+    });
 
     // Scroll Reveal Observer
     const revealObserver = new IntersectionObserver((entries) => {
@@ -3003,7 +3308,7 @@
       }
     });
 
-    // Careers Modal
+    // Talent Pool Modal
     const modal = document.getElementById('careersModal');
     document.getElementById('openCareers').addEventListener('click', () => modal.classList.add('active'));
     document.getElementById('closeCareers').addEventListener('click', () => modal.classList.remove('active'));
