@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Field2Desk | Remote Dispatch & Operations for US HVAC & Plumbing Teams</title>
+  <meta name="description" content="Dedicated remote call answering, Housecall Pro & ServiceTitan dispatching, and back-office operations for US HVAC, plumbing, and electrical companies." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --navy: #0A1F38;
+      --navy-light: #122E50;
+      --teal: #1FB6A6;
+      --teal-dark: #179688;
+      --bg-light: #F6F9FC;
+      --text-dark: #0F172A;
+      --text-muted: #475569;
+      --white: #FFFFFF;
+      --border: #E2E8F0;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      color: var(--text-dark);
+      background-color: var(--white);
+      line-height: 1.6;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* Navbar */
+    header {
+      background-color: var(--navy);
+      padding: 18px 0;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .nav-wrap {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .brand {
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: var(--white);
+      text-decoration: none;
+      letter-spacing: -0.02em;
+    }
+
+    .brand span {
+      color: var(--teal);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 28px;
+      align-items: center;
+    }
+
+    .nav-links a {
+      color: #CBD5E1;
+      text-decoration: none;
+      font-size: 0.95rem;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover {
+      color: var(--white);
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 12px 24px;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 0.95rem;
+      text-decoration: none;
+      transition: all 0.2s ease;
+      cursor: pointer;
+      border: none;
+    }
+
+    .btn-primary {
+      background-color: var(--teal);
+      color: var(--white);
+    }
+
+    .btn-primary:hover {
+      background-color: var(--teal-dark);
+      transform: translateY(-1px);
+    }
+
+    .btn-outline {
+      background-color: transparent;
+      color: var(--white);
+      border: 1.5px solid rgba(255, 255, 255, 0.3);
+    }
+
+    .btn-outline:hover {
+      border-color: var(--teal);
+      color: var(--teal);
+    }
+
+    .nav-cta {
+      padding: 9px 18px;
+      font-size: 0.9rem;
+    }
+
+    /* Hero */
+    .hero {
+      background: linear-gradient(135deg, var(--navy) 0%, var(--navy-light) 100%);
+      color: var(--white);
+      padding: 88px 0 96px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.25fr 0.75fr;
+      gap: 48px;
+      align-items: center;
+    }
+
+    .badge {
+      display: inline-block;
+      background: rgba(31, 182, 166, 0.15);
+      color: var(--teal);
+      font-weight: 600;
+      font-size: 0.85rem;
+      padding: 6px 14px;
+      border-radius: 999px;
+      margin-bottom: 20px;
+      border: 1px solid rgba(31, 182, 166, 0.3);
+    }
+
+    .hero h1 {
+      font-size: 2.85rem;
+      line-height: 1.15;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      margin-bottom: 20px;
+    }
+
+    .hero h1 span {
+      color: var(--teal);
+    }
+
+    .hero p {
+      font-size: 1.125rem;
+      color: #CBD5E1;
+      margin-bottom: 32px;
+      max-width: 560px;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .hero-card {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 16px;
+      padding: 28px;
+    }
+
+    .hero-card h3 {
+      font-size: 1.1rem;
+      margin-bottom: 18px;
+      color: var(--teal);
+    }
+
+    .stat-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .stat-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      font-size: 0.95rem;
+      color: #E2E8F0;
+    }
+
+    .check {
+      color: var(--teal);
+      font-weight: 800;
+      font-size: 1.1rem;
+    }
+
+    /* Tools Strip */
+    .tools-strip {
+      background-color: var(--bg-light);
+      border-bottom: 1px solid var(--border);
+      padding: 28px 0;
+      text-align: center;
+    }
+
+    .tools-label {
+      font-size: 0.82rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--text-muted);
+      font-weight: 600;
+      margin-bottom: 14px;
+    }
+
+    .tools-list {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 14px 32px;
+      font-weight: 700;
+      color: var(--navy);
+      font-size: 1.05rem;
+    }
+
+    /* Sections */
+    section {
+      padding: 80px 0;
+    }
+
+    .section-header {
+      text-align: center;
+      max-width: 650px;
+      margin: 0 auto 52px;
+    }
+
+    .section-header h2 {
+      font-size: 2.1rem;
+      font-weight: 800;
+      color: var(--navy);
+      letter-spacing: -0.02em;
+      margin-bottom: 12px;
+    }
+
+    .section-header p {
+      color: var(--text-muted);
+      font-size: 1.05rem;
+    }
+
+    /* Services Grid */
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    .card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 30px 26px;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 24px rgba(10, 31, 56, 0.06);
+    }
+
+    .icon-box {
+      width: 46px;
+      height: 46px;
+      border-radius: 10px;
+      background: rgba(31, 182, 166, 0.12);
+      color: var(--teal-dark);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 1.25rem;
+      margin-bottom: 18px;
+    }
+
+    .card h3 {
+      font-size: 1.2rem;
+      color: var(--navy);
+      margin-bottom: 10px;
+    }
+
+    .card p {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+    }
+
+    /* How It Works */
+    .process-section {
+      background-color: var(--bg-light);
+    }
+
+    .steps-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 28px;
+    }
+
+    .step {
+      background: var(--white);
+      padding: 28px;
+      border-radius: 14px;
+      border: 1px solid var(--border);
+    }
+
+    .step-num {
+      display: inline-block;
+      background: var(--navy);
+      color: var(--teal);
+      font-weight: 800;
+      font-size: 0.9rem;
+      padding: 4px 12px;
+      border-radius: 6px;
+      margin-bottom: 14px;
+    }
+
+    .step h3 {
+      font-size: 1.15rem;
+      color: var(--navy);
+      margin-bottom: 8px;
+    }
+
+    .step p {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+    }
+
+    /* Contact / CTA */
+    .cta-box {
+      background: var(--navy);
+      color: var(--white);
+      border-radius: 20px;
+      padding: 56px 40px;
+      text-align: center;
+    }
+
+    .cta-box h2 {
+      font-size: 2.1rem;
+      font-weight: 800;
+      margin-bottom: 14px;
+    }
+
+    .cta-box p {
+      color: #CBD5E1;
+      max-width: 580px;
+      margin: 0 auto 30px;
+      font-size: 1.05rem;
+    }
+
+    .cta-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    /* Footer */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 32px 0;
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 0.9rem;
+    }
+
+    @media (max-width: 860px) {
+      .hero-grid,
+      .services-grid,
+      .steps-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero h1 {
+        font-size: 2.2rem;
+      }
+
+      .nav-links a:not(.btn) {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="container nav-wrap">
+      <a href="#" class="brand">Field<span>2</span>Desk</a>
+      <nav class="nav-links">
+        <a href="#services">Services</a>
+        <a href="#how-it-works">How It Works</a>
+        <a href="#contact" class="btn btn-primary nav-cta">Get in Touch</a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="container hero-grid">
+      <div>
+        <span class="badge">Built for US HVAC, Plumbing & Electrical Teams</span>
+        <h1>Stop Losing Hours to <span>Phones & Dispatch.</span></h1>
+        <p>We plug dedicated remote call handlers, dispatchers, and back-office coordinators directly into your shop so your techs stay moving and no customer call goes to voicemail.</p>
+        <div class="hero-actions">
+          <a href="#contact" class="btn btn-primary">Message Our Team</a>
+          <a href="#services" class="btn btn-outline">See What We Handle</a>
+        </div>
+      </div>
+      <div class="hero-card">
+        <h3>What Changes on Day One</h3>
+        <ul class="stat-list">
+          <li><span class="check">✓</span><span>Every inbound call answered live during US business hours</span></li>
+          <li><span class="check">✓</span><span>Clean, optimized tech routes inside your existing CRM</span></li>
+          <li><span class="check">✓</span><span>Zero weekend voicemails or unbooked estimates left hanging</span></li>
+          <li><span class="check">✓</span><span>Fraction of the cost of hiring an in-house front desk</span></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <div class="tools-strip">
+    <div class="container">
+      <div class="tools-label">Seamless Integration With Your Existing Stack</div>
+      <div class="tools-list">
+        <span>Housecall Pro</span>
+        <span>ServiceTitan</span>
+        <span>Jobber</span>
+        <span>GoHighLevel</span>
+        <span>Quo / OpenPhone</span>
+        <span>Google Workspace</span>
+      </div>
+    </div>
+  </div>
+
+  <section id="services">
+    <div class="container">
+      <div class="section-header">
+        <h2>Back-Office Ops Built for the Trades</h2>
+        <p>You focus on running crews and closing high-ticket installs. We handle the daily front-desk bottleneck.</p>
+      </div>
+      <div class="services-grid">
+        <div class="card">
+          <div class="icon-box">01</div>
+          <h3>Live Call Answering & Booking</h3>
+          <p>Friendly, trained call specialists answer your business line, qualify urgent vs. routine service calls, and book jobs straight onto your calendar.</p>
+        </div>
+        <div class="card">
+          <div class="icon-box">02</div>
+          <h3>Real-Time Dispatching</h3>
+          <p>We monitor your dispatch board all day, confirm technician arrival windows with homeowners, and adjust routes smoothly when jobs run long.</p>
+        </div>
+        <div class="card">
+          <div class="icon-box">03</div>
+          <h3>Admin, Estimates & Follow-Ups</h3>
+          <p>From chasing open quotes and membership renewals to keeping job trackers and daily KPI sheets clean, nothing falls through the cracks.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="how-it-works" class="process-section">
+    <div class="container">
+      <div class="section-header">
+        <h2>How We Plug Into Your Shop</h2>
+        <p>No complicated software migrations or long onboarding delays.</p>
+      </div>
+      <div class="steps-grid">
+        <div class="step">
+          <span class="step-num">Step 1</span>
+          <h3>Quick Workflow Audit</h3>
+          <p>We jump on a 15-minute call to look at your current call volume, dispatch software, and where your team is losing the most time.</p>
+        </div>
+        <div class="step">
+          <span class="step-num">Step 2</span>
+          <h3>SOP & Tool Setup</h3>
+          <p>We match you with a trained home-service coordinator and map out your exact booking rules, service areas, and pricing scripts.</p>
+        </div>
+        <div class="step">
+          <span class="step-num">Step 3</span>
+          <h3>Go Live on Your Board</h3>
+          <p>Your coordinator starts answering calls, booking jobs, and managing your dispatch board while keeping you updated in real time.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <div class="container">
+      <div class="cta-box">
+        <h2>Ready to Take Phones & Dispatch Off Your Plate?</h2>
+        <p>Reach out directly on LinkedIn or Facebook for a quick, no-pressure chat about how we can support your team.</p>
+        <div class="cta-buttons">
+          <a href="https://www.linkedin.com/company/field2desk-ops/" target="_blank" rel="noopener" class="btn btn-primary">Message Us on LinkedIn</a>
+          <a href="https://www.facebook.com/profile.php?id=61595046637750" target="_blank" rel="noopener" class="btn btn-outline">Message Us on Facebook</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <p>&copy; 2026 Field2Desk Operations. Remote Dispatch & Back-Office Support for US Home Service Teams.</p>
+    </div>
+  </footer>
+
+</body>
+</html>
