@@ -4,30 +4,30 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Field2Desk | Dedicated Dispatch & Front-Office Operations for US Trade Teams</title>
-  <meta name="description" content="Enterprise-grade remote call handling, live dispatching, and back-office operations for US HVAC, plumbing, and electrical contractors." />
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%23071526'/%3E%3Cpath d='M20 33v-3a12 12 0 0 1 24 0v3' fill='none' stroke='%2310B981' stroke-width='4.5' stroke-linecap='round'/%3E%3Crect x='15' y='30' width='7' height='12' rx='3.5' fill='%23FFFFFF'/%3E%3Crect x='42' y='30' width='7' height='12' rx='3.5' fill='%23FFFFFF'/%3E%3Cpath d='M45 42v3a5 5 0 0 1-5 5h-6' fill='none' stroke='%2310B981' stroke-width='3.5' stroke-linecap='round'/%3E%3Ccircle cx='32' cy='50' r='3' fill='%23FFFFFF'/%3E%3C/svg%3E" />
+  <meta name="description" content="Dedicated remote call handling, live dispatching, and back-office operations for US HVAC, plumbing, and electrical contractors." />
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%230B192C'/%3E%3Cpath d='M20 33v-3a12 12 0 0 1 24 0v3' fill='none' stroke='%230D9488' stroke-width='4.5' stroke-linecap='round'/%3E%3Crect x='15' y='30' width='7' height='12' rx='3.5' fill='%23FFFFFF'/%3E%3Crect x='42' y='30' width='7' height='12' rx='3.5' fill='%23FFFFFF'/%3E%3Cpath d='M45 42v3a5 5 0 0 1-5 5h-6' fill='none' stroke='%230D9488' stroke-width='3.5' stroke-linecap='round'/%3E%3Ccircle cx='32' cy='50' r='3' fill='%23FFFFFF'/%3E%3C/svg%3E" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@600;700;800&display=swap" rel="stylesheet">
   <style>
     :root {
-      --navy-950: #061120;
-      --navy-900: #0A192F;
-      --navy-800: #112240;
-      --navy-700: #1D3557;
-      --accent: #0D9488;
-      --accent-bright: #14B8A6;
-      --accent-glow: rgba(20, 184, 166, 0.16);
-      --surface-page: #F8FAFC;
-      --surface-card: #FFFFFF;
-      --ink-900: #0F172A;
-      --ink-700: #334155;
-      --ink-500: #64748B;
-      --line: #E2E8F0;
-      --line-strong: #CBD5E1;
-      --shadow-sm: 0 1px 3px rgba(15, 23, 42, 0.04), 0 1px 2px rgba(15, 23, 42, 0.02);
-      --shadow-md: 0 10px 25px -5px rgba(15, 23, 42, 0.06), 0 8px 10px -6px rgba(15, 23, 42, 0.03);
-      --shadow-lg: 0 25px 50px -12px rgba(6, 17, 32, 0.35);
+      --bg-cream: #FAF9F6;
+      --bg-white: #FFFFFF;
+      --bg-stone: #F3F1EC;
+      --navy: #0B192C;
+      --navy-soft: #1E293B;
+      --slate: #475569;
+      --muted: #64748B;
+      --teal: #0D9488;
+      --teal-dark: #0F766E;
+      --teal-tint: #F0FDFA;
+      --teal-border: #99F6E4;
+      --amber-tint: #FFFBEB;
+      --amber-text: #B45309;
+      --border: #E5E7EB;
+      --border-strong: #CBD5E1;
+      --shadow-card: 0 4px 20px -2px rgba(11, 25, 44, 0.06), 0 2px 6px -1px rgba(11, 25, 44, 0.03);
+      --shadow-float: 0 24px 48px -12px rgba(11, 25, 44, 0.16);
     }
 
     * {
@@ -42,14 +42,14 @@
 
     body {
       font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-      color: var(--ink-900);
-      background-color: var(--surface-page);
+      background-color: var(--bg-cream);
+      color: var(--navy);
       line-height: 1.65;
       -webkit-font-smoothing: antialiased;
     }
 
     h1, h2, h3, h4, .brand {
-      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-family: 'Outfit', sans-serif;
       letter-spacing: -0.025em;
     }
 
@@ -59,12 +59,12 @@
       padding: 0 28px;
     }
 
-    /* Navigation */
+    /* Sticky Light Header */
     header {
-      background: rgba(6, 17, 32, 0.92);
+      background: rgba(250, 249, 246, 0.92);
       backdrop-filter: blur(12px);
       -webkit-backdrop-filter: blur(12px);
-      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      border-bottom: 1px solid var(--border);
       position: sticky;
       top: 0;
       z-index: 100;
@@ -81,14 +81,14 @@
       display: inline-flex;
       align-items: center;
       gap: 11px;
-      font-size: 1.38rem;
+      font-size: 1.42rem;
       font-weight: 800;
-      color: #FFFFFF;
+      color: var(--navy);
       text-decoration: none;
     }
 
     .brand span {
-      color: var(--accent-bright);
+      color: var(--teal);
     }
 
     .nav-links {
@@ -98,15 +98,15 @@
     }
 
     .nav-links a:not(.btn) {
-      color: #94A3B8;
+      color: var(--slate);
       text-decoration: none;
-      font-size: 0.9rem;
+      font-size: 0.92rem;
       font-weight: 500;
       transition: color 0.2s ease;
     }
 
     .nav-links a:not(.btn):hover {
-      color: #FFFFFF;
+      color: var(--navy);
     }
 
     /* Buttons */
@@ -120,67 +120,59 @@
       font-weight: 600;
       font-size: 0.92rem;
       text-decoration: none;
-      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+      transition: all 0.2s ease;
       cursor: pointer;
       border: none;
     }
 
     .btn-primary {
-      background: linear-gradient(135deg, var(--accent-bright) 0%, var(--accent) 100%);
+      background-color: var(--navy);
       color: #FFFFFF;
-      box-shadow: 0 4px 14px rgba(13, 148, 136, 0.32);
+      box-shadow: 0 4px 12px rgba(11, 25, 44, 0.16);
     }
 
     .btn-primary:hover {
+      background-color: #162B47;
       transform: translateY(-1px);
-      box-shadow: 0 6px 20px rgba(13, 148, 136, 0.42);
     }
 
-    .btn-ghost {
-      background: rgba(255, 255, 255, 0.06);
-      color: #F8FAFC;
-      border: 1px solid rgba(255, 255, 255, 0.14);
+    .btn-teal {
+      background-color: var(--teal);
+      color: #FFFFFF;
+      box-shadow: 0 4px 14px rgba(13, 148, 136, 0.25);
     }
 
-    .btn-ghost:hover {
-      background: rgba(255, 255, 255, 0.11);
-      border-color: rgba(255, 255, 255, 0.25);
+    .btn-teal:hover {
+      background-color: var(--teal-dark);
+      transform: translateY(-1px);
     }
 
-    .btn-secondary {
-      background: #FFFFFF;
-      color: var(--ink-900);
-      border: 1px solid var(--line-strong);
-      width: 100%;
+    .btn-outline {
+      background-color: var(--bg-white);
+      color: var(--navy);
+      border: 1px solid var(--border-strong);
     }
 
-    .btn-secondary:hover {
-      border-color: var(--accent);
-      color: var(--accent);
-      background: #F0FDFA;
+    .btn-outline:hover {
+      border-color: var(--navy);
+      background-color: var(--bg-stone);
     }
 
     .nav-cta {
-      padding: 9px 18px;
+      padding: 10px 18px;
       font-size: 0.88rem;
     }
 
-    /* Hero Section */
+    /* Editorial Light Hero */
     .hero {
-      background-color: var(--navy-950);
-      background-image:
-        radial-gradient(circle at 80% 20%, rgba(20, 184, 166, 0.14) 0%, transparent 45%),
-        radial-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px);
-      background-size: 100% 100%, 24px 24px;
-      color: #FFFFFF;
-      padding: 88px 0 96px;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      padding: 76px 0 92px;
+      border-bottom: 1px solid var(--border);
     }
 
     .hero-grid {
       display: grid;
-      grid-template-columns: 1.1fr 0.9fr;
-      gap: 52px;
+      grid-template-columns: 1.05fr 0.95fr;
+      gap: 56px;
       align-items: center;
     }
 
@@ -189,12 +181,12 @@
       align-items: center;
       gap: 8px;
       font-size: 0.8rem;
-      font-weight: 600;
+      font-weight: 700;
       text-transform: uppercase;
       letter-spacing: 0.08em;
-      color: var(--accent-bright);
-      background: rgba(20, 184, 166, 0.1);
-      border: 1px solid rgba(20, 184, 166, 0.25);
+      color: var(--teal-dark);
+      background: var(--teal-tint);
+      border: 1px solid var(--teal-border);
       padding: 6px 14px;
       border-radius: 999px;
       margin-bottom: 22px;
@@ -204,29 +196,26 @@
       width: 7px;
       height: 7px;
       border-radius: 50%;
-      background: var(--accent-bright);
-      box-shadow: 0 0 0 4px rgba(20, 184, 166, 0.22);
+      background: var(--teal);
     }
 
     .hero h1 {
-      font-size: 3.1rem;
+      font-size: 3.25rem;
       font-weight: 800;
-      line-height: 1.12;
+      line-height: 1.1;
+      color: var(--navy);
       margin-bottom: 20px;
-      color: #FFFFFF;
     }
 
     .hero h1 span {
-      background: linear-gradient(90deg, #2DD4BF, #5EEAD4);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
+      color: var(--teal);
     }
 
     .hero-lead {
-      font-size: 1.1rem;
-      color: #94A3B8;
+      font-size: 1.12rem;
+      color: var(--slate);
       margin-bottom: 34px;
-      max-width: 540px;
+      max-width: 530px;
       line-height: 1.7;
     }
 
@@ -234,366 +223,434 @@
       display: flex;
       gap: 14px;
       flex-wrap: wrap;
-      margin-bottom: 40px;
+      margin-bottom: 42px;
     }
 
-    .hero-metrics {
+    .trust-strip {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 20px;
-      padding-top: 28px;
-      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      padding-top: 26px;
+      border-top: 1px solid var(--border);
     }
 
-    .metric-item strong {
+    .trust-item strong {
       display: block;
-      font-family: 'Plus Jakarta Sans', sans-serif;
-      font-size: 1.35rem;
+      font-family: 'Outfit', sans-serif;
+      font-size: 1.45rem;
       font-weight: 800;
-      color: #FFFFFF;
+      color: var(--navy);
     }
 
-    .metric-item span {
-      font-size: 0.82rem;
-      color: #94A3B8;
+    .trust-item span {
+      font-size: 0.84rem;
+      color: var(--muted);
     }
 
-    /* Interactive Dispatch Console */
-    .console-card {
-      background: rgba(17, 34, 64, 0.78);
-      backdrop-filter: blur(16px);
-      border: 1px solid rgba(255, 255, 255, 0.12);
-      border-radius: 18px;
-      padding: 24px;
-      box-shadow: var(--shadow-lg);
+    /* Hero Photo + Floating Live Dispatch Overlay */
+    .hero-visual {
+      position: relative;
     }
 
-    .console-top {
+    .hero-photo-frame {
+      border-radius: 22px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow-float);
+      background: var(--bg-stone);
+      aspect-ratio: 4 / 4.3;
+    }
+
+    .hero-photo-frame img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .floating-card {
+      position: absolute;
+      left: -28px;
+      bottom: 28px;
+      right: 28px;
+      background: rgba(255, 255, 255, 0.96);
+      backdrop-filter: blur(12px);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 18px 20px;
+      box-shadow: var(--shadow-float);
+    }
+
+    .fc-top {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: 16px;
+      margin-bottom: 12px;
     }
 
-    .window-dots {
+    .fc-title {
+      font-size: 0.78rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--muted);
+    }
+
+    .fc-pill {
+      font-size: 0.74rem;
+      font-weight: 700;
+      color: var(--teal-dark);
+      background: var(--teal-tint);
+      padding: 3px 10px;
+      border-radius: 999px;
+    }
+
+    .fc-tabs {
       display: flex;
       gap: 6px;
+      margin-bottom: 12px;
     }
 
-    .window-dots i {
-      width: 10px;
-      height: 10px;
-      border-radius: 50%;
-      display: block;
-      background: rgba(255, 255, 255, 0.18);
-    }
-
-    .console-badge {
-      font-size: 0.75rem;
-      font-weight: 600;
-      color: #5EEAD4;
-      background: rgba(20, 184, 166, 0.14);
-      padding: 4px 10px;
-      border-radius: 6px;
-    }
-
-    .console-tabs {
-      display: flex;
-      gap: 6px;
-      background: rgba(6, 17, 32, 0.6);
-      padding: 4px;
-      border-radius: 10px;
-      margin-bottom: 18px;
-    }
-
-    .tab-btn {
-      flex: 1;
-      background: transparent;
-      border: none;
-      color: #94A3B8;
+    .fc-tab {
       font-family: 'Inter', sans-serif;
-      font-size: 0.8rem;
+      font-size: 0.76rem;
       font-weight: 600;
-      padding: 8px 10px;
+      padding: 5px 10px;
       border-radius: 7px;
+      border: 1px solid var(--border);
+      background: var(--bg-cream);
+      color: var(--slate);
       cursor: pointer;
-      transition: all 0.15s ease;
     }
 
-    .tab-btn.active {
-      background: var(--navy-700);
+    .fc-tab.active {
+      background: var(--navy);
       color: #FFFFFF;
-      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+      border-color: var(--navy);
     }
 
-    .console-feed {
-      display: flex;
-      flex-direction: column;
-      gap: 11px;
-    }
-
-    .feed-row {
-      background: rgba(255, 255, 255, 0.04);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      border-radius: 12px;
-      padding: 14px 16px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 12px;
-    }
-
-    .feed-row strong {
+    .fc-body strong {
       display: block;
-      font-size: 0.9rem;
-      color: #F8FAFC;
+      font-size: 0.95rem;
+      color: var(--navy);
       margin-bottom: 2px;
     }
 
-    .feed-row span {
-      font-size: 0.79rem;
-      color: #94A3B8;
+    .fc-body p {
+      font-size: 0.82rem;
+      color: var(--slate);
     }
 
-    .status-tag {
-      font-size: 0.74rem;
-      font-weight: 700;
-      padding: 4px 10px;
-      border-radius: 6px;
-      white-space: nowrap;
+    /* Tools Strip */
+    .tools-bar {
+      background: var(--bg-white);
+      border-bottom: 1px solid var(--border);
+      padding: 26px 0;
     }
 
-    .tag-teal { background: rgba(20, 184, 166, 0.18); color: #5EEAD4; }
-    .tag-blue { background: rgba(56, 189, 248, 0.18); color: #7DD3FC; }
-    .tag-amber { background: rgba(251, 191, 36, 0.18); color: #FCD34D; }
-
-    /* Integration Bar */
-    .integrations {
-      background: #FFFFFF;
-      border-bottom: 1px solid var(--line);
-      padding: 28px 0;
-    }
-
-    .integrations-inner {
+    .tools-flex {
       display: flex;
-      align-items: center;
       justify-content: space-between;
-      gap: 24px;
+      align-items: center;
       flex-wrap: wrap;
+      gap: 18px;
     }
 
-    .integrations-label {
+    .tools-label {
       font-size: 0.78rem;
       font-weight: 700;
       text-transform: uppercase;
       letter-spacing: 0.08em;
-      color: var(--ink-500);
+      color: var(--muted);
     }
 
-    .stack-pills {
+    .tool-tags {
       display: flex;
       flex-wrap: wrap;
       gap: 10px;
     }
 
-    .stack-pill {
-      background: var(--surface-page);
-      border: 1px solid var(--line);
-      color: var(--ink-700);
+    .tool-tag {
       font-size: 0.86rem;
       font-weight: 600;
-      padding: 7px 14px;
+      color: var(--navy-soft);
+      background: var(--bg-cream);
+      border: 1px solid var(--border);
+      padding: 6px 14px;
       border-radius: 8px;
     }
 
-    /* Section Commons */
+    /* Sections */
     section {
       padding: 92px 0;
     }
 
     .section-head {
-      max-width: 640px;
+      max-width: 650px;
       margin: 0 auto 54px;
       text-align: center;
     }
 
-    .section-kicker {
+    .kicker {
       display: inline-block;
       font-size: 0.78rem;
       font-weight: 700;
       text-transform: uppercase;
       letter-spacing: 0.09em;
-      color: var(--accent);
+      color: var(--teal);
       margin-bottom: 10px;
     }
 
     .section-head h2 {
-      font-size: 2.25rem;
+      font-size: 2.35rem;
       font-weight: 800;
-      color: var(--ink-900);
+      color: var(--navy);
+      line-height: 1.18;
       margin-bottom: 14px;
-      line-height: 1.2;
     }
 
     .section-head p {
       font-size: 1.05rem;
-      color: var(--ink-500);
+      color: var(--slate);
     }
 
-    /* Core Pillars */
-    .pillars-grid {
+    /* Comparison Table (DIY Phones vs Field2Desk) */
+    .compare-wrap {
+      background: var(--bg-white);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: var(--shadow-card);
+    }
+
+    .compare-table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+    }
+
+    .compare-table th {
+      padding: 22px 28px;
+      font-family: 'Outfit', sans-serif;
+      font-size: 1.05rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .compare-table th:nth-child(1) {
+      width: 30%;
+      color: var(--muted);
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+
+    .compare-table th:nth-child(2) {
+      width: 35%;
+      color: var(--slate);
+      background: #FAFAFA;
+    }
+
+    .compare-table th:nth-child(3) {
+      width: 35%;
+      color: var(--navy);
+      background: var(--teal-tint);
+      border-left: 1px solid var(--teal-border);
+    }
+
+    .compare-table td {
+      padding: 20px 28px;
+      border-bottom: 1px solid var(--border);
+      font-size: 0.94rem;
+      vertical-align: top;
+    }
+
+    .compare-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    .compare-table td:nth-child(1) {
+      font-weight: 700;
+      color: var(--navy);
+    }
+
+    .compare-table td:nth-child(2) {
+      color: var(--muted);
+      background: #FAFAFA;
+    }
+
+    .compare-table td:nth-child(3) {
+      color: var(--navy);
+      font-weight: 500;
+      background: rgba(240, 253, 250, 0.45);
+      border-left: 1px solid var(--teal-border);
+    }
+
+    /* Services Bento Grid */
+    .services-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 26px;
     }
 
-    .pillar-card {
-      background: var(--surface-card);
-      border: 1px solid var(--line);
-      border-radius: 16px;
-      padding: 32px 28px;
-      box-shadow: var(--shadow-sm);
-      transition: all 0.25s ease;
+    .service-card {
+      background: var(--bg-white);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 34px 28px;
+      box-shadow: var(--shadow-card);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
     }
 
-    .pillar-card:hover {
+    .service-card:hover {
       transform: translateY(-4px);
-      box-shadow: var(--shadow-md);
-      border-color: var(--line-strong);
+      box-shadow: var(--shadow-float);
     }
 
-    .pillar-icon {
+    .icon-pill {
       width: 48px;
       height: 48px;
       border-radius: 12px;
-      background: #F0FDFA;
-      border: 1px solid #CCFBF1;
-      color: var(--accent);
+      background: var(--teal-tint);
+      border: 1px solid var(--teal-border);
+      color: var(--teal-dark);
       display: flex;
       align-items: center;
       justify-content: center;
       margin-bottom: 20px;
     }
 
-    .pillar-card h3 {
-      font-size: 1.22rem;
-      color: var(--ink-900);
+    .service-card h3 {
+      font-size: 1.25rem;
+      color: var(--navy);
       margin-bottom: 10px;
     }
 
-    .pillar-card p {
-      font-size: 0.94rem;
-      color: var(--ink-500);
-      line-height: 1.65;
+    .service-card p {
+      font-size: 0.95rem;
+      color: var(--slate);
     }
 
-    /* Workflow / Difference Section */
-    .workflow-section {
-      background: #FFFFFF;
-      border-top: 1px solid var(--line);
-      border-bottom: 1px solid var(--line);
+    /* Real Shop Impact / Proof Banner */
+    .proof-section {
+      background: var(--bg-stone);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
     }
 
-    .workflow-grid {
+    .proof-grid {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 28px;
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
+      align-items: stretch;
     }
 
-    .step-card {
-      padding: 28px;
-      border-radius: 16px;
-      background: var(--surface-page);
-      border: 1px solid var(--line);
+    .proof-card {
+      background: var(--bg-white);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 34px;
+      box-shadow: var(--shadow-card);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
     }
 
-    .step-num {
-      font-family: 'Plus Jakarta Sans', sans-serif;
-      font-size: 0.82rem;
-      font-weight: 800;
-      color: var(--accent);
-      background: #CCFBF1;
+    .proof-tag {
       display: inline-block;
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--teal-dark);
+      background: var(--teal-tint);
       padding: 4px 10px;
       border-radius: 6px;
-      margin-bottom: 14px;
+      margin-bottom: 16px;
+      align-self: flex-start;
     }
 
-    .step-card h3 {
-      font-size: 1.15rem;
-      margin-bottom: 8px;
-      color: var(--ink-900);
+    .proof-card blockquote {
+      font-size: 1.08rem;
+      color: var(--navy);
+      font-weight: 500;
+      line-height: 1.65;
+      margin-bottom: 22px;
     }
 
-    .step-card p {
-      font-size: 0.92rem;
-      color: var(--ink-500);
+    .proof-author strong {
+      display: block;
+      font-size: 0.94rem;
+      color: var(--navy);
     }
 
-    /* ROI Calculator */
-    .calc-panel {
-      background: #FFFFFF;
-      border: 1px solid var(--line);
-      border-radius: 20px;
+    .proof-author span {
+      font-size: 0.84rem;
+      color: var(--muted);
+    }
+
+    /* Calculator */
+    .calc-card {
+      background: var(--bg-white);
+      border: 1px solid var(--border);
+      border-radius: 22px;
       padding: 44px;
-      box-shadow: var(--shadow-md);
+      box-shadow: var(--shadow-card);
       display: grid;
       grid-template-columns: 1.15fr 0.85fr;
       gap: 44px;
       align-items: center;
     }
 
-    .slider-block {
+    .slider-row {
       margin-bottom: 26px;
     }
 
-    .slider-block:last-child {
+    .slider-row:last-child {
       margin-bottom: 0;
     }
 
-    .slider-header {
+    .slider-labels {
       display: flex;
       justify-content: space-between;
       align-items: center;
       margin-bottom: 10px;
     }
 
-    .slider-header label {
-      font-size: 0.94rem;
+    .slider-labels label {
+      font-size: 0.95rem;
       font-weight: 600;
-      color: var(--ink-700);
+      color: var(--navy);
     }
 
-    .slider-readout {
-      font-family: 'Plus Jakarta Sans', sans-serif;
-      font-weight: 800;
-      font-size: 1rem;
-      color: var(--accent);
-      background: #F0FDFA;
-      padding: 3px 10px;
-      border-radius: 6px;
+    .slider-badge {
+      font-family: 'Outfit', sans-serif;
+      font-weight: 700;
+      font-size: 0.98rem;
+      color: var(--teal-dark);
+      background: var(--teal-tint);
+      padding: 4px 12px;
+      border-radius: 8px;
       font-variant-numeric: tabular-nums;
     }
 
     input[type="range"] {
       width: 100%;
-      accent-color: var(--accent);
+      accent-color: var(--teal);
       height: 6px;
       background: #E2E8F0;
       border-radius: 999px;
       cursor: pointer;
     }
 
-    .roi-output {
-      background: linear-gradient(145deg, var(--navy-950) 0%, var(--navy-800) 100%);
+    .calc-summary {
+      background: var(--navy);
       color: #FFFFFF;
-      border-radius: 16px;
-      padding: 34px 30px;
+      border-radius: 18px;
+      padding: 36px 30px;
       text-align: center;
-      border: 1px solid rgba(255, 255, 255, 0.08);
     }
 
-    .roi-caption {
+    .calc-summary .cap {
       font-size: 0.78rem;
       text-transform: uppercase;
       letter-spacing: 0.08em;
@@ -602,20 +659,20 @@
       font-weight: 600;
     }
 
-    .roi-figure {
-      font-family: 'Plus Jakarta Sans', sans-serif;
-      font-size: 2.9rem;
+    .calc-summary .num {
+      font-family: 'Outfit', sans-serif;
+      font-size: 3rem;
       font-weight: 800;
-      color: var(--accent-bright);
+      color: #2DD4BF;
       line-height: 1.1;
       margin-bottom: 10px;
       font-variant-numeric: tabular-nums;
     }
 
-    .roi-annual {
+    .calc-summary .sub {
       font-size: 0.92rem;
       color: #CBD5E1;
-      margin-bottom: 24px;
+      margin-bottom: 26px;
     }
 
     /* Coverage Tiers */
@@ -626,30 +683,30 @@
       align-items: stretch;
     }
 
-    .tier-box {
-      background: #FFFFFF;
-      border: 1px solid var(--line);
+    .tier {
+      background: var(--bg-white);
+      border: 1px solid var(--border);
       border-radius: 18px;
       padding: 34px 30px;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      box-shadow: var(--shadow-sm);
+      box-shadow: var(--shadow-card);
       position: relative;
     }
 
-    .tier-box.featured {
-      border: 2px solid var(--accent);
-      box-shadow: var(--shadow-md);
+    .tier.popular {
+      border: 2px solid var(--teal);
+      box-shadow: var(--shadow-float);
     }
 
-    .tier-badge {
+    .pop-pill {
       position: absolute;
       top: -13px;
       left: 28px;
-      background: var(--accent);
+      background: var(--teal);
       color: #FFFFFF;
-      font-size: 0.72rem;
+      font-size: 0.74rem;
       font-weight: 700;
       text-transform: uppercase;
       letter-spacing: 0.06em;
@@ -657,30 +714,30 @@
       border-radius: 999px;
     }
 
-    .tier-fit {
+    .tier-trucks {
       font-size: 0.8rem;
       font-weight: 700;
-      color: var(--accent);
+      color: var(--teal-dark);
       text-transform: uppercase;
       letter-spacing: 0.05em;
       margin-bottom: 6px;
     }
 
-    .tier-box h3 {
-      font-size: 1.32rem;
-      color: var(--ink-900);
+    .tier h3 {
+      font-size: 1.34rem;
+      color: var(--navy);
       margin-bottom: 8px;
     }
 
-    .tier-desc {
+    .tier-sub {
       font-size: 0.9rem;
-      color: var(--ink-500);
+      color: var(--slate);
       padding-bottom: 20px;
       margin-bottom: 22px;
-      border-bottom: 1px solid var(--line);
+      border-bottom: 1px solid var(--border);
     }
 
-    .check-list {
+    .tier-list {
       list-style: none;
       display: flex;
       flex-direction: column;
@@ -688,22 +745,21 @@
       margin-bottom: 30px;
     }
 
-    .check-list li {
+    .tier-list li {
       display: flex;
       align-items: flex-start;
       gap: 10px;
-      font-size: 0.92rem;
-      color: var(--ink-700);
+      font-size: 0.93rem;
+      color: var(--navy-soft);
     }
 
-    .check-icon {
-      color: var(--accent);
+    .tier-list li span {
+      color: var(--teal);
       font-weight: 800;
-      flex-shrink: 0;
     }
 
     /* FAQ */
-    .faq-wrap {
+    .faq-list {
       max-width: 780px;
       margin: 0 auto;
       display: flex;
@@ -711,23 +767,22 @@
       gap: 14px;
     }
 
-    details.faq {
-      background: #FFFFFF;
-      border: 1px solid var(--line);
+    details.faq-box {
+      background: var(--bg-white);
+      border: 1px solid var(--border);
       border-radius: 14px;
       padding: 20px 24px;
-      transition: border-color 0.2s ease;
     }
 
-    details.faq[open] {
-      border-color: var(--accent);
+    details.faq-box[open] {
+      border-color: var(--teal);
     }
 
-    details.faq summary {
-      font-family: 'Plus Jakarta Sans', sans-serif;
+    details.faq-box summary {
+      font-family: 'Outfit', sans-serif;
       font-weight: 700;
-      font-size: 1.02rem;
-      color: var(--ink-900);
+      font-size: 1.04rem;
+      color: var(--navy);
       cursor: pointer;
       list-style: none;
       display: flex;
@@ -736,69 +791,76 @@
       gap: 16px;
     }
 
-    details.faq summary::-webkit-details-marker {
+    details.faq-box summary::-webkit-details-marker {
       display: none;
     }
 
-    details.faq summary::after {
+    details.faq-box summary::after {
       content: "+";
       font-size: 1.35rem;
-      color: var(--accent);
-      font-weight: 600;
+      color: var(--teal);
     }
 
-    details.faq[open] summary::after {
+    details.faq-box[open] summary::after {
       content: "−";
     }
 
-    details.faq p {
+    details.faq-box p {
       margin-top: 12px;
       font-size: 0.94rem;
-      color: var(--ink-500);
-      line-height: 1.65;
+      color: var(--slate);
     }
 
-    /* Bottom CTA */
-    .cta-banner {
-      background: var(--navy-950);
-      background-image: radial-gradient(circle at 20% 80%, rgba(20, 184, 166, 0.16) 0%, transparent 50%);
+    /* CTA Banner */
+    .final-cta {
+      background: var(--navy);
       color: #FFFFFF;
-      border-radius: 22px;
+      border-radius: 24px;
       padding: 64px 44px;
       text-align: center;
-      border: 1px solid rgba(255, 255, 255, 0.08);
     }
 
-    .cta-banner h2 {
-      font-size: 2.2rem;
+    .final-cta h2 {
+      font-size: 2.3rem;
       font-weight: 800;
       margin-bottom: 14px;
     }
 
-    .cta-banner p {
-      color: #94A3B8;
+    .final-cta p {
+      color: #CBD5E1;
       max-width: 560px;
       margin: 0 auto 32px;
-      font-size: 1.05rem;
+      font-size: 1.06rem;
     }
 
-    .cta-row {
+    .cta-btns {
       display: flex;
       justify-content: center;
       gap: 16px;
       flex-wrap: wrap;
     }
 
+    .btn-white-outline {
+      background: transparent;
+      color: #FFFFFF;
+      border: 1.5px solid rgba(255, 255, 255, 0.3);
+    }
+
+    .btn-white-outline:hover {
+      border-color: #FFFFFF;
+      background: rgba(255, 255, 255, 0.08);
+    }
+
     /* Footer */
     footer {
-      border-top: 1px solid var(--line);
-      background: #FFFFFF;
+      border-top: 1px solid var(--border);
+      background: var(--bg-white);
       padding: 36px 0;
-      color: var(--ink-500);
+      color: var(--muted);
       font-size: 0.88rem;
     }
 
-    .footer-inner {
+    .footer-flex {
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -806,15 +868,15 @@
       gap: 16px;
     }
 
-    .footer-nav {
+    .footer-links {
       display: flex;
       gap: 24px;
       align-items: center;
     }
 
-    .footer-nav a,
-    .link-btn {
-      color: var(--ink-500);
+    .footer-links a,
+    .careers-btn {
+      color: var(--muted);
       text-decoration: none;
       font-weight: 500;
       background: none;
@@ -824,17 +886,17 @@
       cursor: pointer;
     }
 
-    .footer-nav a:hover,
-    .link-btn:hover {
-      color: var(--accent);
+    .footer-links a:hover,
+    .careers-btn:hover {
+      color: var(--teal-dark);
     }
 
-    /* Careers Modal */
-    .modal-overlay {
+    /* Modal */
+    .modal-bg {
       display: none;
       position: fixed;
       inset: 0;
-      background: rgba(6, 17, 32, 0.75);
+      background: rgba(11, 25, 44, 0.65);
       backdrop-filter: blur(4px);
       z-index: 200;
       align-items: center;
@@ -842,62 +904,57 @@
       padding: 20px;
     }
 
-    .modal-overlay.open {
+    .modal-bg.active {
       display: flex;
     }
 
-    .modal-box {
-      background: #FFFFFF;
+    .modal-panel {
+      background: var(--bg-white);
       border-radius: 18px;
       max-width: 480px;
       width: 100%;
       padding: 34px;
       position: relative;
-      box-shadow: var(--shadow-lg);
+      box-shadow: var(--shadow-float);
     }
 
-    .modal-x {
+    .modal-close {
       position: absolute;
       top: 16px;
       right: 18px;
       background: none;
       border: none;
       font-size: 1.5rem;
-      color: var(--ink-500);
+      color: var(--muted);
       cursor: pointer;
-    }
-
-    .modal-box h3 {
-      font-size: 1.35rem;
-      color: var(--ink-900);
-      margin-bottom: 8px;
-    }
-
-    .modal-box p {
-      font-size: 0.94rem;
-      color: var(--ink-500);
-      margin-bottom: 18px;
     }
 
     @media (max-width: 960px) {
       .hero-grid,
-      .pillars-grid,
-      .workflow-grid,
-      .calc-panel,
+      .services-grid,
+      .proof-grid,
+      .calc-card,
       .tiers-grid {
         grid-template-columns: 1fr;
       }
 
       .hero h1 {
-        font-size: 2.35rem;
+        font-size: 2.45rem;
+      }
+
+      .floating-card {
+        position: static;
+        margin-top: 16px;
       }
 
       .nav-links a:not(.btn) {
         display: none;
       }
 
-      .calc-panel {
-        padding: 28px 22px;
+      .compare-table th,
+      .compare-table td {
+        padding: 14px 16px;
+        font-size: 0.86rem;
       }
     }
   </style>
@@ -908,7 +965,7 @@
     <div class="container nav-wrap">
       <a href="#" class="brand">
         <svg width="34" height="34" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-          <rect width="64" height="64" rx="15" fill="#112240" stroke="#14B8A6" stroke-width="3"/>
+          <rect width="64" height="64" rx="15" fill="#0B192C"/>
           <path d="M20 33v-3a12 12 0 0 1 24 0v3" stroke="#14B8A6" stroke-width="4.5" stroke-linecap="round"/>
           <rect x="14" y="29" width="7" height="13" rx="3.5" fill="#FFFFFF"/>
           <rect x="43" y="29" width="7" height="13" rx="3.5" fill="#FFFFFF"/>
@@ -918,8 +975,8 @@
         <div>Field<span>2</span>Desk</div>
       </a>
       <nav class="nav-links">
-        <a href="#capabilities">Capabilities</a>
-        <a href="#process">How It Works</a>
+        <a href="#comparison">Why Field2Desk</a>
+        <a href="#services">Services</a>
         <a href="#calculator">ROI Calculator</a>
         <a href="#coverage">Coverage</a>
         <a href="#contact" class="btn btn-primary nav-cta">Book an Intro Chat</a>
@@ -930,344 +987,372 @@
   <section class="hero">
     <div class="container hero-grid">
       <div>
-        <div class="eyebrow"><span class="live-dot"></span> Operations Partner for US Home-Service Shops</div>
-        <h1>Dedicated Front-Office & Dispatch for <span>Growing Trade Teams.</span></h1>
-        <p class="hero-lead">We embed trained call coordinators and dispatchers directly into your Housecall Pro, ServiceTitan, or Jobber workflow—so every homeowner gets answered live and your technicians stay on schedule.</p>
+        <div class="eyebrow"><span class="live-dot"></span> Built for US HVAC, Plumbing & Electrical Shops</div>
+        <h1>Keep Your Trucks Moving. We'll Run the <span>Phones & Dispatch.</span></h1>
+        <p class="hero-lead">We embed dedicated call coordinators and dispatchers directly into your Housecall Pro, ServiceTitan, or Jobber account—so homeowners get answered live and your board stays tight all day.</p>
         <div class="hero-actions">
-          <a href="#contact" class="btn btn-primary">Connect With Our Team</a>
-          <a href="#calculator" class="btn btn-ghost">Estimate Missed-Call Revenue</a>
+          <a href="#contact" class="btn btn-primary">Message Our Team</a>
+          <a href="#calculator" class="btn btn-outline">Calculate Missed-Call Loss</a>
         </div>
-        <div class="hero-metrics">
-          <div class="metric-item">
+        <div class="trust-strip">
+          <div class="trust-item">
             <strong>&lt; 3 Rings</strong>
-            <span>Live Call Pickup Speed</span>
+            <span>Live Call Answer Speed</span>
           </div>
-          <div class="metric-item">
+          <div class="trust-item">
             <strong>100% Native</strong>
-            <span>Inside Your Current CRM</span>
+            <span>Works Inside Your CRM</span>
           </div>
-          <div class="metric-item">
+          <div class="trust-item">
             <strong>3–5 Days</strong>
-            <span>Typical Shop Onboarding</span>
+            <span>From Audit to Go-Live</span>
           </div>
         </div>
       </div>
 
-      <!-- Interactive Live Dispatch Console -->
-      <div class="console-card">
-        <div class="console-top">
-          <div class="window-dots"><i></i><i></i><i></i></div>
-          <span class="console-badge">● Live Shop Queue</span>
+      <!-- Real Photo + Floating Interactive Dispatch Card -->
+      <div class="hero-visual">
+        <div class="hero-photo-frame">
+          <img src="https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?auto=format&fit=crop&w=900&q=80" alt="HVAC service technician working on commercial equipment while remote dispatch manages calls" />
         </div>
-        <div class="console-tabs" role="tablist">
-          <button type="button" class="tab-btn active" data-tab="calls">Inbound Calls</button>
-          <button type="button" class="tab-btn" data-tab="dispatch">Dispatch Board</button>
-          <button type="button" class="tab-btn" data-tab="quotes">Quote Follow-Up</button>
-        </div>
-        <div class="console-feed" id="consoleFeed">
-          <div class="feed-row">
-            <div>
-              <strong>Emergency AC No-Cool — Northside</strong>
-              <span>Booked via Housecall Pro • Window 10:00–12:00</span>
-            </div>
-            <span class="status-tag tag-teal">Booked Live</span>
+        <div class="floating-card">
+          <div class="fc-top">
+            <span class="fc-title">Live Desk Activity</span>
+            <span class="fc-pill">● US Shift Active</span>
           </div>
-          <div class="feed-row">
-            <div>
-              <strong>Main Line Backup — Emergency Dispatch</strong>
-              <span>Diagnostic fee approved • Tech #4 assigned</span>
-            </div>
-            <span class="status-tag tag-blue">Dispatched</span>
+          <div class="fc-tabs">
+            <button type="button" class="fc-tab active" data-view="call">Inbound Call</button>
+            <button type="button" class="fc-tab" data-view="board">Dispatch Board</button>
+            <button type="button" class="fc-tab" data-view="quote">Quote Follow-Up</button>
           </div>
-          <div class="feed-row">
-            <div>
-              <strong>Spring Tune-Up Membership Inquiry</strong>
-              <span>Added to recurring plan • Card on file</span>
-            </div>
-            <span class="status-tag tag-teal">Converted</span>
+          <div class="fc-body" id="fcBody">
+            <strong>Emergency No-Cool Booked — Miller Residence</strong>
+            <p>Answered on Ring 2 • Diagnostic fee confirmed • Scheduled 10:00–12:00 in Housecall Pro.</p>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <div class="integrations">
-    <div class="container integrations-inner">
-      <div class="integrations-label">Plugs Directly Into Your Existing Tools</div>
-      <div class="stack-pills">
-        <span class="stack-pill">Housecall Pro</span>
-        <span class="stack-pill">ServiceTitan</span>
-        <span class="stack-pill">Jobber</span>
-        <span class="stack-pill">GoHighLevel</span>
-        <span class="stack-pill">Quo / OpenPhone</span>
-        <span class="stack-pill">RingCentral</span>
+  <div class="tools-bar">
+    <div class="container tools-flex">
+      <span class="tools-label">Seamless Integration With Your Stack</span>
+      <div class="tool-tags">
+        <span class="tool-tag">Housecall Pro</span>
+        <span class="tool-tag">ServiceTitan</span>
+        <span class="tool-tag">Jobber</span>
+        <span class="tool-tag">GoHighLevel</span>
+        <span class="tool-tag">Quo / OpenPhone</span>
+        <span class="tool-tag">RingCentral</span>
       </div>
     </div>
   </div>
 
-  <section id="capabilities">
+  <!-- Before vs After Comparison Table -->
+  <section id="comparison">
     <div class="container">
       <div class="section-head">
-        <span class="section-kicker">Core Capabilities</span>
-        <h2>Built to Eliminate the Front-Desk Bottleneck</h2>
-        <p>When owners and lead techs are stuck answering phones between jobs, revenue slips through the cracks. We take over the desk so your field team stays billable.</p>
+        <span class="kicker">The Operational Shift</span>
+        <h2>Stop Running Your Front Desk From the Driver's Seat</h2>
+        <p>See what happens when you separate field execution from daily call handling and board management.</p>
       </div>
-      <div class="pillars-grid">
-        <div class="pillar-card">
-          <div class="pillar-icon">
+      <div class="compare-wrap">
+        <table class="compare-table">
+          <thead>
+            <tr>
+              <th>Daily Bottleneck</th>
+              <th>Handling Phones Yourself</th>
+              <th>With a Field2Desk Coordinator</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Inbound Calls While On-Site</td>
+              <td>Goes to voicemail; 85% of callers hang up and dial the next shop on Google.</td>
+              <td>Answered live in under 3 rings using your company greeting and booking rules.</td>
+            </tr>
+            <tr>
+              <td>Dispatch Board & Drive Time</td>
+              <td>Technicians zigzag across town; delayed jobs create angry afternoon callbacks.</td>
+              <td>Routes grouped by zip code with proactive customer ETA texts when jobs shift.</td>
+            </tr>
+            <tr>
+              <td>Open Estimates & Quotes</td>
+              <td>Big replacement quotes sit untouched for weeks because evenings are spent invoicing.</td>
+              <td>Systematic 48-hour follow-up calls and texts until the homeowner books or decides.</td>
+            </tr>
+            <tr>
+              <td>Cost & Overhead</td>
+              <td>$45,000–$60,000+/yr plus payroll taxes and benefits for a single in-house receptionist.</td>
+              <td>Fraction of local in-house overhead with flexible part-time or full-shift coverage.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section id="services" style="background: var(--bg-white); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);">
+    <div class="container">
+      <div class="section-head">
+        <span class="kicker">What We Handle</span>
+        <h2>End-to-End Front-Office Support for Trade Shops</h2>
+        <p>Trained coordinators who already understand diagnostic fees, emergency triage, and home-service CRM workflows.</p>
+      </div>
+      <div class="services-grid">
+        <div class="service-card">
+          <div class="icon-pill">
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
           </div>
-          <h3>Live Inbound Call Handling</h3>
-          <p>Every call is answered promptly in your company's name. We screen emergencies, capture equipment details, explain diagnostic fees, and book straight onto your calendar.</p>
+          <h3>Live Call Answering & Triage</h3>
+          <p>We qualify every caller, separate urgent no-cool or leak emergencies from routine tune-ups, collect equipment details, and book directly onto your calendar.</p>
         </div>
-        <div class="pillar-card">
-          <div class="pillar-icon">
+        <div class="service-card">
+          <div class="icon-pill">
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
           </div>
-          <h3>Active Dispatch & Route Control</h3>
-          <p>We watch your board throughout the US shift, tighten drive-time gaps, send automated ETA texts to homeowners, and reshuffle schedules when a repair runs long.</p>
+          <h3>Active Dispatch Management</h3>
+          <p>We monitor technician progress all day, notify homeowners before arrival windows shift, and fill last-minute cancellations from your waitlist.</p>
         </div>
-        <div class="pillar-card">
-          <div class="pillar-icon">
+        <div class="service-card">
+          <div class="icon-pill">
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
           </div>
-          <h3>Proactive Quote & KPI Follow-Up</h3>
-          <p>We follow up on unsold estimates within 48 hours, call overdue maintenance members, and maintain clean daily job trackers so you always know your numbers.</p>
+          <h3>Estimate Follow-Up & KPI Tracking</h3>
+          <p>We chase open quotes, book seasonal maintenance renewals, request 5-star Google reviews after completed jobs, and maintain clean daily job trackers.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <section id="process" class="workflow-section">
+  <!-- Real Shop Proof Section -->
+  <section class="proof-section">
     <div class="container">
       <div class="section-head">
-        <span class="section-kicker">Onboarding Process</span>
-        <h2>Up and Running in Under a Week</h2>
-        <p>No complicated phone migrations or bloated software contracts. We adapt to the exact way your shop already runs.</p>
+        <span class="kicker">How We Work</span>
+        <h2>Proactive Desk Management—Not Order Taking</h2>
+        <p>Great front-office support means catching customer requests before the owner even has to ask.</p>
       </div>
-      <div class="workflow-grid">
-        <div class="step-card">
-          <span class="step-num">STEP 01</span>
-          <h3>15-Minute Workflow Audit</h3>
-          <p>We review your current call volume, service areas, dispatch rules, and CRM setup to map out where calls or estimates are slipping away.</p>
+      <div class="proof-grid">
+        <div class="proof-card">
+          <div>
+            <span class="proof-tag">Live Shop Workflow</span>
+            <blockquote>"Did you see the customer inquiry from earlier?" — "Yep, already saw it, pulled up her service history, and got back to her with the answer." — "You're the best."</blockquote>
+          </div>
+          <div class="proof-author">
+            <strong>Daily Client Operations Standard</strong>
+            <span>Managed inside Quo & Housecall Pro for US HVAC Crews</span>
+          </div>
         </div>
-        <div class="step-card">
-          <span class="step-num">STEP 02</span>
-          <h3>Custom Playbook & CRM Setup</h3>
-          <p>We document your pricing tiers, tech skillsets, and escalation rules so your dedicated coordinator books jobs with the same accuracy as an in-house manager.</p>
-        </div>
-        <div class="step-card">
-          <span class="step-num">STEP 03</span>
-          <h3>Live Shift Coverage & Daily Reports</h3>
-          <p>Your coordinator goes live on your phones and dispatch board, sending you a clean end-of-day summary of calls answered, jobs booked, and quotes followed up.</p>
+        <div class="proof-card">
+          <div>
+            <span class="proof-tag">3-Step Launch</span>
+            <blockquote>We map your exact service zip codes, diagnostic fees, and technician skillsets during a 15-minute onboarding call—so your coordinator books jobs with the same accuracy as an in-house manager within 3 to 5 business days.</blockquote>
+          </div>
+          <div class="proof-author">
+            <strong>Zero Phone Number Changes Required</strong>
+            <span>Plugs straight into your existing VoIP & field service software</span>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
+  <!-- ROI Calculator -->
   <section id="calculator">
     <div class="container">
       <div class="section-head">
-        <span class="section-kicker">Revenue Impact</span>
-        <h2>Calculate What Voicemail Is Costing Your Shop</h2>
-        <p>85% of homeowners who reach voicemail hang up and call the next contractor on Google. See what live answering recovers.</p>
+        <span class="kicker">Revenue Calculator</span>
+        <h2>See What Missed Calls Are Costing Your Shop</h2>
+        <p>Adjust the sliders below to estimate how much monthly revenue is slipping to competitors when calls go unanswered.</p>
       </div>
-      <div class="calc-panel">
+      <div class="calc-card">
         <div>
-          <div class="slider-block">
-            <div class="slider-header">
+          <div class="slider-row">
+            <div class="slider-labels">
               <label for="missedCalls">Missed calls per week (on-site, lunch, overflow)</label>
-              <span class="slider-readout"><span id="missedCallsVal">6</span> calls/wk</span>
+              <span class="slider-badge"><span id="missedCallsVal">6</span> calls/wk</span>
             </div>
             <input type="range" id="missedCalls" min="1" max="30" value="6" />
           </div>
 
-          <div class="slider-block">
-            <div class="slider-header">
+          <div class="slider-row">
+            <div class="slider-labels">
               <label for="avgTicket">Average service or repair ticket ($)</label>
-              <span class="slider-readout">$<span id="avgTicketVal">450</span></span>
+              <span class="slider-badge">$<span id="avgTicketVal">450</span></span>
             </div>
             <input type="range" id="avgTicket" min="150" max="2500" step="50" value="450" />
           </div>
 
-          <div class="slider-block">
-            <div class="slider-header">
+          <div class="slider-row">
+            <div class="slider-labels">
               <label for="bookRate">Live call-to-booking conversion rate (%)</label>
-              <span class="slider-readout"><span id="bookRateVal">60</span>%</span>
+              <span class="slider-badge"><span id="bookRateVal">60</span>%</span>
             </div>
             <input type="range" id="bookRate" min="30" max="90" step="5" value="60" />
           </div>
         </div>
 
-        <div class="roi-output">
-          <div class="roi-caption">Estimated Monthly Revenue Recoverable</div>
-          <div class="roi-figure" id="monthlyLoss">$7,020</div>
-          <div class="roi-annual">That equals <strong id="annualLoss" style="color:#FFFFFF;">$84,240/year</strong> in booked jobs.</div>
-          <a href="#contact" class="btn btn-primary" style="width: 100%;">Reclaim These Calls — Message Us</a>
+        <div class="calc-summary">
+          <div class="cap">Estimated Monthly Revenue Recoverable</div>
+          <div class="num" id="monthlyLoss">$7,015</div>
+          <div class="sub">That's <strong id="annualLoss" style="color:#FFFFFF;">$84,180/year</strong> in booked service calls.</div>
+          <a href="#contact" class="btn btn-teal" style="width: 100%;">Reclaim These Calls — Chat With Us</a>
         </div>
       </div>
     </div>
   </section>
 
-  <section id="coverage" style="background:#FFFFFF; border-top:1px solid var(--line);">
+  <!-- Coverage Packages -->
+  <section id="coverage" style="background: var(--bg-white); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);">
     <div class="container">
       <div class="section-head">
-        <span class="section-kicker">Engagement Models</span>
-        <h2>Coverage Built Around Your Truck Count</h2>
-        <p>Start with peak-hour overflow support or lock in a full-time dedicated coordinator for your entire US business day.</p>
+        <span class="kicker">Coverage Options</span>
+        <h2>Flexible Support That Scales With Your Fleet</h2>
+        <p>Start with peak-window overflow coverage or lock in a full-time coordinator for your entire US business day.</p>
       </div>
       <div class="tiers-grid">
-        <div class="tier-box">
+        <div class="tier">
           <div>
-            <div class="tier-fit">Best for 1–3 Trucks</div>
+            <div class="tier-trucks">Ideal for 1–3 Trucks</div>
             <h3>Part-Time Overflow & Admin</h3>
-            <p class="tier-desc">Capture missed mid-day calls, clear voicemails, and stay on top of open estimates.</p>
-            <ul class="check-list">
-              <li><span class="check-icon">✓</span><span>4 hours/day peak-window live call answering</span></li>
-              <li><span class="check-icon">✓</span><span>Morning voicemail & web-lead callbacks</span></li>
-              <li><span class="check-icon">✓</span><span>48-hour open estimate follow-up calls</span></li>
-              <li><span class="check-icon">✓</span><span>Direct scheduling in your existing CRM</span></li>
+            <p class="tier-sub">Capture midday calls, clear voicemails, and stay on top of open quotes.</p>
+            <ul class="tier-list">
+              <li><span>✓</span>4 hours/day peak-window live call answering</li>
+              <li><span>✓</span>Morning voicemail & web-lead callbacks</li>
+              <li><span>✓</span>48-hour open estimate follow-ups</li>
+              <li><span>✓</span>Direct booking in your existing CRM</li>
             </ul>
           </div>
-          <a href="#contact" class="btn btn-secondary">Inquire About Part-Time</a>
+          <a href="#contact" class="btn btn-outline" style="width: 100%;">Inquire About Part-Time</a>
         </div>
 
-        <div class="tier-box featured">
-          <span class="tier-badge">Most Popular</span>
+        <div class="tier popular">
+          <span class="pop-pill">Most Popular</span>
           <div>
-            <div class="tier-fit">Best for 3–8 Trucks</div>
+            <div class="tier-trucks">Ideal for 3–8 Trucks</div>
             <h3>Dedicated Full-Time Desk</h3>
-            <p class="tier-desc">A single trained coordinator running your phones and dispatch board all day.</p>
-            <ul class="check-list">
-              <li><span class="check-icon">✓</span><span>Full 8-hour US shift live inbound answering</span></li>
-              <li><span class="check-icon">✓</span><span>Real-time dispatch board & route optimization</span></li>
-              <li><span class="check-icon">✓</span><span>Customer ETA updates & Google review requests</span></li>
-              <li><span class="check-icon">✓</span><span>End-of-day KPI & job tracker reporting</span></li>
+            <p class="tier-sub">One trained coordinator running your phones and dispatch board all shift.</p>
+            <ul class="tier-list">
+              <li><span>✓</span>Full 8-hour US shift live inbound answering</li>
+              <li><span>✓</span>Active dispatch board & route management</li>
+              <li><span>✓</span>Customer ETA texts & review requests</li>
+              <li><span>✓</span>End-of-day KPI & job tracker reporting</li>
             </ul>
           </div>
           <a href="#contact" class="btn btn-primary" style="width: 100%;">Inquire About Full-Time</a>
         </div>
 
-        <div class="tier-box">
+        <div class="tier">
           <div>
-            <div class="tier-fit">Best for 8+ Trucks</div>
+            <div class="tier-trucks">Ideal for 8+ Trucks</div>
             <h3>Multi-Tech Dispatch Pod</h3>
-            <p class="tier-desc">Extended morning-to-evening coverage with split CSR and dispatch responsibilities.</p>
-            <ul class="check-list">
-              <li><span class="check-icon">✓</span><span>Dedicated Call Handler + Senior Dispatcher</span></li>
-              <li><span class="check-icon">✓</span><span>Extended early-morning & evening shift coverage</span></li>
-              <li><span class="check-icon">✓</span><span>Outbound tune-up & membership renewal campaigns</span></li>
-              <li><span class="check-icon">✓</span><span>Custom SOP documentation & weekly ops review</span></li>
+            <p class="tier-sub">Extended morning-to-evening coverage with split CSR and dispatch roles.</p>
+            <ul class="tier-list">
+              <li><span>✓</span>Dedicated Call Handler + Senior Dispatcher</li>
+              <li><span>✓</span>Extended early-morning & evening coverage</li>
+              <li><span>✓</span>Outbound tune-up & membership campaigns</li>
+              <li><span>✓</span>Custom SOP playbook & weekly ops review</li>
             </ul>
           </div>
-          <a href="#contact" class="btn btn-secondary">Request Custom Setup</a>
+          <a href="#contact" class="btn btn-outline" style="width: 100%;">Request Custom Setup</a>
         </div>
       </div>
     </div>
   </section>
 
+  <!-- FAQ -->
   <section id="faq">
     <div class="container">
       <div class="section-head">
-        <span class="section-kicker">FAQ</span>
-        <h2>Straight Answers for Shop Owners</h2>
-        <p>Everything you need to know about plugging a remote coordinator into your daily operation.</p>
+        <span class="kicker">FAQ</span>
+        <h2>Common Questions From Shop Owners</h2>
+        <p>Clear answers on how remote dispatching plugs into your day-to-day workflow.</p>
       </div>
-      <div class="faq-wrap">
-        <details class="faq">
-          <summary>Do we need to change our phone number or field service software?</summary>
-          <p>No. We log directly into the exact tools you already use—Housecall Pro, ServiceTitan, Jobber, Quo (OpenPhone), or RingCentral. Customers keep calling your local number and never notice a handoff.</p>
+      <div class="faq-list">
+        <details class="faq-box">
+          <summary>Do we have to change our phone number or field service software?</summary>
+          <p>Not at all. We log directly into the exact tools you already use—Housecall Pro, ServiceTitan, Jobber, Quo (OpenPhone), or RingCentral. Customers keep calling your local business number.</p>
         </details>
-        <details class="faq">
-          <summary>Will callers feel like they're speaking to an outsourced call center?</summary>
-          <p>Not at all. Unlike generic answering services where random agents read off a basic script, you get one dedicated coordinator trained on your service zones, diagnostic pricing, and brand voice.</p>
+        <details class="faq-box">
+          <summary>Will callers feel like they are speaking to a generic call center?</summary>
+          <p>No. Unlike big answering services where random agents read off a generic script, you get a dedicated coordinator trained specifically on your service zones, pricing tiers, and brand tone.</p>
         </details>
-        <details class="faq">
+        <details class="faq-box">
           <summary>How do you handle emergency calls vs. routine maintenance?</summary>
-          <p>During onboarding, we set clear triage rules with you—defining what qualifies as a same-day emergency (such as no-heat, active leaks, or AC failure in extreme heat), which tech gets dispatched first, and when to escalate directly to you.</p>
+          <p>During onboarding, we map out your exact triage rules—defining what qualifies as a same-day emergency (no-heat, active leaks, extreme-heat AC failure), which tech takes priority, and when to escalate to you.</p>
         </details>
-        <details class="faq">
-          <summary>How quickly can we get started?</summary>
-          <p>After a quick 15-minute alignment call to map out your booking rules and CRM permissions, we typically complete training and go live on your phones within 3 to 5 business days.</p>
+        <details class="faq-box">
+          <summary>How fast can we get someone trained on our board?</summary>
+          <p>Once we complete a 15-minute alignment call to review your booking rules and CRM permissions, we typically finish onboarding and go live on your phones within 3 to 5 business days.</p>
         </details>
       </div>
     </div>
   </section>
 
-  <section id="contact" style="padding-top: 20px;">
+  <section id="contact" style="padding-top: 10px;">
     <div class="container">
-      <div class="cta-banner">
+      <div class="final-cta">
         <h2>Ready to Take Phones & Dispatch Off Your Plate?</h2>
         <p>Send us a quick message on LinkedIn or Facebook. We'll walk through how your phones are currently handled and see if we're a fit—zero pressure.</p>
-        <div class="cta-row">
-          <a href="https://www.linkedin.com/company/144131146/" target="_blank" rel="noopener" class="btn btn-primary">Message Us on LinkedIn</a>
-          <a href="https://www.facebook.com/profile.php?id=61595046637750" target="_blank" rel="noopener" class="btn btn-ghost">Message Us on Facebook</a>
+        <div class="cta-btns">
+          <a href="https://www.linkedin.com/company/144131146/" target="_blank" rel="noopener" class="btn btn-teal">Message Us on LinkedIn</a>
+          <a href="https://www.facebook.com/profile.php?id=61595046637750" target="_blank" rel="noopener" class="btn btn-white-outline">Message Us on Facebook</a>
         </div>
       </div>
     </div>
   </section>
 
   <footer>
-    <div class="container footer-inner">
-      <p>&copy; 2026 Field2Desk Operations. Remote Dispatch & Front-Office Support for US Trade Businesses.</p>
-      <div class="footer-nav">
-        <a href="#capabilities">Capabilities</a>
+    <div class="container footer-flex">
+      <p>&copy; 2026 Field2Desk Operations. Remote Dispatch & Front-Office Support for US Trade Teams.</p>
+      <div class="footer-links">
+        <a href="#comparison">Why Field2Desk</a>
         <a href="#calculator">ROI Calculator</a>
-        <button type="button" class="link-btn" id="openCareers">Hiring VAs? Apply Here</button>
+        <button type="button" class="careers-btn" id="openCareers">Hiring VAs? Apply Here</button>
       </div>
     </div>
   </footer>
 
   <!-- Careers Modal -->
-  <div class="modal-overlay" id="careersModal" role="dialog" aria-modal="true" aria-labelledby="careersHeading">
-    <div class="modal-box">
-      <button type="button" class="modal-x" id="closeCareers" aria-label="Close modal">&times;</button>
-      <h3 id="careersHeading">Join the Field2Desk Team</h3>
-      <p>We are actively building a bench of Philippine-based Customer Service & Dispatch Coordinators for US HVAC and plumbing companies.</p>
-      <ul class="check-list" style="margin-bottom: 24px;">
-        <li><span class="check-icon">✓</span><span>US Business Hours (Night Shift PH)</span></li>
-        <li><span class="check-icon">✓</span><span>Clear, natural English phone communication</span></li>
-        <li><span class="check-icon">✓</span><span>100% Remote Work-From-Home Setup</span></li>
+  <div class="modal-bg" id="careersModal" role="dialog" aria-modal="true" aria-labelledby="careersHeading">
+    <div class="modal-panel">
+      <button type="button" class="modal-close" id="closeCareers" aria-label="Close modal">&times;</button>
+      <h3 id="careersHeading" style="font-size:1.35rem; margin-bottom:8px;">Join the Field2Desk Team</h3>
+      <p style="font-size:0.94rem; color:var(--slate); margin-bottom:18px;">We are hiring Philippine-based Customer Service & Dispatch Coordinators for US HVAC and plumbing companies.</p>
+      <ul class="tier-list" style="margin-bottom:24px;">
+        <li><span>✓</span>US Business Hours (Night Shift PH)</li>
+        <li><span>✓</span>Clear, natural English phone communication</li>
+        <li><span>✓</span>100% Remote Work-From-Home Setup</li>
       </ul>
       <a href="https://www.facebook.com/profile.php?id=61595046637750" target="_blank" rel="noopener" class="btn btn-primary" style="width: 100%;">DM Your Resume (PDF) on Facebook</a>
     </div>
   </div>
 
   <script>
-    // Interactive Hero Dispatch Console Tabs
-    const tabData = {
-      calls: [
-        { title: "Emergency AC No-Cool — Northside", meta: "Booked via Housecall Pro • Window 10:00–12:00", tag: "Booked Live", cls: "tag-teal" },
-        { title: "Main Line Backup — Urgent Dispatch", meta: "Diagnostic fee approved • Tech #4 assigned", tag: "Dispatched", cls: "tag-blue" },
-        { title: "Spring Tune-Up Membership Inquiry", meta: "Added to recurring plan • Card on file", tag: "Converted", cls: "tag-teal" }
-      ],
-      dispatch: [
-        { title: "Tech #1 (Marcus) — 40-Ton Rooftop Unit", meta: "Arrived on-site • Automated ETA SMS sent", tag: "On Site", cls: "tag-blue" },
-        { title: "Tech #2 (Devon) — Water Heater Replacement", meta: "Job completed early • Next slot pulled forward", tag: "Route Tight", cls: "tag-teal" },
-        { title: "Tech #3 (Carlos) — Parts Run Buffer", meta: "Afternoon window adjusted • Homeowner notified", tag: "Updated", cls: "tag-amber" }
-      ],
-      quotes: [
-        { title: "$6,850 Heat Pump System Replacement", meta: "48-hr follow-up call completed • Deposit paid", tag: "Won", cls: "tag-teal" },
-        { title: "$1,420 Tankless Flush & Valve Rebuild", meta: "Answered homeowner warranty question • Booked", tag: "Scheduled", cls: "tag-blue" },
-        { title: "Annual Maintenance Plan Renewal (14 Leads)", meta: "Outbound reminder campaign • 9 renewed today", tag: "Active", cls: "tag-teal" }
-      ]
+    // Hero Floating Card Interactive Tabs
+    const views = {
+      call: {
+        title: "Emergency No-Cool Booked — Miller Residence",
+        desc: "Answered on Ring 2 • Diagnostic fee confirmed • Scheduled 10:00–12:00 in Housecall Pro."
+      },
+      board: {
+        title: "Afternoon Route Optimized — 3 Techs Active",
+        desc: "Pulled forward 2:00 PM maintenance slot after Tech #2 finished early • Homeowner texted ETA."
+      },
+      quote: {
+        title: "$6,850 Heat Pump Replacement — Deposit Paid",
+        desc: "48-hour follow-up call completed • Answered warranty question • Install booked for Thursday."
+      }
     };
 
-    const feedEl = document.getElementById('consoleFeed');
-    document.querySelectorAll('.tab-btn').forEach(btn => {
+    const fcBody = document.getElementById('fcBody');
+    document.querySelectorAll('.fc-tab').forEach(btn => {
       btn.addEventListener('click', () => {
-        document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+        document.querySelectorAll('.fc-tab').forEach(b => b.classList.remove('active'));
         btn.classList.add('active');
-        const rows = tabData[btn.dataset.tab];
-        feedEl.innerHTML = rows.map(r => `
-          <div class="feed-row">
-            <div>
-              <strong>${r.title}</strong>
-              <span>${r.meta}</span>
-            </div>
-            <span class="status-tag ${r.cls}">${r.tag}</span>
-          </div>
-        `).join('');
+        const item = views[btn.dataset.view];
+        fcBody.innerHTML = `<strong>${item.title}</strong><p>${item.desc}</p>`;
       });
     });
 
@@ -1297,10 +1382,10 @@
 
     // Careers Modal
     const modal = document.getElementById('careersModal');
-    document.getElementById('openCareers').addEventListener('click', () => modal.classList.add('open'));
-    document.getElementById('closeCareers').addEventListener('click', () => modal.classList.remove('open'));
+    document.getElementById('openCareers').addEventListener('click', () => modal.classList.add('active'));
+    document.getElementById('closeCareers').addEventListener('click', () => modal.classList.remove('active'));
     modal.addEventListener('click', (e) => {
-      if (e.target === modal) modal.classList.remove('open');
+      if (e.target === modal) modal.classList.remove('active');
     });
   </script>
 
