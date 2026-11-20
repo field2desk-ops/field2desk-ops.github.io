@@ -1,3321 +1,406 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Field2Desk | Dedicated Dispatch & Front-Office Operations for US Trade Teams</title>
-  <meta name="description" content="Founder-led remote call handling, live dispatching, and back-office operations for US HVAC, plumbing, and electrical contractors." />
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2307162C'/%3E%3Cpath d='M16 34v-3a16 16 0 0 1 32 0v3' fill='none' stroke='%231EB2A6' stroke-width='3.5' stroke-linecap='round'/%3E%3Crect x='11' y='30' width='6' height='12' rx='3' fill='%231EB2A6'/%3E%3Crect x='47' y='30' width='6' height='12' rx='3' fill='%231EB2A6'/%3E%3Cpolygon points='32,16 43,23 43,39 32,46 21,39 21,23' fill='none' stroke='%23FFFFFF' stroke-width='2.5'/%3E%3Crect x='29' y='25' width='6' height='11' rx='3' fill='%231EB2A6'/%3E%3Cpath d='M16 42c2 5 6 7 11 7' fill='none' stroke='%23FFFFFF' stroke-width='2.5' stroke-linecap='round'/%3E%3Ccircle cx='28' cy='49' r='2.5' fill='%23FFFFFF'/%3E%3C/svg%3E" />
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@600;700;800&display=swap" rel="stylesheet">
-  <!-- Calendly Popup Widget CSS & JS -->
-  <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
-  <script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async></script>
-  <style>
-    :root {
-      --bg-cream: #F8FAFC;
-      --bg-white: #FFFFFF;
-      --bg-stone: #F1F5F9;
-      --navy-950: #051020;
-      --navy: #0A1D37;
-      --navy-mid: #132C4E;
-      --navy-soft: #1E293B;
-      --slate: #475569;
-      --muted: #64748B;
-      --teal: #14B8A6;
-      --teal-bright: #2DD4BF;
-      --teal-dark: #0F766E;
-      --teal-tint: #F0FDFA;
-      --teal-border: #99F6E4;
-      --border: #E2E8F0;
-      --border-strong: #CBD5E1;
-      --shadow-sm: 0 2px 8px rgba(10, 29, 55, 0.04);
-      --shadow-card: 0 12px 32px -6px rgba(10, 29, 55, 0.07), 0 4px 12px -2px rgba(10, 29, 55, 0.03);
-      --shadow-float: 0 28px 60px -12px rgba(5, 16, 32, 0.22);
-    }
-
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
-
-    body {
-      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-      background-color: var(--bg-cream);
-      color: var(--navy);
-      line-height: 1.65;
-      -webkit-font-smoothing: antialiased;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      overflow-x: hidden;
-    }
-
-    main {
-      flex: 1;
-    }
-
-    h1, h2, h3, h4, .brand-name {
-      font-family: 'Outfit', sans-serif;
-      letter-spacing: -0.025em;
-    }
-
-    .container {
-      max-width: 1220px;
-      margin: 0 auto;
-      padding: 0 28px;
-    }
-
-    /* Top Live Operations Ticker */
-    .top-ticker {
-      background: var(--navy-950);
-      color: #CBD5E1;
-      font-size: 0.78rem;
-      padding: 8px 0;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.07);
-    }
-
-    .ticker-wrap {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 16px;
-      flex-wrap: wrap;
-    }
-
-    .ticker-left {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      font-weight: 500;
-    }
-
-    .ticker-badge {
-      background: rgba(20, 184, 166, 0.16);
-      color: var(--teal-bright);
-      border: 1px solid rgba(45, 212, 191, 0.3);
-      font-weight: 700;
-      font-size: 0.7rem;
-      text-transform: uppercase;
-      letter-spacing: 0.06em;
-      padding: 2px 8px;
-      border-radius: 999px;
-      display: inline-flex;
-      align-items: center;
-      gap: 5px;
-    }
-
-    .ticker-right {
-      display: flex;
-      gap: 18px;
-      font-size: 0.76rem;
-      color: #94A3B8;
-    }
-
-    .ticker-right span strong {
-      color: #FFFFFF;
-    }
-
-    /* Page View Switching */
-    .page-view {
-      display: none;
-      animation: pageFadeIn 0.45s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-
-    .page-view.active {
-      display: block;
-    }
-
-    @keyframes pageFadeIn {
-      from { opacity: 0; transform: translateY(14px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    /* Scroll Reveal Animations */
-    .reveal {
-      opacity: 0;
-      transform: translateY(28px) scale(0.99);
-      transition: opacity 0.65s cubic-bezier(0.16, 1, 0.3, 1), transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-
-    .reveal.visible {
-      opacity: 1;
-      transform: translateY(0) scale(1);
-    }
-
-    .delay-1 { transition-delay: 0.08s; }
-    .delay-2 { transition-delay: 0.16s; }
-    .delay-3 { transition-delay: 0.24s; }
-
-    @keyframes gentleFloat {
-      0%, 100% { transform: translateY(0px); }
-      50% { transform: translateY(-7px); }
-    }
-
-    @keyframes gentleFloatReverse {
-      0%, 100% { transform: translateY(0px); }
-      50% { transform: translateY(6px); }
-    }
-
-    @keyframes pulseGlow {
-      0%, 100% { box-shadow: 0 0 0 0 rgba(20, 184, 166, 0.55); }
-      50% { box-shadow: 0 0 0 6px rgba(20, 184, 166, 0); }
-    }
-
-    @keyframes eqBar {
-      0%, 100% { height: 6px; }
-      50% { height: 18px; }
-    }
-
-    @keyframes slideInRow {
-      from { opacity: 0; transform: translateX(-10px); }
-      to { opacity: 1; transform: translateX(0); }
-    }
-
-    /* Navigation */
-    header {
-      background: rgba(10, 29, 55, 0.96);
-      backdrop-filter: blur(14px);
-      -webkit-backdrop-filter: blur(14px);
-      border-bottom: 1px solid rgba(255, 255, 255, 0.09);
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      padding: 14px 0;
-    }
-
-    .nav-wrap {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .brand {
-      display: inline-flex;
-      align-items: center;
-      gap: 12px;
-      text-decoration: none;
-      cursor: pointer;
-    }
-
-    .brand-name {
-      font-size: 1.52rem;
-      font-weight: 800;
-      color: #FFFFFF;
-      letter-spacing: -0.02em;
-    }
-
-    .brand-name span {
-      color: var(--teal-bright);
-    }
-
-    .nav-links {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-    }
-
-    .nav-item {
-      background: transparent;
-      border: none;
-      color: #CBD5E1;
-      font-family: 'Inter', sans-serif;
-      font-size: 0.9rem;
-      font-weight: 500;
-      padding: 8px 14px;
-      border-radius: 8px;
-      cursor: pointer;
-      transition: all 0.2s ease;
-    }
-
-    .nav-item:hover {
-      color: #FFFFFF;
-      background: rgba(255, 255, 255, 0.06);
-    }
-
-    .nav-item.active {
-      color: #FFFFFF;
-      background: rgba(20, 184, 166, 0.2);
-      font-weight: 600;
-    }
-
-    .mobile-toggle {
-      display: none;
-      background: rgba(255, 255, 255, 0.08);
-      border: 1px solid rgba(255, 255, 255, 0.16);
-      color: #FFFFFF;
-      border-radius: 8px;
-      padding: 8px 11px;
-      cursor: pointer;
-    }
-
-    .mobile-drawer {
-      display: none;
-      background: var(--navy);
-      border-top: 1px solid rgba(255, 255, 255, 0.08);
-      padding: 18px 28px 24px;
-      flex-direction: column;
-      gap: 10px;
-    }
-
-    .mobile-drawer.open {
-      display: flex;
-    }
-
-    .mobile-drawer .nav-item {
-      text-align: left;
-      width: 100%;
-      padding: 10px 12px;
-      font-size: 0.98rem;
-    }
-
-    /* Buttons */
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      padding: 13px 24px;
-      border-radius: 10px;
-      font-weight: 600;
-      font-size: 0.92rem;
-      text-decoration: none;
-      transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
-      cursor: pointer;
-      border: none;
-      font-family: 'Inter', sans-serif;
-    }
-
-    .btn-teal {
-      background: linear-gradient(135deg, var(--teal-bright) 0%, var(--teal) 100%);
-      color: var(--navy-950);
-      font-weight: 700;
-      box-shadow: 0 4px 16px rgba(20, 184, 166, 0.3);
-    }
-
-    .btn-teal:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 8px 24px rgba(20, 184, 166, 0.42);
-    }
-
-    .btn-navy {
-      background-color: var(--navy);
-      color: #FFFFFF;
-      box-shadow: 0 6px 18px rgba(10, 29, 55, 0.18);
-    }
-
-    .btn-navy:hover {
-      background-color: var(--navy-mid);
-      transform: translateY(-2px);
-    }
-
-    .btn-outline {
-      background-color: var(--bg-white);
-      color: var(--navy);
-      border: 1px solid var(--border-strong);
-    }
-
-    .btn-outline:hover {
-      border-color: var(--navy);
-      background-color: var(--bg-stone);
-      transform: translateY(-1px);
-    }
-
-    .nav-cta {
-      padding: 9px 18px;
-      font-size: 0.86rem;
-      margin-left: 8px;
-    }
-
-    /* Floating Bottom-Right Quick-Book Pill */
-    .floating-book-pill {
-      position: fixed;
-      right: 24px;
-      bottom: 24px;
-      z-index: 95;
-      background: var(--navy);
-      color: #FFFFFF;
-      border: 1px solid rgba(45, 212, 191, 0.45);
-      border-radius: 999px;
-      padding: 12px 20px;
-      font-family: 'Inter', sans-serif;
-      font-size: 0.86rem;
-      font-weight: 600;
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      box-shadow: 0 14px 34px rgba(5, 16, 32, 0.35);
-      cursor: pointer;
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
-    }
-
-    .floating-book-pill:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 18px 40px rgba(5, 16, 32, 0.45);
-      border-color: var(--teal-bright);
-    }
-
-    .floating-book-pill span {
-      color: var(--teal-bright);
-      font-weight: 700;
-    }
-
-    /* Page Banner Header for Inner Pages */
-    .page-banner {
-      background: var(--navy);
-      background-image:
-        radial-gradient(circle at 85% 20%, rgba(20, 184, 166, 0.18) 0%, transparent 50%),
-        radial-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px);
-      background-size: 100% 100%, 24px 24px;
-      color: #FFFFFF;
-      padding: 68px 0 60px;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-    }
-
-    .page-banner .kicker {
-      color: var(--teal-bright);
-    }
-
-    .page-banner h1 {
-      font-size: 2.8rem;
-      font-weight: 800;
-      margin-bottom: 14px;
-      line-height: 1.14;
-    }
-
-    .page-banner p {
-      color: #CBD5E1;
-      font-size: 1.08rem;
-      max-width: 650px;
-    }
-
-    /* ==================== MASTER HERO SECTION ==================== */
-    .hero {
-      padding: 76px 0 96px;
-      border-bottom: 1px solid var(--border);
-      background-color: var(--bg-cream);
-      background-image:
-        radial-gradient(circle at 88% 14%, rgba(20, 184, 166, 0.1) 0%, transparent 42%),
-        radial-gradient(circle at 10% 85%, rgba(10, 29, 55, 0.04) 0%, transparent 40%),
-        linear-gradient(to right, rgba(226, 232, 240, 0.4) 1px, transparent 1px),
-        linear-gradient(to bottom, rgba(226, 232, 240, 0.4) 1px, transparent 1px);
-      background-size: 100% 100%, 100% 100%, 48px 48px, 48px 48px;
-    }
-
-    .hero-grid {
-      display: grid;
-      grid-template-columns: 1.08fr 0.92fr;
-      gap: 58px;
-      align-items: center;
-    }
-
-    .eyebrow {
-      display: inline-flex;
-      align-items: center;
-      gap: 9px;
-      font-size: 0.78rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      color: var(--teal-dark);
-      background: var(--teal-tint);
-      border: 1px solid var(--teal-border);
-      padding: 6px 14px;
-      border-radius: 999px;
-      margin-bottom: 22px;
-      box-shadow: var(--shadow-sm);
-    }
-
-    .live-dot {
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      background: var(--teal);
-      animation: pulseGlow 2s infinite;
-    }
-
-    .hero h1 {
-      font-size: 3.45rem;
-      font-weight: 800;
-      line-height: 1.07;
-      color: var(--navy);
-      margin-bottom: 22px;
-    }
-
-    .hero h1 span {
-      background: linear-gradient(120deg, var(--teal-dark) 0%, var(--teal) 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-
-    .hero-lead {
-      font-size: 1.12rem;
-      color: var(--slate);
-      margin-bottom: 34px;
-      max-width: 550px;
-      line-height: 1.7;
-    }
-
-    .hero-actions {
-      display: flex;
-      gap: 14px;
-      flex-wrap: wrap;
-      margin-bottom: 40px;
-    }
-
-    .trust-strip {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 18px;
-      padding: 20px 22px;
-      background: var(--bg-white);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      box-shadow: var(--shadow-sm);
-    }
-
-    .trust-item strong {
-      display: block;
-      font-family: 'Outfit', sans-serif;
-      font-size: 1.4rem;
-      font-weight: 800;
-      color: var(--navy);
-      line-height: 1.2;
-    }
-
-    .trust-item span {
-      font-size: 0.8rem;
-      color: var(--muted);
-      font-weight: 500;
-    }
-
-    /* Multi-Layer Hero Visual */
-    .hero-visual {
-      position: relative;
-      padding: 12px;
-    }
-
-    .hero-photo-frame {
-      border-radius: 24px;
-      overflow: hidden;
-      border: 4px solid var(--bg-white);
-      box-shadow: var(--shadow-float);
-      aspect-ratio: 4 / 4.3;
-      background: var(--navy);
-      position: relative;
-    }
-
-    .hero-photo-frame img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-      transition: transform 0.6s ease;
-    }
-
-    .hero-photo-frame:hover img {
-      transform: scale(1.03);
-    }
-
-    /* Top-Right Floating Call Badge */
-    .top-float-badge {
-      position: absolute;
-      top: -8px;
-      right: -12px;
-      background: var(--navy);
-      color: #FFFFFF;
-      border: 1px solid rgba(255, 255, 255, 0.14);
-      border-radius: 16px;
-      padding: 14px 18px;
-      box-shadow: var(--shadow-float);
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      animation: gentleFloatReverse 4.5s ease-in-out infinite;
-      z-index: 3;
-    }
-
-    .eq-bars {
-      display: flex;
-      align-items: center;
-      gap: 3px;
-      height: 20px;
-      padding: 0 6px;
-    }
-
-    .eq-bars i {
-      display: block;
-      width: 3px;
-      background: var(--teal-bright);
-      border-radius: 2px;
-      animation: eqBar 1s ease-in-out infinite;
-    }
-
-    .eq-bars i:nth-child(2) { animation-delay: 0.2s; }
-    .eq-bars i:nth-child(3) { animation-delay: 0.4s; }
-    .eq-bars i:nth-child(4) { animation-delay: 0.1s; }
-
-    .top-float-badge strong {
-      display: block;
-      font-size: 0.88rem;
-      font-family: 'Outfit', sans-serif;
-      color: #FFFFFF;
-    }
-
-    .top-float-badge span {
-      font-size: 0.74rem;
-      color: var(--teal-bright);
-      font-weight: 600;
-    }
-
-    /* Bottom-Left Floating Interactive Console */
-    .floating-card {
-      position: absolute;
-      left: -24px;
-      bottom: 22px;
-      right: 26px;
-      background: rgba(255, 255, 255, 0.97);
-      backdrop-filter: blur(14px);
-      border: 1px solid var(--border);
-      border-radius: 18px;
-      padding: 18px 20px;
-      box-shadow: var(--shadow-float);
-      animation: gentleFloat 5s ease-in-out infinite;
-      z-index: 3;
-    }
-
-    .fc-top {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 10px;
-    }
-
-    .fc-title {
-      font-size: 0.74rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.06em;
-      color: var(--muted);
-    }
-
-    .fc-pill {
-      font-size: 0.72rem;
-      font-weight: 700;
-      color: var(--teal-dark);
-      background: var(--teal-tint);
-      border: 1px solid var(--teal-border);
-      padding: 3px 10px;
-      border-radius: 999px;
-    }
-
-    .fc-tabs {
-      display: flex;
-      gap: 6px;
-      margin-bottom: 11px;
-    }
-
-    .fc-tab {
-      font-family: 'Inter', sans-serif;
-      font-size: 0.75rem;
-      font-weight: 600;
-      padding: 5px 10px;
-      border-radius: 7px;
-      border: 1px solid var(--border);
-      background: var(--bg-cream);
-      color: var(--slate);
-      cursor: pointer;
-      transition: all 0.15s ease;
-    }
-
-    .fc-tab.active {
-      background: var(--navy);
-      color: #FFFFFF;
-      border-color: var(--navy);
-    }
-
-    .fc-body strong {
-      display: block;
-      font-size: 0.94rem;
-      color: var(--navy);
-      margin-bottom: 2px;
-    }
-
-    .fc-body p {
-      font-size: 0.81rem;
-      color: var(--slate);
-    }
-
-    /* Interactive CRM & Stack Explorer Bar */
-    .crm-explorer {
-      background: var(--bg-white);
-      border-bottom: 1px solid var(--border);
-      padding: 36px 0;
-    }
-
-    .crm-top-row {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 16px;
-      margin-bottom: 22px;
-    }
-
-    .tools-label {
-      font-size: 0.78rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      color: var(--muted);
-    }
-
-    .crm-tabs {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-    }
-
-    .crm-tab-btn {
-      font-family: 'Inter', sans-serif;
-      font-size: 0.86rem;
-      font-weight: 600;
-      color: var(--navy);
-      background: var(--bg-cream);
-      border: 1px solid var(--border-strong);
-      padding: 8px 16px;
-      border-radius: 9px;
-      cursor: pointer;
-      display: inline-flex;
-      align-items: center;
-      gap: 7px;
-      transition: all 0.2s ease;
-    }
-
-    .crm-tab-btn i {
-      width: 7px;
-      height: 7px;
-      border-radius: 50%;
-      background: var(--muted);
-    }
-
-    .crm-tab-btn.active {
-      background: var(--navy);
-      color: #FFFFFF;
-      border-color: var(--navy);
-      box-shadow: 0 4px 12px rgba(10, 29, 55, 0.14);
-    }
-
-    .crm-tab-btn.active i {
-      background: var(--teal-bright);
-    }
-
-    .crm-detail-box {
-      background: var(--bg-cream);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 22px 26px;
-      display: grid;
-      grid-template-columns: 1.2fr 0.8fr;
-      gap: 24px;
-      align-items: center;
-    }
-
-    .crm-detail-box h4 {
-      font-size: 1.12rem;
-      color: var(--navy);
-      margin-bottom: 4px;
-    }
-
-    .crm-detail-box p {
-      font-size: 0.9rem;
-      color: var(--slate);
-    }
-
-    .crm-checks {
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-      font-size: 0.85rem;
-      font-weight: 600;
-      color: var(--navy);
-    }
-
-    .crm-checks span {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .crm-checks b {
-      color: var(--teal-dark);
-    }
-
-    /* Common Section Layout */
-    section {
-      padding: 88px 0;
-    }
-
-    .section-head {
-      max-width: 680px;
-      margin: 0 auto 54px;
-      text-align: center;
-    }
-
-    .kicker {
-      display: inline-block;
-      font-size: 0.78rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.09em;
-      color: var(--teal-dark);
-      margin-bottom: 10px;
-    }
-
-    .section-head h2 {
-      font-size: 2.38rem;
-      font-weight: 800;
-      color: var(--navy);
-      line-height: 1.16;
-      margin-bottom: 14px;
-    }
-
-    .section-head p {
-      font-size: 1.05rem;
-      color: var(--slate);
-    }
-
-    /* ==================== HOME BENTO FEATURE GRID ==================== */
-    .bento-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 26px;
-    }
-
-    .bento-card {
-      background: var(--bg-white);
-      border: 1px solid var(--border);
-      border-radius: 20px;
-      padding: 30px 26px;
-      box-shadow: var(--shadow-card);
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
-    }
-
-    .bento-card:hover {
-      transform: translateY(-6px);
-      box-shadow: var(--shadow-float);
-      border-color: var(--teal);
-    }
-
-    .bento-visual {
-      background: var(--bg-cream);
-      border: 1px solid var(--border);
-      border-radius: 14px;
-      padding: 16px;
-      margin-bottom: 22px;
-    }
-
-    .mock-call-pill {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      background: var(--navy);
-      color: #FFFFFF;
-      padding: 12px 14px;
-      border-radius: 10px;
-      margin-bottom: 10px;
-      font-size: 0.82rem;
-    }
-
-    .mock-call-pill span {
-      color: var(--teal-bright);
-      font-weight: 700;
-      font-size: 0.76rem;
-    }
-
-    .mock-sub-row {
-      display: flex;
-      justify-content: space-between;
-      font-size: 0.78rem;
-      color: var(--slate);
-      padding: 6px 4px 0;
-    }
-
-    .route-slot {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      background: var(--bg-white);
-      border: 1px solid var(--border);
-      padding: 9px 12px;
-      border-radius: 9px;
-      margin-bottom: 8px;
-      font-size: 0.8rem;
-      animation: slideInRow 0.3s ease;
-    }
-
-    .route-slot.urgent {
-      border-color: var(--teal);
-      background: var(--teal-tint);
-    }
-
-    .slot-dot {
-      width: 9px;
-      height: 9px;
-      border-radius: 50%;
-      background: var(--teal);
-      flex-shrink: 0;
-    }
-
-    .sim-dispatch-btn {
-      width: 100%;
-      margin-top: 8px;
-      padding: 7px 12px;
-      border-radius: 8px;
-      border: 1px dashed var(--teal-dark);
-      background: var(--teal-tint);
-      color: var(--teal-dark);
-      font-family: 'Inter', sans-serif;
-      font-size: 0.76rem;
-      font-weight: 700;
-      cursor: pointer;
-      transition: all 0.15s ease;
-    }
-
-    .sim-dispatch-btn:hover {
-      background: var(--teal);
-      color: var(--navy-950);
-      border-style: solid;
-    }
-
-    .kpi-bar-row {
-      margin-bottom: 10px;
-    }
-
-    .kpi-bar-row:last-child {
-      margin-bottom: 0;
-    }
-
-    .kpi-bar-top {
-      display: flex;
-      justify-content: space-between;
-      font-size: 0.78rem;
-      font-weight: 600;
-      color: var(--navy);
-      margin-bottom: 4px;
-    }
-
-    .kpi-track {
-      height: 8px;
-      background: #E2E8F0;
-      border-radius: 999px;
-      overflow: hidden;
-    }
-
-    .kpi-fill {
-      height: 100%;
-      background: linear-gradient(90deg, var(--navy) 0%, var(--teal) 100%);
-      border-radius: 999px;
-    }
-
-    .bento-card h3 {
-      font-size: 1.25rem;
-      color: var(--navy);
-      margin-bottom: 10px;
-    }
-
-    .bento-card p {
-      font-size: 0.93rem;
-      color: var(--slate);
-    }
-
-    /* ==================== VISUAL WORKFLOW ARCHITECTURE ==================== */
-    .arch-section {
-      background: var(--navy);
-      background-image: radial-gradient(circle at 50% 0%, rgba(20, 184, 166, 0.16) 0%, transparent 60%);
-      color: #FFFFFF;
-      padding: 84px 0;
-    }
-
-    .arch-section .section-head h2 {
-      color: #FFFFFF;
-    }
-
-    .arch-section .section-head p {
-      color: #CBD5E1;
-    }
-
-    .arch-flow {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 20px;
-      position: relative;
-    }
-
-    .arch-node {
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid rgba(255, 255, 255, 0.12);
-      border-radius: 18px;
-      padding: 28px 22px;
-      position: relative;
-      transition: transform 0.25s ease, border-color 0.25s ease;
-    }
-
-    .arch-node:hover {
-      transform: translateY(-4px);
-      border-color: var(--teal-bright);
-      background: rgba(255, 255, 255, 0.08);
-    }
-
-    .arch-step-badge {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      font-family: 'Outfit', sans-serif;
-      font-size: 0.76rem;
-      font-weight: 800;
-      color: var(--navy-950);
-      background: var(--teal-bright);
-      padding: 4px 10px;
-      border-radius: 6px;
-      margin-bottom: 16px;
-    }
-
-    .arch-node h3 {
-      font-size: 1.15rem;
-      color: #FFFFFF;
-      margin-bottom: 8px;
-    }
-
-    .arch-node p {
-      font-size: 0.88rem;
-      color: #CBD5E1;
-      line-height: 1.6;
-    }
-
-    /* ==================== REAL CHAT PROOF + COMPARISON SPLIT ==================== */
-    .proof-compare-grid {
-      display: grid;
-      grid-template-columns: 0.88fr 1.12fr;
-      gap: 34px;
-      align-items: stretch;
-    }
-
-    .chat-proof-card {
-      background: var(--navy-950);
-      color: #FFFFFF;
-      border-radius: 22px;
-      padding: 32px 28px;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      box-shadow: var(--shadow-float);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-    }
-
-    .chat-header-bar {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding-bottom: 16px;
-      margin-bottom: 20px;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-    }
-
-    .chat-header-bar strong {
-      font-size: 0.9rem;
-      color: #FFFFFF;
-    }
-
-    .chat-header-bar span {
-      font-size: 0.74rem;
-      color: var(--teal-bright);
-      background: rgba(20, 184, 166, 0.15);
-      padding: 3px 10px;
-      border-radius: 999px;
-      font-weight: 600;
-    }
-
-    .chat-bubbles {
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-      margin-bottom: 24px;
-    }
-
-    .bubble-row {
-      display: flex;
-      align-items: flex-end;
-      gap: 8px;
-    }
-
-    .bubble-row.right {
-      justify-content: flex-end;
-    }
-
-    .avatar-dot {
-      width: 28px;
-      height: 28px;
-      border-radius: 50%;
-      background: #7C3AED;
-      color: #FFFFFF;
-      font-size: 0.7rem;
-      font-weight: 700;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-    }
-
-    .avatar-dot.va {
-      background: var(--teal);
-      color: var(--navy-950);
-    }
-
-    .chat-msg {
-      max-width: 82%;
-      padding: 11px 15px;
-      border-radius: 14px;
-      font-size: 0.86rem;
-      line-height: 1.45;
-    }
-
-    .chat-msg.client {
-      background: rgba(255, 255, 255, 0.1);
-      color: #F8FAFC;
-      border-bottom-left-radius: 4px;
-    }
-
-    .chat-msg.coord {
-      background: #2563EB;
-      color: #FFFFFF;
-      border-bottom-right-radius: 4px;
-    }
-
-    .chat-footer-note {
-      background: rgba(20, 184, 166, 0.12);
-      border: 1px solid rgba(45, 212, 191, 0.25);
-      border-radius: 12px;
-      padding: 14px 16px;
-      font-size: 0.84rem;
-      color: #E2E8F0;
-    }
-
-    .chat-footer-note strong {
-      color: var(--teal-bright);
-      display: block;
-      margin-bottom: 3px;
-    }
-
-    /* Comparison Table */
-    .compare-wrap {
-      background: var(--bg-white);
-      border: 1px solid var(--border);
-      border-radius: 22px;
-      overflow: hidden;
-      box-shadow: var(--shadow-card);
-    }
-
-    .compare-table {
-      width: 100%;
-      border-collapse: collapse;
-      text-align: left;
-    }
-
-    .compare-table th {
-      padding: 20px 22px;
-      font-family: 'Outfit', sans-serif;
-      font-size: 0.98rem;
-      border-bottom: 1px solid var(--border);
-    }
-
-    .compare-table th:nth-child(1) {
-      width: 26%;
-      color: var(--muted);
-      font-size: 0.78rem;
-      text-transform: uppercase;
-      letter-spacing: 0.06em;
-    }
-
-    .compare-table th:nth-child(2) {
-      width: 37%;
-      color: var(--slate);
-      background: #FAFAFA;
-    }
-
-    .compare-table th:nth-child(3) {
-      width: 37%;
-      color: var(--navy);
-      background: var(--teal-tint);
-      border-left: 1px solid var(--teal-border);
-    }
-
-    .compare-table td {
-      padding: 17px 22px;
-      border-bottom: 1px solid var(--border);
-      font-size: 0.9rem;
-      vertical-align: top;
-    }
-
-    .compare-table tr:last-child td {
-      border-bottom: none;
-    }
-
-    .compare-table td:nth-child(1) {
-      font-weight: 700;
-      color: var(--navy);
-    }
-
-    .compare-table td:nth-child(2) {
-      color: var(--muted);
-      background: #FAFAFA;
-    }
-
-    .compare-table td:nth-child(3) {
-      color: var(--navy);
-      font-weight: 500;
-      background: rgba(240, 253, 250, 0.45);
-      border-left: 1px solid var(--teal-border);
-    }
-
-    /* Trade Specialties with Photos */
-    .trades-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 26px;
-    }
-
-    .trade-card {
-      background: var(--bg-white);
-      border: 1px solid var(--border);
-      border-radius: 18px;
-      overflow: hidden;
-      box-shadow: var(--shadow-card);
-      transition: transform 0.28s ease, box-shadow 0.28s ease;
-    }
-
-    .trade-card:hover {
-      transform: translateY(-6px);
-      box-shadow: var(--shadow-float);
-    }
-
-    .trade-img {
-      height: 200px;
-      width: 100%;
-      object-fit: cover;
-      display: block;
-    }
-
-    .trade-body {
-      padding: 26px;
-    }
-
-    .trade-badge {
-      display: inline-block;
-      font-size: 0.72rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.06em;
-      color: var(--teal-dark);
-      background: var(--teal-tint);
-      padding: 4px 10px;
-      border-radius: 6px;
-      margin-bottom: 10px;
-    }
-
-    .trade-body h3 {
-      font-size: 1.24rem;
-      margin-bottom: 8px;
-      color: var(--navy);
-    }
-
-    .trade-body p {
-      font-size: 0.92rem;
-      color: var(--slate);
-    }
-
-    /* Behind the Desk Photo + Playbook Simulator */
-    .playbook-section {
-      background: var(--bg-white);
-      border-top: 1px solid var(--border);
-      border-bottom: 1px solid var(--border);
-    }
-
-    .playbook-split {
-      display: grid;
-      grid-template-columns: 0.9fr 1.1fr;
-      gap: 44px;
-      align-items: center;
-    }
-
-    .desk-photo-wrap {
-      position: relative;
-      border-radius: 20px;
-      overflow: hidden;
-      border: 1px solid var(--border);
-      box-shadow: var(--shadow-card);
-    }
-
-    .desk-photo-wrap img {
-      width: 100%;
-      height: 430px;
-      object-fit: cover;
-      display: block;
-    }
-
-    .desk-caption {
-      position: absolute;
-      bottom: 16px;
-      left: 16px;
-      right: 16px;
-      background: rgba(10, 29, 55, 0.92);
-      color: #FFFFFF;
-      padding: 14px 18px;
-      border-radius: 12px;
-      font-size: 0.85rem;
-    }
-
-    .desk-caption strong {
-      color: var(--teal-bright);
-      display: block;
-      margin-bottom: 2px;
-    }
-
-    .sim-box {
-      background: var(--bg-cream);
-      border: 1px solid var(--border);
-      border-radius: 20px;
-      padding: 32px;
-    }
-
-    .sim-tabs {
-      display: flex;
-      gap: 8px;
-      flex-wrap: wrap;
-      margin-bottom: 22px;
-    }
-
-    .sim-btn {
-      font-family: 'Inter', sans-serif;
-      font-size: 0.84rem;
-      font-weight: 600;
-      padding: 9px 14px;
-      border-radius: 9px;
-      border: 1px solid var(--border-strong);
-      background: var(--bg-white);
-      color: var(--slate);
-      cursor: pointer;
-      transition: all 0.18s ease;
-    }
-
-    .sim-btn.active {
-      background: var(--navy);
-      color: #FFFFFF;
-      border-color: var(--navy);
-    }
-
-    .sim-panel {
-      background: var(--bg-white);
-      border: 1px solid var(--border);
-      border-radius: 14px;
-      padding: 24px;
-    }
-
-    .sim-step {
-      margin-bottom: 16px;
-      padding-bottom: 16px;
-      border-bottom: 1px solid var(--border);
-    }
-
-    .sim-step:last-child {
-      margin-bottom: 0;
-      padding-bottom: 0;
-      border-bottom: none;
-    }
-
-    .sim-label {
-      font-size: 0.74rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.06em;
-      color: var(--teal-dark);
-      margin-bottom: 4px;
-    }
-
-    .sim-text {
-      font-size: 0.94rem;
-      color: var(--navy);
-    }
-
-    /* Security & Data Protection Grid */
-    .security-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 22px;
-    }
-
-    .sec-card {
-      background: var(--bg-white);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 26px 22px;
-      box-shadow: var(--shadow-sm);
-      transition: transform 0.25s ease;
-    }
-
-    .sec-card:hover {
-      transform: translateY(-4px);
-    }
-
-    .sec-icon {
-      width: 42px;
-      height: 42px;
-      border-radius: 10px;
-      background: var(--navy);
-      color: var(--teal-bright);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-bottom: 16px;
-    }
-
-    .sec-card h3 {
-      font-size: 1.08rem;
-      margin-bottom: 8px;
-      color: var(--navy);
-    }
-
-    .sec-card p {
-      font-size: 0.89rem;
-      color: var(--slate);
-      line-height: 1.6;
-    }
-
-    /* 4-Day Onboarding Roadmap */
-    .roadmap-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 20px;
-    }
-
-    .road-card {
-      background: var(--bg-white);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 26px 22px;
-      box-shadow: var(--shadow-sm);
-      position: relative;
-      transition: transform 0.25s ease, border-color 0.25s ease;
-    }
-
-    .road-card:hover {
-      transform: translateY(-4px);
-      border-color: var(--teal);
-    }
-
-    .road-day {
-      display: inline-block;
-      font-family: 'Outfit', sans-serif;
-      font-size: 0.78rem;
-      font-weight: 800;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-      color: var(--teal-dark);
-      background: var(--teal-tint);
-      border: 1px solid var(--teal-border);
-      padding: 4px 10px;
-      border-radius: 6px;
-      margin-bottom: 12px;
-    }
-
-    .road-card h3 {
-      font-size: 1.12rem;
-      margin-bottom: 8px;
-      color: var(--navy);
-    }
-
-    .road-card p {
-      font-size: 0.89rem;
-      color: var(--slate);
-    }
-
-    /* Day in the Life Shift Timeline */
-    .timeline-section {
-      background: var(--bg-stone);
-      border-top: 1px solid var(--border);
-      border-bottom: 1px solid var(--border);
-    }
-
-    .timeline-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 20px;
-    }
-
-    .time-card {
-      background: var(--bg-white);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 26px 22px;
-      box-shadow: var(--shadow-sm);
-      transition: transform 0.25s ease;
-    }
-
-    .time-card:hover {
-      transform: translateY(-4px);
-    }
-
-    .time-pill {
-      display: inline-block;
-      font-family: 'Outfit', sans-serif;
-      font-size: 0.8rem;
-      font-weight: 700;
-      color: #FFFFFF;
-      background: var(--navy);
-      padding: 4px 10px;
-      border-radius: 6px;
-      margin-bottom: 14px;
-    }
-
-    .time-card h3 {
-      font-size: 1.12rem;
-      margin-bottom: 8px;
-      color: var(--navy);
-    }
-
-    .time-card p {
-      font-size: 0.9rem;
-      color: var(--slate);
-    }
-
-    /* ROI Calculator */
-    .calc-card {
-      background: var(--bg-white);
-      border: 1px solid var(--border);
-      border-radius: 22px;
-      padding: 44px;
-      box-shadow: var(--shadow-card);
-      display: grid;
-      grid-template-columns: 1.12fr 0.88fr;
-      gap: 44px;
-      align-items: center;
-    }
-
-    .slider-row {
-      margin-bottom: 26px;
-    }
-
-    .slider-row:last-child {
-      margin-bottom: 0;
-    }
-
-    .slider-labels {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 10px;
-    }
-
-    .slider-labels label {
-      font-size: 0.95rem;
-      font-weight: 600;
-      color: var(--navy);
-    }
-
-    .slider-badge {
-      font-family: 'Outfit', sans-serif;
-      font-weight: 700;
-      font-size: 0.98rem;
-      color: var(--teal-dark);
-      background: var(--teal-tint);
-      padding: 4px 12px;
-      border-radius: 8px;
-      font-variant-numeric: tabular-nums;
-    }
-
-    input[type="range"] {
-      width: 100%;
-      accent-color: var(--teal);
-      height: 6px;
-      background: #E2E8F0;
-      border-radius: 999px;
-      cursor: pointer;
-    }
-
-    .calc-summary {
-      background: var(--navy);
-      color: #FFFFFF;
-      border-radius: 18px;
-      padding: 34px 28px;
-      text-align: center;
-    }
-
-    .calc-summary .cap {
-      font-size: 0.76rem;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      color: #94A3B8;
-      margin-bottom: 8px;
-      font-weight: 600;
-    }
-
-    .calc-summary .num {
-      font-family: 'Outfit', sans-serif;
-      font-size: 3rem;
-      font-weight: 800;
-      color: var(--teal-bright);
-      line-height: 1.1;
-      margin-bottom: 8px;
-      font-variant-numeric: tabular-nums;
-    }
-
-    .calc-summary .sub {
-      font-size: 0.92rem;
-      color: #CBD5E1;
-      margin-bottom: 20px;
-    }
-
-    .calc-breakdown {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 10px;
-      background: rgba(255, 255, 255, 0.06);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      border-radius: 12px;
-      padding: 12px;
-      margin-bottom: 22px;
-      text-align: left;
-    }
-
-    .cb-item span {
-      display: block;
-      font-size: 0.72rem;
-      color: #94A3B8;
-      text-transform: uppercase;
-      letter-spacing: 0.04em;
-    }
-
-    .cb-item strong {
-      font-family: 'Outfit', sans-serif;
-      font-size: 1.05rem;
-      color: #FFFFFF;
-      font-variant-numeric: tabular-nums;
-    }
-
-    /* Coverage Tiers */
-    .tiers-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 26px;
-      align-items: stretch;
-    }
-
-    .tier {
-      background: var(--bg-white);
-      border: 1px solid var(--border);
-      border-radius: 18px;
-      padding: 34px 30px;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      box-shadow: var(--shadow-card);
-      position: relative;
-      transition: transform 0.25s ease;
-    }
-
-    .tier:hover {
-      transform: translateY(-4px);
-    }
-
-    .tier.popular {
-      border: 2px solid var(--teal);
-      box-shadow: var(--shadow-float);
-    }
-
-    .pop-pill {
-      position: absolute;
-      top: -13px;
-      left: 28px;
-      background: var(--teal);
-      color: var(--navy-950);
-      font-size: 0.74rem;
-      font-weight: 800;
-      text-transform: uppercase;
-      letter-spacing: 0.06em;
-      padding: 4px 12px;
-      border-radius: 999px;
-    }
-
-    .tier-trucks {
-      font-size: 0.8rem;
-      font-weight: 700;
-      color: var(--teal-dark);
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-      margin-bottom: 6px;
-    }
-
-    .tier h3 {
-      font-size: 1.32rem;
-      color: var(--navy);
-      margin-bottom: 8px;
-    }
-
-    .tier-sub {
-      font-size: 0.9rem;
-      color: var(--slate);
-      padding-bottom: 20px;
-      margin-bottom: 22px;
-      border-bottom: 1px solid var(--border);
-    }
-
-    .tier-list {
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-      gap: 13px;
-      margin-bottom: 30px;
-    }
-
-    .tier-list li {
-      display: flex;
-      align-items: flex-start;
-      gap: 10px;
-      font-size: 0.93rem;
-      color: var(--navy-soft);
-    }
-
-    .tier-list li span {
-      color: var(--teal);
-      font-weight: 800;
-    }
-
-    /* About Us Story Grid */
-    .about-grid {
-      display: grid;
-      grid-template-columns: 1.05fr 0.95fr;
-      gap: 48px;
-      align-items: center;
-    }
-
-    .about-story h2 {
-      font-size: 2.2rem;
-      margin-bottom: 16px;
-      line-height: 1.2;
-    }
-
-    .about-story p {
-      font-size: 1rem;
-      color: var(--slate);
-      margin-bottom: 18px;
-    }
-
-    .about-highlights {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 16px;
-      margin-top: 28px;
-    }
-
-    .hl-box {
-      background: var(--bg-white);
-      border: 1px solid var(--border);
-      border-radius: 14px;
-      padding: 18px 20px;
-      box-shadow: var(--shadow-sm);
-    }
-
-    .hl-box strong {
-      display: block;
-      font-family: 'Outfit', sans-serif;
-      font-size: 1.35rem;
-      color: var(--teal-dark);
-      margin-bottom: 2px;
-    }
-
-    .hl-box span {
-      font-size: 0.85rem;
-      color: var(--slate);
-      font-weight: 500;
-    }
-
-    /* FAQ */
-    .faq-list {
-      max-width: 780px;
-      margin: 0 auto;
-      display: flex;
-      flex-direction: column;
-      gap: 14px;
-    }
-
-    details.faq-box {
-      background: var(--bg-white);
-      border: 1px solid var(--border);
-      border-radius: 14px;
-      padding: 20px 24px;
-    }
-
-    details.faq-box[open] {
-      border-color: var(--teal);
-    }
-
-    details.faq-box summary {
-      font-family: 'Outfit', sans-serif;
-      font-weight: 700;
-      font-size: 1.04rem;
-      color: var(--navy);
-      cursor: pointer;
-      list-style: none;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 16px;
-    }
-
-    details.faq-box summary::-webkit-details-marker {
-      display: none;
-    }
-
-    details.faq-box summary::after {
-      content: "+";
-      font-size: 1.35rem;
-      color: var(--teal);
-    }
-
-    details.faq-box[open] summary::after {
-      content: "−";
-    }
-
-    details.faq-box p {
-      margin-top: 12px;
-      font-size: 0.94rem;
-      color: var(--slate);
-    }
-
-    /* Contact Page Layout */
-    .contact-page-sec {
-      padding: 72px 0 92px;
-    }
-
-    .contact-grid {
-      display: grid;
-      grid-template-columns: 0.9fr 1.1fr;
-      gap: 48px;
-      align-items: start;
-    }
-
-    .contact-info-box {
-      background: var(--navy);
-      color: #FFFFFF;
-      border-radius: 22px;
-      padding: 40px 34px;
-      box-shadow: var(--shadow-float);
-    }
-
-    .contact-info-box h2 {
-      font-size: 2rem;
-      font-weight: 800;
-      line-height: 1.2;
-      margin-bottom: 14px;
-    }
-
-    .contact-info-box p {
-      color: #CBD5E1;
-      font-size: 0.98rem;
-      margin-bottom: 26px;
-    }
-
-    .direct-channels {
-      display: flex;
-      flex-direction: column;
-      gap: 14px;
-      margin-bottom: 28px;
-    }
-
-    .channel-box {
-      background: rgba(255, 255, 255, 0.07);
-      border: 1px solid rgba(255, 255, 255, 0.14);
-      border-radius: 14px;
-      padding: 18px 20px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 14px;
-      text-decoration: none;
-      color: #FFFFFF;
-      transition: background 0.2s ease, transform 0.2s ease;
-      cursor: pointer;
-      width: 100%;
-      text-align: left;
-      font-family: inherit;
-    }
-
-    .channel-box:hover {
-      background: rgba(255, 255, 255, 0.12);
-      transform: translateX(4px);
-    }
-
-    .channel-box.featured-cal {
-      background: rgba(20, 184, 166, 0.16);
-      border-color: rgba(45, 212, 191, 0.45);
-    }
-
-    .channel-box strong {
-      display: block;
-      font-size: 0.98rem;
-    }
-
-    .channel-box span {
-      font-size: 0.83rem;
-      color: #94A3B8;
-    }
-
-    .intake-card {
-      background: var(--bg-white);
-      color: var(--navy);
-      border: 1px solid var(--border);
-      border-radius: 22px;
-      padding: 40px 36px;
-      box-shadow: var(--shadow-card);
-    }
-
-    .intake-card h3 {
-      font-size: 1.45rem;
-      margin-bottom: 6px;
-    }
-
-    .intake-card > p {
-      font-size: 0.92rem;
-      color: var(--slate);
-      margin-bottom: 24px;
-    }
-
-    .form-row {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 14px;
-      margin-bottom: 14px;
-    }
-
-    .form-group {
-      margin-bottom: 14px;
-    }
-
-    .form-group label {
-      display: block;
-      font-size: 0.83rem;
-      font-weight: 600;
-      color: var(--navy);
-      margin-bottom: 6px;
-    }
-
-    .form-group input,
-    .form-group select,
-    .form-group textarea {
-      width: 100%;
-      padding: 11px 14px;
-      border: 1px solid var(--border-strong);
-      border-radius: 10px;
-      font-family: 'Inter', sans-serif;
-      font-size: 0.92rem;
-      color: var(--navy);
-      background: var(--bg-cream);
-    }
-
-    .form-group input:focus,
-    .form-group select:focus,
-    .form-group textarea:focus {
-      outline: none;
-      border-color: var(--teal);
-      background: #FFFFFF;
-    }
-
-    .form-actions {
-      display: flex;
-      gap: 10px;
-      flex-wrap: wrap;
-      margin-top: 8px;
-    }
-
-    .form-status {
-      margin-top: 12px;
-      font-size: 0.86rem;
-      color: var(--teal-dark);
-      font-weight: 600;
-      display: none;
-    }
-
-    /* Bottom Mini CTA Strip */
-    .bottom-cta-strip {
-      background: linear-gradient(135deg, var(--navy-950) 0%, var(--navy-mid) 100%);
-      color: #FFFFFF;
-      border-radius: 22px;
-      padding: 48px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 28px;
-      flex-wrap: wrap;
-      box-shadow: var(--shadow-float);
-    }
-
-    .bottom-cta-strip h3 {
-      font-size: 1.75rem;
-      margin-bottom: 6px;
-    }
-
-    .bottom-cta-strip p {
-      color: #CBD5E1;
-      font-size: 1rem;
-    }
-
-    /* Footer */
-    footer {
-      border-top: 1px solid var(--border);
-      background: var(--bg-white);
-      padding: 36px 0;
-      color: var(--muted);
-      font-size: 0.88rem;
-    }
-
-    .footer-flex {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 16px;
-    }
-
-    .footer-links {
-      display: flex;
-      gap: 22px;
-      align-items: center;
-      flex-wrap: wrap;
-    }
-
-    .footer-link-btn,
-    .careers-btn {
-      color: var(--muted);
-      text-decoration: none;
-      font-weight: 500;
-      background: none;
-      border: none;
-      font-family: inherit;
-      font-size: 0.88rem;
-      cursor: pointer;
-    }
-
-    .footer-link-btn:hover,
-    .careers-btn:hover {
-      color: var(--teal-dark);
-    }
-
-    /* Modal */
-    .modal-bg {
-      display: none;
-      position: fixed;
-      inset: 0;
-      background: rgba(10, 29, 55, 0.72);
-      backdrop-filter: blur(4px);
-      z-index: 200;
-      align-items: center;
-      justify-content: center;
-      padding: 20px;
-    }
-
-    .modal-bg.active {
-      display: flex;
-    }
-
-    .modal-panel {
-      background: var(--bg-white);
-      border-radius: 18px;
-      max-width: 480px;
-      width: 100%;
-      padding: 34px;
-      position: relative;
-      box-shadow: var(--shadow-float);
-    }
-
-    .modal-close {
-      position: absolute;
-      top: 16px;
-      right: 18px;
-      background: none;
-      border: none;
-      font-size: 1.5rem;
-      color: var(--muted);
-      cursor: pointer;
-    }
-
-    @media (max-width: 980px) {
-      .hero-grid,
-      .crm-detail-box,
-      .bento-grid,
-      .arch-flow,
-      .proof-compare-grid,
-      .trades-grid,
-      .playbook-split,
-      .security-grid,
-      .roadmap-grid,
-      .timeline-grid,
-      .calc-card,
-      .tiers-grid,
-      .about-grid,
-      .contact-grid,
-      .form-row {
-        grid-template-columns: 1fr;
-      }
-
-      .hero h1 {
-        font-size: 2.5rem;
-      }
-
-      .top-float-badge,
-      .floating-card {
-        position: static;
-        margin-top: 14px;
-        animation: none;
-      }
-
-      .nav-links,
-      .ticker-right {
-        display: none;
-      }
-
-      .mobile-toggle {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-      }
-
-      .compare-table th,
-      .compare-table td {
-        padding: 14px 16px;
-        font-size: 0.85rem;
-      }
-
-      .floating-book-pill {
-        right: 16px;
-        bottom: 16px;
-        padding: 10px 16px;
-        font-size: 0.82rem;
-      }
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Field2Desk | Remote Dispatch & Front-Office Support for US Trade Teams</title>
+<meta name="description" content="Live call answering, dispatch board control, and quote follow-up for US HVAC, plumbing, and electrical contractors. Works inside the CRM you already use.">
+<meta name="theme-color" content="#0B1F3A">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Field2Desk | Remote Dispatch & Front-Office Support">
+<meta property="og:description" content="We answer your phones and run your dispatch board so your trucks keep moving.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230B1F3A'/%3E%3Cpath d='M16 36v-4a16 16 0 0 1 32 0v4' fill='none' stroke='%232DD4BF' stroke-width='4' stroke-linecap='round'/%3E%3Crect x='11' y='32' width='7' height='13' rx='3.5' fill='%232DD4BF'/%3E%3Crect x='46' y='32' width='7' height='13' rx='3.5' fill='%232DD4BF'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@600;700&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#0B1F3A;--navy2:#13305A;--teal:#12A594;--teal-b:#2DD4BF;--tint:#E8F8F5;--bg:#F7F9FB;--white:#fff;--ink:#1E293B;--mute:#5B6B80;--line:#E2E8F0;--r:16px;--sh:0 10px 30px -10px rgba(11,31,58,.18)}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:76px}
+body{font-family:Inter,system-ui,sans-serif;background:var(--bg);color:var(--ink);line-height:1.65;-webkit-font-smoothing:antialiased}
+h1,h2,h3{font-family:Outfit,sans-serif;color:var(--navy);line-height:1.15;letter-spacing:-.02em}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--teal-b);outline-offset:3px;border-radius:6px}
+.wrap{max-width:1140px;margin:0 auto;padding:0 24px}
+section{padding:88px 0}
+.skip{position:absolute;left:-999px;top:8px;background:var(--teal-b);color:var(--navy);padding:10px 16px;border-radius:8px;font-weight:600;z-index:99}
+.skip:focus{left:12px}
+
+/* buttons */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:13px 24px;border-radius:12px;font:600 .95rem Inter,sans-serif;border:1px solid transparent;cursor:pointer;text-decoration:none;transition:transform .2s,box-shadow .2s,background .2s}
+.btn:hover{transform:translateY(-2px)}
+.btn-p{background:var(--teal);color:#fff;box-shadow:0 6px 18px rgba(18,165,148,.3)}
+.btn-p:hover{background:#0E8E7F}
+.btn-o{background:var(--white);border-color:var(--line);color:var(--navy)}
+.btn-o:hover{border-color:var(--navy)}
+.btn-w{background:#fff;color:var(--navy)}
+
+/* header */
+header{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.88);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+.nav{display:flex;align-items:center;justify-content:space-between;height:68px}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none;font:700 1.35rem Outfit,sans-serif;color:var(--navy)}
+.brand b{color:var(--teal)}
+.links{display:flex;align-items:center;gap:4px}
+.links a{padding:8px 12px;border-radius:8px;font-size:.92rem;font-weight:500;color:var(--mute);text-decoration:none;transition:.15s}
+.links a:hover{color:var(--navy);background:var(--bg)}
+.links .btn{color:#fff;margin-left:8px;padding:10px 18px}
+.menu{display:none;background:none;border:1px solid var(--line);border-radius:10px;padding:8px 10px;cursor:pointer}
+
+/* hero */
+.hero{padding:72px 0 88px;background:radial-gradient(60% 60% at 90% 0%,rgba(18,165,148,.12),transparent 70%),linear-gradient(var(--bg),var(--white))}
+.hero-g{display:grid;grid-template-columns:1.05fr .95fr;gap:56px;align-items:center}
+.tag{display:inline-flex;align-items:center;gap:8px;font:600 .78rem Inter;letter-spacing:.06em;text-transform:uppercase;color:#0B7D70;background:var(--tint);padding:6px 14px;border-radius:99px;margin-bottom:20px}
+.dot{width:8px;height:8px;border-radius:50%;background:var(--teal);animation:pulse 2s infinite}
+@keyframes pulse{50%{box-shadow:0 0 0 7px rgba(18,165,148,0)}0%{box-shadow:0 0 0 0 rgba(18,165,148,.5)}}
+.hero h1{font-size:clamp(2.3rem,5vw,3.5rem);margin-bottom:18px}
+.hero h1 em{font-style:normal;color:var(--teal)}
+.lead{font-size:1.1rem;color:var(--mute);max-width:520px;margin-bottom:28px}
+.cta{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:30px}
+.checks{display:flex;gap:20px;flex-wrap:wrap;font-size:.88rem;font-weight:500;color:var(--mute);list-style:none}
+.checks li:before{content:"✓";color:var(--teal);font-weight:700;margin-right:6px}
+
+/* animated dispatch board */
+.board{background:var(--navy);border-radius:22px;padding:22px;box-shadow:0 30px 60px -20px rgba(11,31,58,.45);color:#fff}
+.b-top{display:flex;justify-content:space-between;align-items:center;font-size:.8rem;color:#9FB0C8;padding-bottom:14px;border-bottom:1px solid rgba(255,255,255,.1);margin-bottom:16px}
+.b-top span{color:var(--teal-b);font-weight:600}
+.row{display:flex;gap:14px;align-items:flex-start;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:14px;padding:14px 16px;margin-bottom:12px;opacity:0;animation:seq 9s infinite}
+.row:nth-child(3){animation-delay:1.6s}.row:nth-child(4){animation-delay:3.2s}.row:nth-child(5){animation-delay:4.8s}
+@keyframes seq{0%{opacity:0;transform:translateY(10px)}8%,86%{opacity:1;transform:none}96%,100%{opacity:0}}
+.ico{width:36px;height:36px;border-radius:10px;background:rgba(45,212,191,.16);color:var(--teal-b);display:grid;place-items:center;flex-shrink:0}
+.row strong{display:block;font-size:.93rem}
+.row small{color:#9FB0C8;font-size:.8rem}
+.b-note{font-size:.74rem;color:#7F92AD;text-align:center;margin-top:6px}
+
+/* stack strip */
+.stack{padding:28px 0;background:var(--white);border-block:1px solid var(--line)}
+.stack .wrap{display:flex;align-items:center;justify-content:center;gap:12px;flex-wrap:wrap}
+.stack p{font-size:.8rem;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:var(--mute);margin-right:8px}
+.chip{padding:7px 16px;border:1px solid var(--line);border-radius:99px;font-size:.88rem;font-weight:500;background:var(--bg)}
+
+/* headings */
+.head{max-width:640px;margin:0 auto 48px;text-align:center}
+.kick{font:600 .78rem Inter;letter-spacing:.09em;text-transform:uppercase;color:#0B7D70;margin-bottom:10px;display:block}
+.head h2{font-size:clamp(1.8rem,3.6vw,2.4rem);margin-bottom:12px}
+.head p{color:var(--mute);font-size:1.03rem}
+
+/* cards */
+.g3{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.g4{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+.card{background:var(--white);border:1px solid var(--line);border-radius:var(--r);padding:28px 24px;box-shadow:0 2px 8px rgba(11,31,58,.04);transition:transform .25s,box-shadow .25s,border-color .25s}
+.card:hover{transform:translateY(-5px);box-shadow:var(--sh);border-color:var(--teal)}
+.card .ico{background:var(--tint);color:var(--teal);margin-bottom:18px;width:44px;height:44px}
+.card h3{font-size:1.15rem;margin-bottom:8px}
+.card p{font-size:.93rem;color:var(--mute)}
+.num{font:700 .8rem Outfit;color:#0B7D70;background:var(--tint);padding:4px 10px;border-radius:6px;display:inline-block;margin-bottom:14px}
+.trades{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:36px}
+
+/* roi */
+.roi{background:var(--navy);background-image:radial-gradient(50% 70% at 50% 0%,rgba(45,212,191,.16),transparent 70%)}
+.roi .head h2{color:#fff}.roi .head p{color:#B6C4D8}.roi .kick{color:var(--teal-b)}
+.calc{display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center;background:var(--white);border-radius:22px;padding:40px}
+.sl{margin-bottom:24px}.sl:last-child{margin:0}
+.sl-t{display:flex;justify-content:space-between;gap:12px;margin-bottom:8px;font-weight:600;font-size:.93rem}
+.sl-t span{color:#0B7D70;background:var(--tint);padding:2px 10px;border-radius:8px;white-space:nowrap}
+input[type=range]{width:100%;accent-color:var(--teal);cursor:pointer}
+.res{background:var(--navy);color:#fff;border-radius:18px;padding:30px 24px;text-align:center}
+.res small{display:block;font-size:.76rem;letter-spacing:.07em;text-transform:uppercase;color:#9FB0C8}
+.res .big{font:700 2.9rem Outfit;color:var(--teal-b);line-height:1.1;margin:8px 0}
+.res p{color:#CBD5E1;font-size:.9rem;margin-bottom:18px}
+.fine{font-size:.76rem;color:#9FB0C8;margin-top:12px}
+
+/* pricing */
+.tier{display:flex;flex-direction:column;position:relative}
+.tier .for{font:600 .78rem Inter;letter-spacing:.05em;text-transform:uppercase;color:#0B7D70;margin-bottom:6px}
+.tier ul{list-style:none;margin:18px 0 26px;display:grid;gap:11px;flex:1}
+.tier li{font-size:.92rem;display:flex;gap:9px}
+.tier li:before{content:"✓";color:var(--teal);font-weight:700}
+.tier.pop{border:2px solid var(--teal);box-shadow:var(--sh)}
+.pill{position:absolute;top:-13px;left:24px;background:var(--teal);color:#fff;font:700 .72rem Inter;letter-spacing:.06em;text-transform:uppercase;padding:4px 12px;border-radius:99px}
+
+/* about */
+.about{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:start}
+.about h2{font-size:clamp(1.8rem,3.4vw,2.3rem);margin-bottom:16px}
+.about p{color:var(--mute);margin-bottom:14px}
+.guard{display:grid;gap:14px}
+.guard .card{display:flex;gap:16px;padding:20px}
+.guard .ico{margin:0;flex-shrink:0}
+.guard h3{font-size:1.02rem;margin-bottom:3px}
+
+/* faq */
+.faq{max-width:760px;margin:0 auto;display:grid;gap:12px}
+details{background:var(--white);border:1px solid var(--line);border-radius:14px;padding:18px 22px;transition:border-color .2s}
+details[open]{border-color:var(--teal)}
+summary{cursor:pointer;list-style:none;display:flex;justify-content:space-between;gap:16px;font:600 1.02rem Outfit}
+summary::-webkit-details-marker{display:none}
+summary:after{content:"+";color:var(--teal);font-size:1.4rem;line-height:1}
+details[open] summary:after{content:"−"}
+details p{margin-top:10px;color:var(--mute);font-size:.94rem}
+
+/* contact */
+.contact{background:var(--white);border-top:1px solid var(--line)}
+.c-g{display:grid;grid-template-columns:.85fr 1.15fr;gap:40px;align-items:start}
+.c-info{background:var(--navy);color:#fff;border-radius:22px;padding:36px 30px}
+.c-info h2{color:#fff;font-size:1.8rem;margin-bottom:12px}
+.c-info p{color:#B6C4D8;margin-bottom:22px;font-size:.95rem}
+.ch{display:flex;justify-content:space-between;align-items:center;gap:12px;width:100%;text-align:left;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.14);border-radius:14px;padding:15px 18px;color:#fff;text-decoration:none;font:inherit;cursor:pointer;margin-bottom:12px;transition:.2s}
+.ch:hover{background:rgba(255,255,255,.13);transform:translateX(4px)}
+.ch.hot{background:rgba(45,212,191,.16);border-color:rgba(45,212,191,.45)}
+.ch strong{display:block;font-size:.95rem}.ch span{font-size:.82rem;color:#9FB0C8}.ch i{color:var(--teal-b);font-style:normal;font-weight:700}
+form{background:var(--bg);border:1px solid var(--line);border-radius:22px;padding:34px 30px}
+form h3{font-size:1.35rem;margin-bottom:4px}
+form>p{color:var(--mute);font-size:.92rem;margin-bottom:20px}
+.fr{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.fg{margin-bottom:14px}
+label{display:block;font-size:.83rem;font-weight:600;margin-bottom:5px}
+input[type=text],select,textarea{width:100%;padding:11px 14px;border:1px solid #CBD5E1;border-radius:10px;font:.92rem Inter,sans-serif;background:#fff;color:var(--ink)}
+input:focus,select:focus,textarea:focus{outline:none;border-color:var(--teal);box-shadow:0 0 0 3px rgba(18,165,148,.18)}
+.hp{position:absolute;left:-9999px}
+#status{margin-top:12px;font-size:.88rem;font-weight:600;color:#0B7D70;min-height:1.3em}
+
+footer{background:var(--navy);color:#9FB0C8;padding:34px 0;font-size:.88rem}
+footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+footer a{text-decoration:none;margin-left:18px}footer a:hover{color:#fff}
+
+/* reveal */
+.rv{opacity:0;transform:translateY(22px);transition:opacity .6s cubic-bezier(.16,1,.3,1),transform .6s cubic-bezier(.16,1,.3,1)}
+.rv.in{opacity:1;transform:none}
+.no-js .rv{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;transition:none!important;scroll-behavior:auto!important}.rv,.row{opacity:1!important;transform:none!important}}
+
+@media(max-width:940px){
+.hero-g,.g3,.g4,.calc,.about,.c-g,.fr{grid-template-columns:1fr}
+section{padding:64px 0}.calc{padding:26px}
+.links{display:none;position:absolute;top:68px;left:0;right:0;background:#fff;border-bottom:1px solid var(--line);padding:12px 24px 20px;flex-direction:column;align-items:stretch}
+.links.open{display:flex}.links .btn{margin:8px 0 0}
+.menu{display:block}
+footer a{margin:0 18px 0 0}
+}
+</style>
 </head>
-<body>
+<body class="no-js">
+<a class="skip" href="#main">Skip to content</a>
 
-  <!-- Live Top Activity Ticker -->
-  <div class="top-ticker">
-    <div class="container ticker-wrap">
-      <div class="ticker-left">
-        <span class="ticker-badge"><span class="live-dot" style="width:6px;height:6px;"></span> Live Desk Feed</span>
-        <span id="liveTickerText">Housecall Pro: Emergency AC No-Cool booked in 42 seconds (Dallas, TX)</span>
+<header>
+  <div class="wrap nav">
+    <a class="brand" href="#top" aria-label="Field2Desk home">
+      <svg width="34" height="34" viewBox="0 0 64 64" aria-hidden="true"><rect width="64" height="64" rx="14" fill="#0B1F3A"/><path d="M16 36v-4a16 16 0 0 1 32 0v4" fill="none" stroke="#2DD4BF" stroke-width="4" stroke-linecap="round"/><rect x="11" y="32" width="7" height="13" rx="3.5" fill="#2DD4BF"/><rect x="46" y="32" width="7" height="13" rx="3.5" fill="#2DD4BF"/><rect x="28" y="24" width="8" height="16" rx="4" fill="#fff"/></svg>
+      Field<b>2</b>Desk
+    </a>
+    <nav class="links" id="links" aria-label="Main">
+      <a href="#how">How it works</a><a href="#services">Services</a><a href="#roi">ROI</a><a href="#pricing">Coverage</a><a href="#about">About</a><a href="#faq">FAQ</a>
+      <button class="btn btn-p" data-cal>Book a 30-Min Audit</button>
+    </nav>
+    <button class="menu" id="menu" aria-label="Menu" aria-expanded="false" aria-controls="links">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+    </button>
+  </div>
+</header>
+
+<main id="main">
+<section class="hero" id="top">
+  <div class="wrap hero-g">
+    <div class="rv">
+      <span class="tag"><i class="dot"></i>Remote front office for US trade teams</span>
+      <h1>Keep your trucks moving. <em>We run the phones & dispatch.</em></h1>
+      <p class="lead">A dedicated coordinator answers your homeowners live, books jobs straight into your CRM, and keeps your dispatch board tight, so you can stay in the field.</p>
+      <div class="cta">
+        <button class="btn btn-p" data-cal>Book a 30-Min Workflow Audit</button>
+        <a class="btn btn-o" href="#roi">See what missed calls cost →</a>
       </div>
-      <div class="ticker-right">
-        <span>Avg Pickup: <strong>&lt; 12 Sec</strong></span>
-        <span>US Shift Coverage: <strong>EST / CST / MST / PST</strong></span>
+      <ul class="checks"><li>Works in your existing CRM</li><li>No phone number change</li><li>Live in about 4 business days</li></ul>
+    </div>
+    <div class="rv" style="transition-delay:.12s">
+      <div class="board" aria-label="Sample dispatch workflow">
+        <div class="b-top">Dispatch desk · sample workflow <span>● Active</span></div>
+        <div class="row"><div class="ico"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"/></svg></div><div><strong>Incoming call: AC not cooling</strong><small>Answered live in your company's name</small></div></div>
+        <div class="row"><div class="ico"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></div><div><strong>Triaged as same-day</strong><small>System age noted · diagnostic fee confirmed</small></div></div>
+        <div class="row"><div class="ico"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg></div><div><strong>Booked 1:00–3:00 PM</strong><small>Tech assigned on the board in your CRM</small></div></div>
+        <div class="row"><div class="ico"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div><div><strong>Confirmation text sent</strong><small>Homeowner gets the arrival window instantly</small></div></div>
+        <p class="b-note">Illustrative example, not live data.</p>
       </div>
     </div>
   </div>
+</section>
 
-  <header>
-    <div class="container nav-wrap">
-      <a class="brand" data-target="home">
-        <!-- Custom Field2Desk Emblem -->
-        <svg width="42" height="42" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-          <rect width="80" height="80" rx="16" fill="#0D2546" stroke="rgba(255,255,255,0.14)" stroke-width="1.5"/>
-          <path d="M18 41v-4c0-12.15 9.85-22 22-22s22 9.85 22 22v4" stroke="#2DD4BF" stroke-width="4.2" stroke-linecap="round"/>
-          <rect x="12" y="36" width="7" height="15" rx="3.5" fill="#2DD4BF"/>
-          <rect x="61" y="36" width="7" height="15" rx="3.5" fill="#2DD4BF"/>
-          <path d="M38 20L24 28v13" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-          <path d="M24 41v8l14 8" stroke="#2DD4BF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-          <path d="M42 20l14 8v15" stroke="#2DD4BF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-          <path d="M31 29v10M26.7 31.5l8.6 5M35.3 31.5l-8.6 5" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round"/>
-          <path d="M49 27c2.5 3 4 5.2 4 7.8a4 4 0 0 1-8 0c0-1.6.9-3.2 2-4.5.2 1.2 1 1.8 1.6 1.8.5 0 .4-2.5.4-5.1z" fill="#2DD4BF"/>
-          <rect x="35.5" y="31" width="9" height="15" rx="4.5" fill="#FFFFFF"/>
-          <path d="M40 31a4.5 4.5 0 0 1 4.5 4.5v6A4.5 4.5 0 0 1 40 46V31z" fill="#2DD4BF"/>
-          <path d="M32 42c0 4.4 3.6 8 8 8s8-3.6 8-8" stroke="#FFFFFF" stroke-width="2.6" stroke-linecap="round"/>
-          <line x1="40" y1="50" x2="40" y2="56" stroke="#FFFFFF" stroke-width="2.6" stroke-linecap="round"/>
-          <line x1="34" y1="56" x2="46" y2="56" stroke="#FFFFFF" stroke-width="2.6" stroke-linecap="round"/>
-          <path d="M16 51c2.5 6.5 7.5 10 15 10.5" stroke="#FFFFFF" stroke-width="2.6" stroke-linecap="round"/>
-          <circle cx="32.5" cy="61.5" r="3" fill="#FFFFFF"/>
-          <path d="M51 56l7.5-7.5a4.5 4.5 0 0 0 5.5-5.5l-3 3-2.5-.5-.5-2.5 3-3a4.5 4.5 0 0 0-5.5 5.5L48 53l3 3z" fill="#2DD4BF"/>
-        </svg>
-        <div class="brand-name">Field<span>2</span>Desk</div>
-      </a>
+<div class="stack">
+  <div class="wrap"><p>Works inside</p><span class="chip">Housecall Pro</span><span class="chip">ServiceTitan</span><span class="chip">Jobber</span><span class="chip">GoHighLevel</span><span class="chip">Quo / OpenPhone</span><span class="chip">RingCentral</span></div>
+</div>
 
-      <nav class="nav-links" aria-label="Main Navigation">
-        <button type="button" class="nav-item active" data-target="home">Home</button>
-        <button type="button" class="nav-item" data-target="services">Services & Playbook</button>
-        <button type="button" class="nav-item" data-target="pricing">ROI & Coverage</button>
-        <button type="button" class="nav-item" data-target="about">About Us</button>
-        <button type="button" class="nav-item" data-target="contact">Contact Us</button>
-        <button type="button" class="btn btn-teal nav-cta" data-calendly="true">Book a 30-Min Audit</button>
-      </nav>
-
-      <button type="button" class="mobile-toggle" id="mobileMenuBtn" aria-label="Toggle Menu">
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
-      </button>
+<section id="services">
+  <div class="wrap">
+    <div class="head rv"><span class="kick">What we handle</span><h2>Everything an in-house office manager does, without the payroll</h2><p>We don't just take messages. We work inside your phones and dispatch board all shift.</p></div>
+    <div class="g3">
+      <div class="card rv"><div class="ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 18v-6a9 9 0 0 1 18 0v6"/><path d="M21 19a2 2 0 0 1-2 2h-1v-7h3zM3 19a2 2 0 0 0 2 2h1v-7H3z"/></svg></div><h3>Live call answering & triage</h3><p>We pick up in your brand name, separate emergencies from tune-ups, confirm your diagnostic fee, and book the job.</p></div>
+      <div class="card rv" style="transition-delay:.08s"><div class="ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4.5 8-11a8 8 0 1 0-16 0c0 6.5 8 11 8 11z"/><circle cx="12" cy="11" r="3"/></svg></div><h3>Dispatch & route control</h3><p>We group jobs by zip code, slot urgent calls into open gaps, and text homeowners proactive ETA updates.</p></div>
+      <div class="card rv" style="transition-delay:.16s"><div class="ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M7 15l4-4 3 3 5-6"/></svg></div><h3>Quote chasing & reporting</h3><p>We follow up on open estimates within 48 hours, call maintenance members, request reviews, and send a daily summary.</p></div>
     </div>
+    <div class="trades rv"><span class="chip">HVAC</span><span class="chip">Plumbing & drain</span><span class="chip">Electrical</span><span class="chip">Residential & light commercial</span></div>
+  </div>
+</section>
 
-    <div class="mobile-drawer" id="mobileDrawer">
-      <button type="button" class="nav-item active" data-target="home">Home</button>
-      <button type="button" class="nav-item" data-target="services">Services & Playbook</button>
-      <button type="button" class="nav-item" data-target="pricing">ROI & Coverage</button>
-      <button type="button" class="nav-item" data-target="about">About Us</button>
-      <button type="button" class="nav-item" data-target="contact">Contact Us</button>
-      <button type="button" class="btn btn-teal" data-calendly="true" style="margin-top: 8px; width: 100%;">Book a 30-Min Audit</button>
-    </div>
-  </header>
-
-  <main>
-    <!-- ==================== VIEW 1: EXTRA-LOADED HOME PAGE ==================== -->
-    <div class="page-view active" id="view-home">
-      <section class="hero">
-        <div class="container hero-grid">
-          <div class="reveal">
-            <div class="eyebrow"><span class="live-dot"></span> Founder-Led Front-Office Operations for US Trade Teams</div>
-            <h1>Keep Your Trucks Moving. We'll Run the <span>Phones & Dispatch.</span></h1>
-            <p class="hero-lead">We embed directly into your Housecall Pro, ServiceTitan, Jobber, or GoHighLevel workflow—answering homeowners live in under 3 rings and keeping your technicians tightly routed all shift.</p>
-            <div class="hero-actions">
-              <button type="button" class="btn btn-navy" data-calendly="true">Book a 30-Min Workflow Audit</button>
-              <button type="button" class="btn btn-outline" data-target="pricing">Calculate Missed-Call Loss →</button>
-            </div>
-            <div class="trust-strip">
-              <div class="trust-item">
-                <strong>&lt; 3 Rings</strong>
-                <span>Live Call Pickup Speed</span>
-              </div>
-              <div class="trust-item">
-                <strong>100% Native</strong>
-                <span>Inside Your Existing CRM</span>
-              </div>
-              <div class="trust-item">
-                <strong>4 Days</strong>
-                <span>Turnkey Shop Go-Live</span>
-              </div>
-            </div>
-          </div>
-
-          <!-- Multi-Layer Visual Hero -->
-          <div class="hero-visual reveal delay-1">
-            <div class="top-float-badge">
-              <div class="eq-bars"><i></i><i></i><i></i><i></i></div>
-              <div>
-                <strong><span class="count-up" data-target="98.4" data-decimals="1">98.4</span>% Live Answer Rate</strong>
-                <span>Zero Voicemail Drop-Off</span>
-              </div>
-            </div>
-
-            <div class="hero-photo-frame">
-              <img src="https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?auto=format&fit=crop&w=950&q=80" alt="HVAC technician inspecting equipment while remote dispatch manages bookings" />
-            </div>
-
-            <div class="floating-card">
-              <div class="fc-top">
-                <span class="fc-title">Live Desk Queue</span>
-                <span class="fc-pill">● US Shift Active</span>
-              </div>
-              <div class="fc-tabs">
-                <button type="button" class="fc-tab active" data-view="call">Inbound Call</button>
-                <button type="button" class="fc-tab" data-view="board">Dispatch Board</button>
-                <button type="button" class="fc-tab" data-view="quote">Quote Follow-Up</button>
-              </div>
-              <div class="fc-body" id="fcBody">
-                <strong>Emergency No-Cool Booked — Miller Residence</strong>
-                <p>Answered on Ring 2 • Diagnostic fee confirmed • Scheduled 10:00–12:00 in Housecall Pro.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- Interactive CRM & Phone Stack Compatibility Explorer -->
-      <div class="crm-explorer">
-        <div class="container">
-          <div class="crm-top-row">
-            <span class="tools-label">Click Your Software Stack to See How We Plug In</span>
-            <div class="crm-tabs">
-              <button type="button" class="crm-tab-btn active" data-crm="hcp"><i></i>Housecall Pro</button>
-              <button type="button" class="crm-tab-btn" data-crm="st"><i></i>ServiceTitan</button>
-              <button type="button" class="crm-tab-btn" data-crm="jobber"><i></i>Jobber</button>
-              <button type="button" class="crm-tab-btn" data-crm="ghl"><i></i>GoHighLevel</button>
-              <button type="button" class="crm-tab-btn" data-crm="quo"><i></i>Quo / OpenPhone</button>
-            </div>
-          </div>
-          <div class="crm-detail-box" id="crmDetailBox">
-            <div>
-              <h4>Housecall Pro Daily Dispatch & Booking</h4>
-              <p>We log in under a restricted dispatcher user role to book inbound calls, assign tech tags, trigger automated SMS arrival windows, and keep your job map clean.</p>
-            </div>
-            <div class="crm-checks">
-              <span><b>✓</b> Live calendar slotting by zip code</span>
-              <span><b>✓</b> Automated "On My Way" & review texts</span>
-              <span><b>✓</b> Unscheduled & open estimate follow-up</span>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- 3-Pillar Bento Grid with Interactive Dispatch Simulator -->
-      <section>
-        <div class="container">
-          <div class="section-head reveal">
-            <span class="kicker">Complete Desk Ownership</span>
-            <h2>Everything an In-House Office Manager Does—Without the $55k Payroll</h2>
-            <p>We don't just take messages. Your dedicated coordinator works inside your phones and dispatch board all shift.</p>
-          </div>
-
-          <div class="bento-grid">
-            <!-- Bento 1 -->
-            <div class="bento-card reveal delay-1">
-              <div>
-                <div class="bento-visual">
-                  <div class="mock-call-pill">
-                    <div><strong>Incoming: (512) 894-2104</strong><br><small style="color:#94A3B8;">AC Not Cooling • Residential</small></div>
-                    <span>Ring 1 • Answered</span>
-                  </div>
-                  <div class="mock-sub-row">
-                    <span>✓ $89 Diagnostic Approved</span>
-                    <strong style="color:var(--teal-dark);">Booked 2:00 PM</strong>
-                  </div>
-                </div>
-                <h3>Live Call Answering & Triage</h3>
-                <p>We answer in your company's name in under 3 rings, separate urgent no-cool or leak emergencies from tune-ups, secure dispatch fee approval, and lock the job onto your calendar.</p>
-              </div>
-            </div>
-
-            <!-- Bento 2: Interactive Live Dispatch Slotter -->
-            <div class="bento-card reveal delay-2">
-              <div>
-                <div class="bento-visual" id="liveBoardVisual">
-                  <div class="route-slot">
-                    <span class="slot-dot"></span>
-                    <div><strong>Tech #1 (Marcus)</strong> • Zip 75001<br><small style="color:var(--muted);">10:00 AM Completed • Next ETA Sent</small></div>
-                  </div>
-                  <div class="route-slot" id="secondRouteSlot">
-                    <span class="slot-dot" style="background:#3B82F6;"></span>
-                    <div><strong>Tech #2 (Devon)</strong> • Zip 75006<br><small style="color:var(--muted);">1:00 PM Open Gap Available</small></div>
-                  </div>
-                  <button type="button" class="sim-dispatch-btn" id="simDispatchBtn">+ Simulate Emergency "No-Cool" Call</button>
-                </div>
-                <h3>Active Dispatch & Route Control</h3>
-                <p>We watch your board all day, group calls by zip code to cut windshield time, send proactive ETA texts to homeowners, and slot urgent calls into open gaps in real time.</p>
-              </div>
-            </div>
-
-            <!-- Bento 3 -->
-            <div class="bento-card reveal delay-3">
-              <div>
-                <div class="bento-visual">
-                  <div class="kpi-bar-row">
-                    <div class="kpi-bar-top"><span>48-Hr Open Quote Follow-Up</span><span>94% Reached</span></div>
-                    <div class="kpi-track"><div class="kpi-fill" style="width:94%;"></div></div>
-                  </div>
-                  <div class="kpi-bar-row">
-                    <div class="kpi-bar-top"><span>Daily Call-to-Book Conversion</span><span>82% Booked</span></div>
-                    <div class="kpi-track"><div class="kpi-fill" style="width:82%;"></div></div>
-                  </div>
-                </div>
-                <h3>Quote Chasing & KPI Dashboards</h3>
-                <p>We follow up on unsold estimates within 48 hours, call due maintenance members, request 5-star Google reviews, and update your daily Looker Studio / Sheet trackers.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- 90-Second Field-to-Desk Architecture Flow -->
-      <section class="arch-section">
-        <div class="container">
-          <div class="section-head reveal">
-            <span class="kicker" style="color:var(--teal-bright);">How The Handoff Works</span>
-            <h2>From Ringing Phone to Dispatched Truck in Under 90 Seconds</h2>
-            <p>Zero phone number changes required. We plug seamlessly into the exact setup your shop already runs.</p>
-          </div>
-
-          <div class="arch-flow">
-            <div class="arch-node reveal delay-1">
-              <span class="arch-step-badge">01 • INBOUND CALL</span>
-              <h3>Homeowner Dials Your Line</h3>
-              <p>Customer calls your existing local number on Quo, RingCentral, or ServiceTitan. Our desk picks up live before Ring 3.</p>
-            </div>
-            <div class="arch-node reveal delay-2">
-              <span class="arch-step-badge">02 • TRIAGE & SCRIPT</span>
-              <h3>Qualification & Fee Lock</h3>
-              <p>We verify service zip code, capture unit age and issue details, and confirm your diagnostic fee using your custom playbook.</p>
-            </div>
-            <div class="arch-node reveal delay-3">
-              <span class="arch-step-badge">03 • CRM BOOKING</span>
-              <h3>Slotted on Your Board</h3>
-              <p>Job is placed in the tightest route window for the right technician inside Housecall Pro, ServiceTitan, or Jobber.</p>
-            </div>
-            <div class="arch-node reveal delay-1">
-              <span class="arch-step-badge">04 • TECH & EOD SYNC</span>
-              <h3>Tech Dispatched + KPI Logged</h3>
-              <p>Homeowner gets an instant SMS confirmation, your tech sees the full job card, and the booking is logged on your daily tracker.</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- Real Chat UI + Side-by-Side Comparison Split -->
-      <section>
-        <div class="container">
-          <div class="section-head reveal">
-            <span class="kicker">Proactive Operations</span>
-            <h2>What It Feels Like When Your Desk Is 5 Steps Ahead</h2>
-            <p>A business owner should never have to ask if a customer was taken care of. Here is our daily standard in action.</p>
-          </div>
-
-          <div class="proof-compare-grid">
-            <div class="chat-proof-card reveal">
-              <div>
-                <div class="chat-header-bar">
-                  <strong>Live Client Slack / Quo Thread</strong>
-                  <span>Daily HVAC Workflow</span>
-                </div>
-
-                <div class="chat-bubbles">
-                  <div class="bubble-row">
-                    <div class="avatar-dot">RC</div>
-                    <div class="chat-msg client">Did you see the sona call for Krista J.?</div>
-                  </div>
-                  <div class="bubble-row right">
-                    <div class="chat-msg coord">Yep, I saw it! I was able to look up the information she needed and get back to her.</div>
-                    <div class="avatar-dot va">F2D</div>
-                  </div>
-                  <div class="bubble-row">
-                    <div class="avatar-dot">RC</div>
-                    <div class="chat-msg client">You're the best.</div>
-                  </div>
-                  <div class="bubble-row right">
-                    <div class="chat-msg coord">Haha, thanks Ryan! I appreciate it!</div>
-                    <div class="avatar-dot va">F2D</div>
-                  </div>
-                </div>
-              </div>
-
-              <div class="chat-footer-note">
-                <strong>The Field2Desk Difference</strong>
-                Instead of waiting for the owner to assign tasks, we monitor your call logs and open inquiries in real time—resolving customer questions before you even have to check.
-              </div>
-            </div>
-
-            <div class="compare-wrap reveal delay-1">
-              <table class="compare-table">
-                <thead>
-                  <tr>
-                    <th>Bottleneck</th>
-                    <th>DIY Phones in the Field</th>
-                    <th>With Field2Desk</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>Missed Calls On-Site</td>
-                    <td>Goes to voicemail; 85% of homeowners hang up and call the next contractor on Google.</td>
-                    <td>Answered live in under 3 rings using your exact greeting and diagnostic pricing.</td>
-                  </tr>
-                  <tr>
-                    <td>Route & Drive Time</td>
-                    <td>Techs zigzag across town; late arrivals trigger angry afternoon customer calls.</td>
-                    <td>Calls grouped by zip code with proactive ETA updates texted before windows shift.</td>
-                  </tr>
-                  <tr>
-                    <td>Open Quotes</td>
-                    <td>$4,000+ replacement estimates sit cold because nights are spent catching up on admin.</td>
-                    <td>Systematic 48-hour follow-up calls and SMS until the homeowner approves or books.</td>
-                  </tr>
-                  <tr>
-                    <td>Annual Cost</td>
-                    <td>$45,000–$60,000+/yr plus payroll taxes and office space for 1 local receptionist.</td>
-                    <td>Fraction of in-house overhead with turnkey part-time or full-shift US coverage.</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </div>
-
-          <div class="bottom-cta-strip reveal" style="margin-top: 58px;">
-            <div>
-              <h3>See how much voicemail is costing your shop every month.</h3>
-              <p>Use our interactive calculator or book a 30-minute workflow audit live.</p>
-            </div>
-            <div style="display:flex; gap:12px; flex-wrap:wrap;">
-              <button type="button" class="btn btn-teal" data-calendly="true">Schedule 30-Min Audit →</button>
-              <button type="button" class="btn btn-outline" data-target="pricing" style="background:transparent; color:#FFFFFF; border-color:rgba(255,255,255,0.3);">Open ROI Calculator</button>
-            </div>
-          </div>
-        </div>
-      </section>
-    </div>
-
-    <!-- ==================== VIEW 2: SERVICES & PLAYBOOK ==================== -->
-    <div class="page-view" id="view-services">
-      <div class="page-banner">
-        <div class="container reveal">
-          <span class="kicker">Capabilities & Live Playbook</span>
-          <h1>End-to-End Front-Office Operations for Trade Crews</h1>
-          <p>We don't read off generic call-center scripts. We speak the day-to-day language of HVAC, plumbing, and electrical dispatching.</p>
-        </div>
-      </div>
-
-      <section>
-        <div class="container">
-          <div class="section-head reveal">
-            <span class="kicker">Trade-Specific Expertise</span>
-            <h2>Built for Residential & Light Commercial Contractors</h2>
-            <p>Tailored triage rules, diagnostic fee scripts, and route management for your specific trade.</p>
-          </div>
-          <div class="trades-grid">
-            <div class="trade-card reveal delay-1">
-              <img class="trade-img" src="https://images.unsplash.com/photo-1621905251189-08b45d6a269e?auto=format&fit=crop&w=800&q=80" alt="HVAC technician servicing outdoor condenser unit" />
-              <div class="trade-body">
-                <span class="trade-badge">HVAC & Refrigeration</span>
-                <h3>No-Cool Triage & Seasonal Tune-Ups</h3>
-                <p>We capture system age, thermostat symptoms, and attic/closet access notes, prioritize emergency heat/AC outages, and fill shoulder-season maintenance boards.</p>
-              </div>
-            </div>
-            <div class="trade-card reveal delay-2">
-              <img class="trade-img" src="https://images.unsplash.com/photo-1585704032915-c3400ca199e7?auto=format&fit=crop&w=800&q=80" alt="Plumber repairing residential pipe system" />
-              <div class="trade-body">
-                <span class="trade-badge">Plumbing & Drain</span>
-                <h3>Urgent Leak & Main-Line Dispatch</h3>
-                <p>When a homeowner has an active slab leak or sewer backup, speed wins the job. We calm the caller, confirm dispatch fees, and route your nearest open truck immediately.</p>
-              </div>
-            </div>
-            <div class="trade-card reveal delay-3">
-              <img class="trade-img" src="https://images.unsplash.com/photo-1621905252507-b35492cc74b4?auto=format&fit=crop&w=800&q=80" alt="Electrician inspecting residential breaker panel" />
-              <div class="trade-body">
-                <span class="trade-badge">Electrical & Multi-Trade</span>
-                <h3>Panel Upgrades, EV Chargers & Repairs</h3>
-                <p>We qualify troubleshooting calls vs. install estimates, collect panel photos via SMS before arrival, and keep multi-truck schedules tightly grouped by zip code.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section class="playbook-section">
-        <div class="container">
-          <div class="section-head reveal">
-            <span class="kicker">Interactive Call Simulator</span>
-            <h2>See How Field2Desk Handles Your Live Calls</h2>
-            <p>Click through real scenarios below to see how we protect your booking rate and keep owners out of the weeds.</p>
-          </div>
-          <div class="playbook-split">
-            <div class="desk-photo-wrap reveal">
-              <img src="https://images.unsplash.com/photo-1553877522-43269d4ea984?auto=format&fit=crop&w=850&q=80" alt="Operations coordinator managing live dispatch board and customer calls" />
-              <div class="desk-caption">
-                <strong>Proactive Desk Standard</strong>
-                We spot incoming texts, missed calls, and schedule gaps inside Quo & Housecall Pro before the owner ever has to ask.
-              </div>
-            </div>
-
-            <div class="sim-box reveal delay-1">
-              <div class="sim-tabs">
-                <button type="button" class="sim-btn active" data-play="emergency">1. Urgent "No-Cool" Call</button>
-                <button type="button" class="sim-btn" data-play="delay">2. Tech Running Late</button>
-                <button type="button" class="sim-btn" data-play="estimate">3. Unsold $4,800 Quote</button>
-              </div>
-              <div class="sim-panel" id="simPanel">
-                <div class="sim-step">
-                  <div class="sim-label">Step 1 • Live Pickup (&lt; 3 Rings)</div>
-                  <div class="sim-text">"Thank you for calling [Your Company Name], this is your dispatch desk—how can we help get you comfortable today?"</div>
-                </div>
-                <div class="sim-step">
-                  <div class="sim-label">Step 2 • Qualification & Fee Approval</div>
-                  <div class="sim-text">Confirms homeowner address, equipment age (11-year-old split system), and gets upfront approval on your $89 diagnostic dispatch fee.</div>
-                </div>
-                <div class="sim-step">
-                  <div class="sim-label">Step 3 • Instant CRM & Tech Sync</div>
-                  <div class="sim-text">Books into the 1:00–3:00 PM slot in Housecall Pro, tags the assigned tech, and triggers an automated confirmation text to the homeowner.</div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- 4-Day Turnkey Onboarding Roadmap -->
-      <section>
-        <div class="container">
-          <div class="section-head reveal">
-            <span class="kicker">Zero-Friction Launch</span>
-            <h2>From Intro Call to Live Phones in 4 Business Days</h2>
-            <p>We handle the SOP mapping and script setup so you don't lose a single hour in the field.</p>
-          </div>
-          <div class="roadmap-grid">
-            <div class="road-card reveal delay-1">
-              <span class="road-day">Day 1 • Alignment</span>
-              <h3>30-Min Board & Call Audit</h3>
-              <p>We review your service zones, diagnostic fees, technician skill tags, and current call bottlenecks on a quick video chat.</p>
-            </div>
-            <div class="road-card reveal delay-2">
-              <span class="road-day">Day 2 • Playbook</span>
-              <h3>Custom Triage & Fee Script</h3>
-              <p>We build your shop's emergency escalation matrix, objection responses, and booking rules for your approval.</p>
-            </div>
-            <div class="road-card reveal delay-3">
-              <span class="road-day">Day 3 • Sandbox Test</span>
-              <h3>CRM Access & Mock Calls</h3>
-              <p>We test live call routing on your VoIP line and run sample bookings in your CRM to verify SMS alerts and tech notifications.</p>
-            </div>
-            <div class="road-card reveal delay-1">
-              <span class="road-day">Day 4 • Go-Live</span>
-              <h3>Full Shift Desk Takeover</h3>
-              <p>We go live on your inbound lines, start chasing open 48-hour quotes, and send your first End-of-Day KPI summary.</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section class="timeline-section">
-        <div class="container">
-          <div class="section-head reveal">
-            <span class="kicker">Daily Shift Cadence</span>
-            <h2>What Happens During a Typical US Business Day</h2>
-            <p>Structured, repeatable execution from morning dispatch through end-of-day reporting.</p>
-          </div>
-          <div class="timeline-grid">
-            <div class="time-card reveal delay-1">
-              <span class="time-pill">7:30 AM – 10:00 AM</span>
-              <h3>Morning Triage & Confirmations</h3>
-              <p>Clear overnight voicemails and web forms, confirm first-call arrival windows with homeowners, and verify every tech is en route.</p>
-            </div>
-            <div class="time-card reveal delay-2">
-              <span class="time-pill">10:00 AM – 2:00 PM</span>
-              <h3>Peak Inbound & Board Control</h3>
-              <p>Answer live service calls, slot same-day emergencies into open gaps, and rebalance afternoon jobs if a morning repair runs long.</p>
-            </div>
-            <div class="time-card reveal delay-3">
-              <span class="time-pill">2:00 PM – 4:30 PM</span>
-              <h3>48-Hour Quote & Tune-Up Calls</h3>
-              <p>Follow up on open replacement estimates, call overdue maintenance club members, and send Google review links on completed jobs.</p>
-            </div>
-            <div class="time-card reveal delay-1">
-              <span class="time-pill">4:30 PM – 6:00 PM</span>
-              <h3>Next-Day Prep & EOD Summary</h3>
-              <p>Lock tomorrow's dispatch board, verify parts-pending callbacks, and send you a clean daily KPI summary of calls, bookings, and revenue.</p>
-            </div>
-          </div>
-        </div>
-      </section>
-    </div>
-
-    <!-- ==================== VIEW 3: ROI & COVERAGE ==================== -->
-    <div class="page-view" id="view-pricing">
-      <div class="page-banner">
-        <div class="container reveal">
-          <span class="kicker">ROI & Engagement Tiers</span>
-          <h1>Transparent Coverage Built Around Your Fleet Size</h1>
-          <p>See how much voicemail is costing your shop right now—and choose the shift structure that fits your truck count.</p>
-        </div>
-      </div>
-
-      <section>
-        <div class="container">
-          <div class="section-head reveal">
-            <span class="kicker">Revenue Calculator</span>
-            <h2>Calculate What Missed Calls Are Costing Your Shop</h2>
-            <p>Adjust the sliders below to estimate how much monthly revenue is slipping to competitors when calls go to voicemail.</p>
-          </div>
-          <div class="calc-card reveal delay-1">
-            <div>
-              <div class="slider-row">
-                <div class="slider-labels">
-                  <label for="missedCalls">Missed calls per week (on-site, lunch, overflow)</label>
-                  <span class="slider-badge"><span id="missedCallsVal">6</span> calls/wk</span>
-                </div>
-                <input type="range" id="missedCalls" min="1" max="30" value="6" />
-              </div>
-
-              <div class="slider-row">
-                <div class="slider-labels">
-                  <label for="avgTicket">Average service or repair ticket ($)</label>
-                  <span class="slider-badge">$<span id="avgTicketVal">450</span></span>
-                </div>
-                <input type="range" id="avgTicket" min="150" max="2500" step="50" value="450" />
-              </div>
-
-              <div class="slider-row">
-                <div class="slider-labels">
-                  <label for="bookRate">Live call-to-booking conversion rate (%)</label>
-                  <span class="slider-badge"><span id="bookRateVal">60</span>%</span>
-                </div>
-                <input type="range" id="bookRate" min="30" max="90" step="5" value="60" />
-              </div>
-            </div>
-
-            <div class="calc-summary">
-              <div class="cap">Estimated Monthly Revenue Recoverable</div>
-              <div class="num" id="monthlyLoss">$7,015</div>
-              <div class="sub">That's <strong id="annualLoss" style="color:#FFFFFF;">$84,180/year</strong> in booked service calls.</div>
-              <div class="calc-breakdown">
-                <div class="cb-item">
-                  <span>Missed Calls / Mo</span>
-                  <strong id="monthlyCalls">26 calls</strong>
-                </div>
-                <div class="cb-item">
-                  <span>Jobs Booked Live</span>
-                  <strong id="bookedJobs">16 jobs/mo</strong>
-                </div>
-              </div>
-              <button type="button" id="calcCtaBtn" class="btn btn-teal" data-calendly="true" style="width: 100%;">Reclaim $7,015/mo — Book 30-Min Audit</button>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section style="background: var(--bg-white); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);">
-        <div class="container">
-          <div class="section-head reveal">
-            <span class="kicker">Coverage Options</span>
-            <h2>Flexible Support That Scales With Your Fleet</h2>
-            <p>Start with peak-window overflow coverage or lock in full-shift coverage for your entire US business day.</p>
-          </div>
-          <div class="tiers-grid">
-            <div class="tier reveal delay-1">
-              <div>
-                <div class="tier-trucks">Ideal for 1–3 Trucks</div>
-                <h3>Part-Time Overflow & Admin</h3>
-                <p class="tier-sub">Capture midday calls, clear voicemails, and stay on top of open quotes.</p>
-                <ul class="tier-list">
-                  <li><span>✓</span>4 hours/day peak-window live call answering</li>
-                  <li><span>✓</span>Morning voicemail & web-lead callbacks</li>
-                  <li><span>✓</span>48-hour open estimate follow-ups</li>
-                  <li><span>✓</span>Direct booking in your existing CRM</li>
-                </ul>
-              </div>
-              <button type="button" class="btn btn-outline" data-calendly="true" style="width: 100%;">Book Part-Time Intro Call</button>
-            </div>
-
-            <div class="tier popular reveal delay-2">
-              <span class="pop-pill">Most Popular</span>
-              <div>
-                <div class="tier-trucks">Ideal for 3–8 Trucks</div>
-                <h3>Dedicated Full-Time Desk</h3>
-                <p class="tier-sub">Direct founder-led coverage running your phones and dispatch board all shift.</p>
-                <ul class="tier-list">
-                  <li><span>✓</span>Full 8-hour US shift live inbound answering</li>
-                  <li><span>✓</span>Active dispatch board & route management</li>
-                  <li><span>✓</span>Customer ETA texts & review requests</li>
-                  <li><span>✓</span>End-of-day KPI & job tracker reporting</li>
-                </ul>
-              </div>
-              <button type="button" class="btn btn-navy" data-calendly="true" style="width: 100%;">Book Full-Time Intro Call</button>
-            </div>
-
-            <div class="tier reveal delay-3">
-              <div>
-                <div class="tier-trucks">Ideal for 8+ Trucks</div>
-                <h3>Multi-Tech Extended Coverage</h3>
-                <p class="tier-sub">Extended morning-to-evening coverage with split CSR and dispatch workflows.</p>
-                <ul class="tier-list">
-                  <li><span>✓</span>Extended early-morning & evening call handling</li>
-                  <li><span>✓</span>Multi-truck route optimization & tech sync</li>
-                  <li><span>✓</span>Outbound tune-up & membership campaigns</li>
-                  <li><span>✓</span>Custom SOP playbook & weekly ops review</li>
-                </ul>
-              </div>
-              <button type="button" class="btn btn-outline" data-calendly="true" style="width: 100%;">Schedule Custom Scope Call</button>
-            </div>
-          </div>
-        </div>
-      </section>
-    </div>
-
-    <!-- ==================== VIEW 4: ABOUT US (FOUNDER-LED BOUTIQUE) ==================== -->
-    <div class="page-view" id="view-about">
-      <div class="page-banner">
-        <div class="container reveal">
-          <span class="kicker">About Field2Desk</span>
-          <h1>A Founder-Led Operations Partner Built for US Trade Teams</h1>
-          <p>No bloated agency layers. No untrained junior hand-offs. You work directly with operators who run US HVAC dispatch boards and KPI trackers every single day.</p>
-        </div>
-      </div>
-
-      <section>
-        <div class="container about-grid">
-          <div class="about-story reveal">
-            <span class="kicker">Why We Built Field2Desk</span>
-            <h2>Hands-On Dispatch & CRM Mastery—Not Generic Virtual Assistance</h2>
-            <p>Most virtual assistant agencies hand you an untrained generalist and expect you to spend weeks teaching them what a capacitor, slab leak, or diagnostic dispatch fee is. We founded <strong>Field2Desk</strong> to be the exact opposite.</p>
-            <p>Our background comes directly from running daily US cooling and home-service operations—managing live customer lines in Quo, building tight technician routes in Housecall Pro, automating follow-up pipelines in GoHighLevel, and tracking job profitability on Looker Studio dashboards.</p>
-            <p>Because we operate as a focused, founder-led boutique partnership, you get direct accountability on every call and every slot on your board. We believe an owner should never have to ask, <em>"Did we ever get back to that customer?"</em></p>
-
-            <div class="about-highlights">
-              <div class="hl-box">
-                <strong>Direct Accountability</strong>
-                <span>Work directly with the founders—zero hand-offs to untrained reps</span>
-              </div>
-              <div class="hl-box">
-                <strong>Territory Exclusive</strong>
-                <span>We never support a competing contractor in your service zip codes</span>
-              </div>
-            </div>
-          </div>
-
-          <div class="desk-photo-wrap reveal delay-1">
-            <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=900&q=80" alt="Field2Desk operations partners collaborating on dispatch workflows" />
-            <div class="desk-caption">
-              <strong>Boutique Operations Partnership</strong>
-              We act as a direct extension of your front office—protecting your reputation on every call.
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section style="background: var(--bg-white); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);">
-        <div class="container">
-          <div class="section-head reveal">
-            <span class="kicker">Trust & Governance</span>
-            <h2>How We Protect Your Shop, Data & Territory</h2>
-            <p>Handing over your customer lines is a big step. We build strict operational guardrails into every engagement.</p>
-          </div>
-          <div class="security-grid">
-            <div class="sec-card reveal delay-1">
-              <div class="sec-icon">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-              </div>
-              <h3>Role-Based CRM Access</h3>
-              <p>We work under a restricted dispatcher/CSR user login—full access to scheduling and notes, zero access to bank accounts, payroll, or bulk exports.</p>
-            </div>
-            <div class="sec-card reveal delay-2">
-              <div class="sec-icon">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="10" r="3"/><path d="M12 21.7C17.3 17 20 13 20 10a8 8 0 1 0-16 0c0 3 2.7 7 8 11.7z"/></svg>
-              </div>
-              <h3>Zip-Code Exclusivity</h3>
-              <p>We work exclusively on your brand in your territory and will never answer phones or manage dispatch for a competing contractor in your service area.</p>
-            </div>
-            <div class="sec-card reveal delay-3">
-              <div class="sec-icon">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
-              </div>
-              <h3>Signed Confidentiality</h3>
-              <p>We sign a binding NDA and data-privacy agreement before touching your pricebook, customer list, or VoIP phone lines.</p>
-            </div>
-            <div class="sec-card reveal delay-1">
-              <div class="sec-icon">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-              </div>
-              <h3>Recorded Call QA Audits</h3>
-              <p>We review call recordings and booking accuracy during your first two weeks to fine-tune objection handling, diagnostic fee scripts, and tone.</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section>
-        <div class="container">
-          <div class="section-head reveal">
-            <span class="kicker">FAQ</span>
-            <h2>Common Questions From Shop Owners</h2>
-            <p>Clear answers on how remote dispatching plugs into your day-to-day workflow.</p>
-          </div>
-          <div class="faq-list reveal delay-1">
-            <details class="faq-box">
-              <summary>Do we have to change our phone number or field service software?</summary>
-              <p>Not at all. We log directly into the exact tools you already use—Housecall Pro, ServiceTitan, Jobber, Quo (OpenPhone), or RingCentral. Customers keep calling your local business number.</p>
-            </details>
-            <details class="faq-box">
-              <summary>Will callers feel like they are speaking to a generic call center?</summary>
-              <p>No. Unlike big answering services where random agents read off a generic script, we learn your exact service zones, pricing tiers, and brand tone so callers feel like they reached your own front desk.</p>
-            </details>
-            <details class="faq-box">
-              <summary>How do you handle emergency calls vs. routine maintenance?</summary>
-              <p>During onboarding, we map out your exact triage rules—defining what qualifies as a same-day emergency (no-heat, active leaks, extreme-heat AC failure), which tech takes priority, and when to escalate to you.</p>
-            </details>
-            <details class="faq-box">
-              <summary>How fast can we get set up on our board?</summary>
-              <p>Once we complete a 30-minute alignment call to review your booking rules and CRM permissions, we typically finish onboarding and go live on your phones within 4 business days.</p>
-            </details>
-          </div>
-        </div>
-      </section>
-    </div>
-
-    <!-- ==================== VIEW 5: CONTACT US ==================== -->
-    <div class="page-view" id="view-contact">
-      <div class="page-banner">
-        <div class="container reveal">
-          <span class="kicker">Contact Us</span>
-          <h1>Let's Take Phones & Dispatch Off Your Plate</h1>
-          <p>Grab a 30-minute slot on our live calendar, submit your shop details below, or message us directly on LinkedIn or Facebook.</p>
-        </div>
-      </div>
-
-      <section class="contact-page-sec">
-        <div class="container contact-grid">
-          <div class="contact-info-box reveal">
-            <span class="kicker" style="color: var(--teal-bright);">Instant Scheduling & Direct Channels</span>
-            <h2>Connect Directly With Us</h2>
-            <p>Pick a time directly on our calendar or drop us a quick message on LinkedIn or Facebook.</p>
-
-            <div class="direct-channels">
-              <button type="button" class="channel-box featured-cal" data-calendly="true">
-                <div>
-                  <strong>Book a 30-Min Discovery Call on Calendly</strong>
-                  <span style="color:#E2E8F0;">Pick a time slot instantly in popup calendar</span>
-                </div>
-                <span style="color: var(--teal-bright); font-weight: 700;">Book Now →</span>
-              </button>
-
-              <a href="https://www.linkedin.com/company/144131146/" target="_blank" rel="noopener" class="channel-box">
-                <div>
-                  <strong>Message Field2Desk on LinkedIn</strong>
-                  <span>Connect directly with the founders</span>
-                </div>
-                <span style="color: var(--teal-bright); font-weight: 700;">Open →</span>
-              </a>
-
-              <a href="https://www.facebook.com/profile.php?id=61595046637750" target="_blank" rel="noopener" class="channel-box">
-                <div>
-                  <strong>Message Field2Desk on Facebook</strong>
-                  <span>Fast responses for US shop inquiries</span>
-                </div>
-                <span style="color: var(--teal-bright); font-weight: 700;">Open →</span>
-              </a>
-            </div>
-
-            <div style="border-top: 1px solid rgba(255,255,255,0.12); padding-top: 22px;">
-              <strong style="display:block; font-size:0.95rem; margin-bottom:8px; color:#FFFFFF;">4-Day Turnkey Launch:</strong>
-              <p style="font-size:0.88rem; color:#CBD5E1; margin-bottom:0;">Day 1: 30-minute workflow & CRM alignment chat.<br>Day 2–3: Custom triage script & sandbox test.<br>Day 4: Live shift launch on your phones.</p>
-            </div>
-          </div>
-
-          <div class="intake-card reveal delay-1">
-            <h3>Shop Operations Inquiry</h3>
-            <p>Tell us a bit about your fleet and current CRM so we can prepare for our intro chat.</p>
-
-            <form id="inquiryForm">
-              <div class="form-row">
-                <div class="form-group">
-                  <label for="ownerName">Your Name *</label>
-                  <input type="text" id="ownerName" placeholder="e.g. Mike Reynolds" required />
-                </div>
-                <div class="form-group">
-                  <label for="companyName">Company Name *</label>
-                  <input type="text" id="companyName" placeholder="e.g. Apex Heating & Air" required />
-                </div>
-              </div>
-
-              <div class="form-row">
-                <div class="form-group">
-                  <label for="contactEmail">Work Email or Phone *</label>
-                  <input type="text" id="contactEmail" placeholder="mike@apexhvac.com / (555) 234-5678" required />
-                </div>
-                <div class="form-group">
-                  <label for="truckCount">Active Service Trucks</label>
-                  <select id="truckCount">
-                    <option value="1-2 Trucks">1–2 Trucks</option>
-                    <option value="3-5 Trucks" selected>3–5 Trucks</option>
-                    <option value="6-10 Trucks">6–10 Trucks</option>
-                    <option value="10+ Trucks">10+ Trucks</option>
-                  </select>
-                </div>
-              </div>
-
-              <div class="form-row">
-                <div class="form-group">
-                  <label for="crmTool">Current CRM / Phone System</label>
-                  <select id="crmTool">
-                    <option value="Housecall Pro">Housecall Pro</option>
-                    <option value="ServiceTitan">ServiceTitan</option>
-                    <option value="Jobber">Jobber</option>
-                    <option value="GoHighLevel">GoHighLevel</option>
-                    <option value="Quo / OpenPhone / Other">Quo / OpenPhone / Other</option>
-                  </select>
-                </div>
-                <div class="form-group">
-                  <label for="coverageNeed">Coverage Interest</label>
-                  <select id="coverageNeed">
-                    <option value="Full-Time Dedicated Desk (8 hrs/day)">Full-Time Dedicated Desk (8 hrs/day)</option>
-                    <option value="Part-Time Overflow & Admin (4 hrs/day)">Part-Time Overflow & Admin (4 hrs/day)</option>
-                    <option value="Multi-Tech Extended Coverage">Multi-Tech Extended Coverage</option>
-                  </select>
-                </div>
-              </div>
-
-              <div class="form-group">
-                <label for="bottleneckNote">Biggest Front-Office Bottleneck Right Now</label>
-                <textarea id="bottleneckNote" rows="3" placeholder="e.g. Missing inbound calls while on-site, dispatch board changes, or following up on open estimates..."></textarea>
-              </div>
-
-              <div class="form-actions">
-                <button type="submit" class="btn btn-teal" style="flex: 1;">Send Inquiry via Email</button>
-                <button type="button" id="copyInquiryBtn" class="btn btn-outline">Copy Summary for DM</button>
-              </div>
-              <div class="form-status" id="formStatus"></div>
-            </form>
-          </div>
-        </div>
-      </section>
-    </div>
-  </main>
-
-  <!-- Floating Bottom-Right Quick-Book Pill -->
-  <button type="button" class="floating-book-pill" data-calendly="true" aria-label="Book a 30-Min Audit on Calendly">
-    <span class="live-dot" style="width:7px;height:7px;"></span>
-    Book 30-Min Audit <span>→</span>
-  </button>
-
-  <footer>
-    <div class="container footer-flex">
-      <p>&copy; 2026 Field2Desk Operations. Remote Dispatch & Front-Office Support for US Trade Businesses.</p>
-      <div class="footer-links">
-        <button type="button" class="footer-link-btn" data-target="home">Home</button>
-        <button type="button" class="footer-link-btn" data-target="services">Services</button>
-        <button type="button" class="footer-link-btn" data-target="pricing">ROI & Pricing</button>
-        <button type="button" class="footer-link-btn" data-target="about">About Us</button>
-        <button type="button" class="footer-link-btn" data-target="contact">Contact Us</button>
-        <button type="button" class="careers-btn" id="openCareers">Talent Pool</button>
-      </div>
-    </div>
-  </footer>
-
-  <!-- Talent Pool Modal -->
-  <div class="modal-bg" id="careersModal" role="dialog" aria-modal="true" aria-labelledby="careersHeading">
-    <div class="modal-panel">
-      <button type="button" class="modal-close" id="closeCareers" aria-label="Close modal">&times;</button>
-      <h3 id="careersHeading" style="font-size:1.35rem; margin-bottom:8px;">Field2Desk Talent Pool</h3>
-      <p style="font-size:0.94rem; color:var(--slate); margin-bottom:18px;">We maintain a vetted bench of Philippine-based Customer Service & Dispatch Coordinators for upcoming US HVAC and plumbing shop launches.</p>
-      <ul class="tier-list" style="margin-bottom:24px;">
-        <li><span>✓</span>US Business Hours (Night Shift PH)</li>
-        <li><span>✓</span>Clear, natural English phone communication</li>
-        <li><span>✓</span>100% Remote Work-From-Home Setup</li>
-      </ul>
-      <a href="https://www.facebook.com/profile.php?id=61595046637750" target="_blank" rel="noopener" class="btn btn-navy" style="width: 100%;">Send Your Resume (PDF) on Facebook</a>
+<section id="how" style="background:var(--white);border-block:1px solid var(--line)">
+  <div class="wrap">
+    <div class="head rv"><span class="kick">Getting started</span><h2>From intro call to live phones in about 4 business days</h2><p>We handle the script and workflow setup so you don't lose hours in the field.</p></div>
+    <div class="g4">
+      <div class="card rv"><span class="num">Day 1</span><h3>Workflow audit</h3><p>A 30-minute call to review your service zones, fees, tech skills, and current bottlenecks.</p></div>
+      <div class="card rv" style="transition-delay:.07s"><span class="num">Day 2</span><h3>Custom playbook</h3><p>We draft your triage rules, fee script, and booking rules for your approval.</p></div>
+      <div class="card rv" style="transition-delay:.14s"><span class="num">Day 3</span><h3>Test run</h3><p>Mock calls and sample bookings confirm routing, texts, and tech notifications work.</p></div>
+      <div class="card rv" style="transition-delay:.21s"><span class="num">Day 4</span><h3>Go live</h3><p>We take over your inbound lines and send your first end-of-day summary.</p></div>
     </div>
   </div>
+</section>
 
-  <script>
-    // Calendly Popup Launcher
-    const CALENDLY_URL = 'https://calendly.com/noblezamaribelle/30min?hide_gdpr_banner=1&background_color=ffffff&text_color=0a1d37&primary_color=14b8a6';
+<section class="roi" id="roi">
+  <div class="wrap">
+    <div class="head rv"><span class="kick">Revenue calculator</span><h2>What are missed calls costing your shop?</h2><p>Move the sliders to estimate monthly revenue lost to voicemail.</p></div>
+    <div class="calc rv">
+      <div>
+        <div class="sl"><div class="sl-t"><label for="calls">Missed calls per week</label><span><b id="callsV">6</b> /wk</span></div><input type="range" id="calls" min="1" max="30" value="6"></div>
+        <div class="sl"><div class="sl-t"><label for="tkt">Average ticket</label><span>$<b id="tktV">450</b></span></div><input type="range" id="tkt" min="150" max="2500" step="50" value="450"></div>
+        <div class="sl"><div class="sl-t"><label for="rate">Call-to-booking rate</label><span><b id="rateV">60</b>%</span></div><input type="range" id="rate" min="30" max="90" step="5" value="60"></div>
+      </div>
+      <div class="res">
+        <small>Estimated monthly revenue at risk</small>
+        <div class="big" id="mo">$7,015</div>
+        <p><b id="yr" style="color:#fff">$84,180</b> per year · <span id="jobs">16</span> jobs/month</p>
+        <button class="btn btn-p" data-cal style="width:100%">Book a 30-Min Audit</button>
+        <div class="fine">Estimate based on your inputs, not a guarantee.</div>
+      </div>
+    </div>
+  </div>
+</section>
 
-    function openCalendlyPopup() {
-      if (window.Calendly) {
-        window.Calendly.initPopupWidget({ url: CALENDLY_URL });
-      } else {
-        window.open('https://calendly.com/noblezamaribelle/30min', '_blank', 'noopener');
-      }
-    }
+<section id="pricing">
+  <div class="wrap">
+    <div class="head rv"><span class="kick">Coverage options</span><h2>Support that scales with your fleet</h2><p>Start with peak-hour overflow or cover your whole business day.</p></div>
+    <div class="g3">
+      <div class="card tier rv"><div><div class="for">1–3 trucks</div><h3>Part-time overflow</h3><p>Catch midday calls and keep follow-ups moving.</p></div><ul><li>About 4 hours/day of live answering</li><li>Morning voicemail & web-lead callbacks</li><li>48-hour estimate follow-up</li><li>Booking in your existing CRM</li></ul><button class="btn btn-o" data-cal>Book intro call</button></div>
+      <div class="card tier pop rv" style="transition-delay:.08s"><span class="pill">Most popular</span><div><div class="for">3–8 trucks</div><h3>Dedicated full-time desk</h3><p>One coordinator on your phones and board all shift.</p></div><ul><li>Full 8-hour US shift of live answering</li><li>Active dispatch & route management</li><li>ETA texts & review requests</li><li>End-of-day summary report</li></ul><button class="btn btn-p" data-cal>Book intro call</button></div>
+      <div class="card tier rv" style="transition-delay:.16s"><div><div class="for">8+ trucks</div><h3>Extended multi-tech coverage</h3><p>Early-to-late coverage with split call and dispatch roles.</p></div><ul><li>Extended morning and evening hours</li><li>Multi-truck route coordination</li><li>Tune-up & membership campaigns</li><li>Custom SOPs & weekly ops review</li></ul><button class="btn btn-o" data-cal>Schedule scoping call</button></div>
+    </div>
+  </div>
+</section>
 
-    document.querySelectorAll('[data-calendly="true"]').forEach(btn => {
-      btn.addEventListener('click', (e) => {
-        e.preventDefault();
-        openCalendlyPopup();
-      });
-    });
+<section id="about" style="background:var(--white);border-block:1px solid var(--line)">
+  <div class="wrap about">
+    <div class="rv">
+      <span class="kick">About Field2Desk</span>
+      <h2>A founder-led partner who actually knows dispatch</h2>
+      <p>Most virtual assistant agencies hand you a generalist and expect you to explain what a capacitor or a diagnostic fee is. Field2Desk is built from hands-on US home-service operations: live phone lines, dispatch boards, CRM follow-up, and KPI tracking.</p>
+      <p>You work directly with the people doing the work, so there's one point of accountability for every call and every slot on your board.</p>
+      <button class="btn btn-p" data-cal>Talk to the founders</button>
+    </div>
+    <div class="guard">
+      <div class="card rv"><div class="ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div><div><h3>Limited CRM access</h3><p>We work under a dispatcher login: scheduling and notes only, no payroll or banking access.</p></div></div>
+      <div class="card rv"><div class="ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></div><div><h3>NDA before access</h3><p>We sign a confidentiality agreement before touching your pricebook, customers, or phone lines.</p></div></div>
+      <div class="card rv"><div class="ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4.5 8-11a8 8 0 1 0-16 0c0 6.5 8 11 8 11z"/><circle cx="12" cy="11" r="3"/></svg></div><div><h3>Territory exclusivity</h3><p>We won't serve a competing contractor in your service area.</p></div></div>
+      <div class="card rv"><div class="ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.1V12a10 10 0 1 1-5.9-9.1"/><path d="M22 4 12 14l-3-3"/></svg></div><div><h3>Call quality reviews</h3><p>We review recordings and booking accuracy in your first two weeks to tune scripts and tone.</p></div></div>
+    </div>
+  </div>
+</section>
 
-    // Animated Number Counters
-    function runCounters() {
-      document.querySelectorAll('.count-up').forEach(el => {
-        const target = parseFloat(el.dataset.target);
-        const decimals = parseInt(el.dataset.decimals || '0', 10);
-        const duration = 1200;
-        const start = performance.now();
-        function step(now) {
-          const progress = Math.min((now - start) / duration, 1);
-          const eased = 1 - Math.pow(1 - progress, 3);
-          el.textContent = (target * eased).toFixed(decimals);
-          if (progress < 1) requestAnimationFrame(step);
-        }
-        requestAnimationFrame(step);
-      });
-    }
-    runCounters();
+<section id="faq">
+  <div class="wrap">
+    <div class="head rv"><span class="kick">FAQ</span><h2>Common questions from shop owners</h2></div>
+    <div class="faq rv">
+      <details><summary>Do we have to change our phone number or software?</summary><p>No. We log into the tools you already use, such as Housecall Pro, ServiceTitan, Jobber, Quo, or RingCentral. Customers keep calling your local number.</p></details>
+      <details><summary>Will callers feel like they reached a call center?</summary><p>We learn your service zones, pricing, and tone, and answer in your company's name, so callers reach what feels like your own front desk.</p></details>
+      <details><summary>How do you handle emergencies vs. routine calls?</summary><p>During onboarding we map your triage rules: what counts as same-day, which tech gets priority, and when to escalate to you.</p></details>
+      <details><summary>How fast can we go live?</summary><p>After a 30-minute alignment call, onboarding typically takes about 4 business days.</p></details>
+    </div>
+  </div>
+</section>
 
-    // Top Live Activity Feed Ticker
-    const tickerItems = [
-      "Housecall Pro: Emergency AC No-Cool booked in 42 seconds (Dallas, TX)",
-      "Quo / OpenPhone: 48-hour follow-up converted $5,400 heat pump quote (Phoenix, AZ)",
-      "ServiceTitan: Afternoon route re-optimized for 4 trucks — saved 55 mins drive time",
-      "Jobber: Main-line sewer backup triaged & dispatched on Ring 2 (Tampa, FL)"
-    ];
-    let tickerIdx = 0;
-    const tickerEl = document.getElementById('liveTickerText');
-    setInterval(() => {
-      tickerIdx = (tickerIdx + 1) % tickerItems.length;
-      tickerEl.style.opacity = 0;
-      setTimeout(() => {
-        tickerEl.textContent = tickerItems[tickerIdx];
-        tickerEl.style.transition = 'opacity 0.35s ease';
-        tickerEl.style.opacity = 1;
-      }, 250);
-    }, 4500);
+<section class="contact" id="contact">
+  <div class="wrap c-g">
+    <div class="c-info rv">
+      <span class="kick" style="color:var(--teal-b)">Contact</span>
+      <h2>Let's take phones & dispatch off your plate</h2>
+      <p>Pick a time on the calendar, send your shop details, or message us directly.</p>
+      <button class="ch hot" data-cal><div><strong>Book a 30-min discovery call</strong><span>Choose a time instantly</span></div><i>→</i></button>
+      <a class="ch" href="https://www.linkedin.com/company/144131146/" target="_blank" rel="noopener"><div><strong>Message us on LinkedIn</strong><span>Connect with the founders</span></div><i>→</i></a>
+      <a class="ch" href="https://www.facebook.com/profile.php?id=61595046637750" target="_blank" rel="noopener"><div><strong>Message us on Facebook</strong><span>Quick replies for shop inquiries</span></div><i>→</i></a>
+    </div>
+    <form id="form" class="rv">
+      <h3>Shop inquiry</h3><p>Tell us about your fleet and CRM so we can prepare.</p>
+      <input class="hp" type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
+      <div class="fr"><div class="fg"><label for="n">Your name *</label><input type="text" id="n" autocomplete="name" required></div><div class="fg"><label for="c">Company *</label><input type="text" id="c" autocomplete="organization" required></div></div>
+      <div class="fr"><div class="fg"><label for="e">Email or phone *</label><input type="text" id="e" autocomplete="email" required></div><div class="fg"><label for="t">Active trucks</label><select id="t"><option>1–2</option><option selected>3–5</option><option>6–10</option><option>10+</option></select></div></div>
+      <div class="fr"><div class="fg"><label for="s">CRM / phone system</label><select id="s"><option>Housecall Pro</option><option>ServiceTitan</option><option>Jobber</option><option>GoHighLevel</option><option>Quo / OpenPhone / Other</option></select></div><div class="fg"><label for="v">Coverage interest</label><select id="v"><option>Full-time desk</option><option>Part-time overflow</option><option>Extended multi-tech</option></select></div></div>
+      <div class="fg"><label for="b">Biggest bottleneck right now</label><textarea id="b" rows="3" placeholder="e.g. missed calls while on-site, board changes, unsold estimates"></textarea></div>
+      <button type="submit" class="btn btn-p" style="width:100%">Send inquiry</button>
+      <div id="status" role="status"></div>
+    </form>
+  </div>
+</section>
+</main>
 
-    // Interactive CRM & Stack Explorer
-    const crmData = {
-      hcp: {
-        title: "Housecall Pro Daily Dispatch & Booking",
-        desc: "We log in under a restricted dispatcher user role to book inbound calls, assign tech tags, trigger automated SMS arrival windows, and keep your job map clean.",
-        checks: ["Live calendar slotting by zip code", "Automated 'On My Way' & review texts", "Unscheduled & open estimate follow-up"]
-      },
-      st: {
-        title: "ServiceTitan Call Booking & Capacity Planning",
-        desc: "We handle inbound call booking screens, tag priority emergency vs. maintenance calls, manage adjustable capacity windows, and keep unsold estimate queues moving.",
-        checks: ["Priority job tagging & business unit routing", "Real-time technician capacity balancing", "48-hour open estimate outbound calls"]
-      },
-      jobber: {
-        title: "Jobber Request Triage, Quoting & Scheduling",
-        desc: "We convert incoming phone and web requests into scheduled visits, group recurring maintenance routes tightly, and follow up on sent quotes until approved.",
-        checks: ["Instant web request & phone-to-visit booking", "Batch quote follow-ups & deposit reminders", "Automated client visit reminders & follow-ups"]
-      },
-      ghl: {
-        title: "GoHighLevel Speed-to-Lead & Pipeline Management",
-        desc: "We respond to missed-call text-backs, Facebook/Google lead forms, and SMS conversations in under 60 seconds—moving warm leads straight onto your dispatch calendar.",
-        checks: ["Under-60-second SMS & web lead response", "Automated 5-star Google review campaigns", "Pipeline stage hygiene & reactivation calls"]
-      },
-      quo: {
-        title: "Quo (OpenPhone) Shared Inbox & Call Triage",
-        desc: "We monitor your shared business phone lines and SMS threads all shift, resolving homeowner questions proactively and logging clean call summaries into your CRM.",
-        checks: ["Sub-3-ring live call answering in your brand name", "Proactive SMS thread monitoring & ETA updates", "Clean call notes & voicemail zero policy"]
-      }
-    };
+<footer>
+  <div class="wrap"><span>© 2026 Field2Desk. Remote dispatch & front-office support for US trade businesses.</span>
+  <span><a href="https://www.linkedin.com/company/144131146/" target="_blank" rel="noopener">LinkedIn</a><a href="https://www.facebook.com/profile.php?id=61595046637750" target="_blank" rel="noopener">Facebook</a></span></div>
+</footer>
 
-    const crmBox = document.getElementById('crmDetailBox');
-    document.querySelectorAll('.crm-tab-btn').forEach(btn => {
-      btn.addEventListener('click', () => {
-        document.querySelectorAll('.crm-tab-btn').forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
-        const info = crmData[btn.dataset.crm];
-        crmBox.innerHTML = `
-          <div>
-            <h4>${info.title}</h4>
-            <p>${info.desc}</p>
-          </div>
-          <div class="crm-checks">
-            ${info.checks.map(c => `<span><b>✓</b> ${c}</span>`).join('')}
-          </div>
-        `;
-      });
-    });
+<script>
+document.body.classList.remove('no-js');
+const $=id=>document.getElementById(id);
 
-    // Live Dispatch Simulator inside Bento Card 2
-    let emergencySimulated = false;
-    const simDispatchBtn = document.getElementById('simDispatchBtn');
-    const secondRouteSlot = document.getElementById('secondRouteSlot');
-    simDispatchBtn.addEventListener('click', () => {
-      emergencySimulated = !emergencySimulated;
-      if (emergencySimulated) {
-        secondRouteSlot.classList.add('urgent');
-        secondRouteSlot.innerHTML = `
-          <span class="slot-dot" style="background:var(--teal);"></span>
-          <div><strong>Tech #2 (Devon)</strong> • Emergency No-Cool Slotted<br><small style="color:var(--teal-dark); font-weight:600;">1:00 PM Booked • $89 Fee Approved • SMS Sent</small></div>
-        `;
-        simDispatchBtn.textContent = "✓ Dispatched! Click to Reset Board";
-      } else {
-        secondRouteSlot.classList.remove('urgent');
-        secondRouteSlot.innerHTML = `
-          <span class="slot-dot" style="background:#3B82F6;"></span>
-          <div><strong>Tech #2 (Devon)</strong> • Zip 75006<br><small style="color:var(--muted);">1:00 PM Open Gap Available</small></div>
-        `;
-        simDispatchBtn.textContent = '+ Simulate Emergency "No-Cool" Call';
-      }
-    });
+/* Calendly: loaded on first use, with fallback link */
+const CAL='https://calendly.com/noblezamaribelle/30min';
+let calP;
+function loadCal(){
+  if(window.Calendly)return Promise.resolve();
+  return calP||(calP=new Promise((ok,no)=>{
+    const l=document.createElement('link');l.rel='stylesheet';l.href='https://assets.calendly.com/assets/external/widget.css';document.head.appendChild(l);
+    const s=document.createElement('script');s.src='https://assets.calendly.com/assets/external/widget.js';s.onload=ok;s.onerror=no;document.head.appendChild(s);
+  }));
+}
+document.addEventListener('click',e=>{
+  if(!e.target.closest('[data-cal]'))return;
+  e.preventDefault();
+  loadCal().then(()=>Calendly.initPopupWidget({url:CAL+'?hide_gdpr_banner=1&primary_color=12a594'})).catch(()=>window.open(CAL,'_blank','noopener'));
+});
+document.addEventListener('mouseover',e=>{if(e.target.closest&&e.target.closest('[data-cal]'))loadCal().catch(()=>{})},{once:true});
 
-    // Scroll Reveal Observer
-    const revealObserver = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-        }
-      });
-    }, { threshold: 0.1 });
+/* Mobile menu */
+const menu=$('menu'),links=$('links');
+menu.addEventListener('click',()=>menu.setAttribute('aria-expanded',links.classList.toggle('open')));
+links.addEventListener('click',e=>{if(e.target.closest('a,button')){links.classList.remove('open');menu.setAttribute('aria-expanded','false')}});
 
-    function observeCurrentPage() {
-      document.querySelectorAll('.page-view.active .reveal').forEach(el => {
-        el.classList.remove('visible');
-        revealObserver.observe(el);
-      });
-    }
+/* Scroll reveal */
+const io=new IntersectionObserver(es=>es.forEach(x=>{if(x.isIntersecting){x.target.classList.add('in');io.unobserve(x.target)}}),{threshold:.12});
+document.querySelectorAll('.rv').forEach(el=>io.observe(el));
 
-    // Multi-Page View Router
-    const mobileDrawer = document.getElementById('mobileDrawer');
-    function switchPage(pageId) {
-      document.querySelectorAll('.page-view').forEach(view => {
-        view.classList.toggle('active', view.id === 'view-' + pageId);
-      });
+/* ROI calculator */
+const calls=$('calls'),tkt=$('tkt'),rate=$('rate');
+function calc(){
+  const c=+calls.value,t=+tkt.value,r=+rate.value/100;
+  const m=Math.round(c*4.33*t*r);
+  $('callsV').textContent=c;$('tktV').textContent=t.toLocaleString();$('rateV').textContent=Math.round(r*100);
+  $('mo').textContent='$'+m.toLocaleString();$('yr').textContent='$'+(m*12).toLocaleString();
+  $('jobs').textContent=Math.round(c*4.33*r);
+}
+[calls,tkt,rate].forEach(i=>i.addEventListener('input',calc));calc();
 
-      document.querySelectorAll('.nav-item').forEach(btn => {
-        btn.classList.toggle('active', btn.dataset.target === pageId);
-      });
-
-      mobileDrawer.classList.remove('open');
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-      observeCurrentPage();
-    }
-
-    document.querySelectorAll('[data-target]').forEach(trigger => {
-      trigger.addEventListener('click', (e) => {
-        e.preventDefault();
-        switchPage(trigger.dataset.target);
-      });
-    });
-
-    // Mobile Menu Toggle
-    document.getElementById('mobileMenuBtn').addEventListener('click', () => {
-      mobileDrawer.classList.toggle('open');
-    });
-
-    // Initial Reveal Trigger
-    observeCurrentPage();
-
-    // Hero Floating Card Interactive Tabs
-    const views = {
-      call: {
-        title: "Emergency No-Cool Booked — Miller Residence",
-        desc: "Answered on Ring 2 • Diagnostic fee confirmed • Scheduled 10:00–12:00 in Housecall Pro."
-      },
-      board: {
-        title: "Afternoon Route Optimized — 3 Techs Active",
-        desc: "Pulled forward 2:00 PM maintenance slot after Tech #2 finished early • Homeowner texted ETA."
-      },
-      quote: {
-        title: "$6,850 Heat Pump Replacement — Deposit Paid",
-        desc: "48-hour follow-up call completed • Answered warranty question • Install booked for Thursday."
-      }
-    };
-
-    const fcBody = document.getElementById('fcBody');
-    document.querySelectorAll('.fc-tab').forEach(btn => {
-      btn.addEventListener('click', () => {
-        document.querySelectorAll('.fc-tab').forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
-        const item = views[btn.dataset.view];
-        fcBody.innerHTML = `<strong>${item.title}</strong><p>${item.desc}</p>`;
-      });
-    });
-
-    // Playbook Simulator Tabs
-    const playbooks = {
-      emergency: [
-        { label: "Step 1 • Live Pickup (< 3 Rings)", text: "\"Thank you for calling [Your Company Name], this is your dispatch desk—how can we help get you comfortable today?\"" },
-        { label: "Step 2 • Qualification & Fee Approval", text: "Confirms homeowner address, equipment age (11-year-old split system), and gets upfront approval on your $89 diagnostic dispatch fee." },
-        { label: "Step 3 • Instant CRM & Tech Sync", text: "Books into the 1:00–3:00 PM slot in Housecall Pro, tags the assigned tech, and triggers an automated confirmation text to the homeowner." }
-      ],
-      delay: [
-        { label: "Step 1 • Proactive Board Monitoring", text: "Coordinator spots that Tech #2's compressor repair is running 45 minutes over before the next arrival window opens." },
-        { label: "Step 2 • Homeowner Notification", text: "Calls and texts the 2:00 PM customer immediately to offer a 2:45 PM arrival or priority first-slot rescheduling tomorrow." },
-        { label: "Step 3 • Zero Angry Callbacks", text: "Customer appreciates the proactive heads-up, keeps the appointment, and the technician stays focused on finishing the repair safely." }
-      ],
-      estimate: [
-        { label: "Step 1 • 48-Hour Estimate Queue", text: "Pulls open replacement quotes over $2,500 that haven't been approved within 48 hours of the technician's visit." },
-        { label: "Step 2 • Helpful Check-In Call", text: "\"Hi Sarah, following up on the two-stage system options Marcus sent over Tuesday—did you have any questions on financing or warranty coverage?\"" },
-        { label: "Step 3 • Deposit & Install Booking", text: "Answers financing term question, collects approval signature via CRM link, and locks the install crew on Thursday's board." }
-      ]
-    };
-
-    const simPanel = document.getElementById('simPanel');
-    document.querySelectorAll('.sim-btn').forEach(btn => {
-      btn.addEventListener('click', () => {
-        document.querySelectorAll('.sim-btn').forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
-        const steps = playbooks[btn.dataset.play];
-        simPanel.innerHTML = steps.map(s => `
-          <div class="sim-step">
-            <div class="sim-label">${s.label}</div>
-            <div class="sim-text">${s.text}</div>
-          </div>
-        `).join('');
-      });
-    });
-
-    // ROI Calculator
-    const missedInput = document.getElementById('missedCalls');
-    const ticketInput = document.getElementById('avgTicket');
-    const rateInput = document.getElementById('bookRate');
-
-    function updateCalculator() {
-      const calls = Number(missedInput.value);
-      const ticket = Number(ticketInput.value);
-      const rate = Number(rateInput.value) / 100;
-
-      document.getElementById('missedCallsVal').textContent = calls;
-      document.getElementById('avgTicketVal').textContent = ticket.toLocaleString();
-      document.getElementById('bookRateVal').textContent = Math.round(rate * 100);
-
-      const monthlyCallsCount = Math.round(calls * 4.33);
-      const bookedJobsCount = Math.round(monthlyCallsCount * rate);
-      const monthly = Math.round(calls * 4.33 * ticket * rate);
-
-      document.getElementById('monthlyCalls').textContent = monthlyCallsCount + ' calls';
-      document.getElementById('bookedJobs').textContent = bookedJobsCount + ' jobs/mo';
-      document.getElementById('monthlyLoss').textContent = '$' + monthly.toLocaleString();
-      document.getElementById('annualLoss').textContent = '$' + (monthly * 12).toLocaleString() + '/year';
-      document.getElementById('calcCtaBtn').textContent = 'Reclaim $' + monthly.toLocaleString() + '/mo — Book 30-Min Audit';
-    }
-
-    missedInput.addEventListener('input', updateCalculator);
-    ticketInput.addEventListener('input', updateCalculator);
-    rateInput.addEventListener('input', updateCalculator);
-    updateCalculator();
-
-    // Intake Form Handler
-    function buildInquiryText() {
-      const name = document.getElementById('ownerName').value.trim() || 'Shop Owner';
-      const company = document.getElementById('companyName').value.trim() || 'Not specified';
-      const contact = document.getElementById('contactEmail').value.trim() || 'Not specified';
-      const trucks = document.getElementById('truckCount').value;
-      const crm = document.getElementById('crmTool').value;
-      const coverage = document.getElementById('coverageNeed').value;
-      const note = document.getElementById('bottleneckNote').value.trim() || 'General front-office & dispatch support';
-
-      return `Field2Desk Operations Inquiry\n` +
-             `-----------------------------\n` +
-             `Name: ${name}\n` +
-             `Company: ${company}\n` +
-             `Contact: ${contact}\n` +
-             `Fleet Size: ${trucks}\n` +
-             `CRM / Phone Stack: ${crm}\n` +
-             `Coverage Interest: ${coverage}\n` +
-             `Main Bottleneck: ${note}`;
-    }
-
-    const statusEl = document.getElementById('formStatus');
-    document.getElementById('inquiryForm').addEventListener('submit', (e) => {
-      e.preventDefault();
-      const company = document.getElementById('companyName').value.trim() || 'New Shop';
-      const body = encodeURIComponent(buildInquiryText());
-      const subject = encodeURIComponent(`Field2Desk Discovery Inquiry — ${company}`);
-      statusEl.textContent = 'Opening your email app with your shop details pre-filled...';
-      statusEl.style.display = 'block';
-      window.location.href = `mailto:noblezamaribelle@gmail.com?subject=${subject}&body=${body}`;
-    });
-
-    document.getElementById('copyInquiryBtn').addEventListener('click', async () => {
-      const summary = buildInquiryText();
-      try {
-        await navigator.clipboard.writeText(summary);
-        statusEl.textContent = '✓ Inquiry summary copied! Paste it directly into LinkedIn or Facebook DM.';
-        statusEl.style.display = 'block';
-      } catch (err) {
-        statusEl.textContent = 'Select and copy your details above to send via LinkedIn or Facebook.';
-        statusEl.style.display = 'block';
-      }
-    });
-
-    // Talent Pool Modal
-    const modal = document.getElementById('careersModal');
-    document.getElementById('openCareers').addEventListener('click', () => modal.classList.add('active'));
-    document.getElementById('closeCareers').addEventListener('click', () => modal.classList.remove('active'));
-    modal.addEventListener('click', (e) => {
-      if (e.target === modal) modal.classList.remove('active');
-    });
-  </script>
-
+/* Form: Formspree if configured, otherwise opens the visitor's email app */
+const ENDPOINT='https://formspree.io/f/YOUR_FORM_ID';
+const MAIL='noblezamaribelle@gmail.com';
+$('form').addEventListener('submit',async e=>{
+  e.preventDefault();
+  const f=e.target,st=$('status');
+  if(f.website.value)return;
+  const d={name:$('n').value.trim(),company:$('c').value.trim(),contact:$('e').value.trim(),trucks:$('t').value,crm:$('s').value,coverage:$('v').value,bottleneck:$('b').value.trim()};
+  if(ENDPOINT.includes('YOUR_FORM_ID')){
+    const body=Object.entries(d).map(([k,v])=>k+': '+v).join('\n');
+    location.href='mailto:'+MAIL+'?subject='+encodeURIComponent('Field2Desk inquiry: '+d.company)+'&body='+encodeURIComponent(body);
+    st.textContent='Opening your email app with the details filled in…';return;
+  }
+  const b=f.querySelector('button[type=submit]');b.disabled=true;st.textContent='Sending…';
+  try{
+    const r=await fetch(ENDPOINT,{method:'POST',headers:{'Content-Type':'application/json',Accept:'application/json'},body:JSON.stringify(d)});
+    if(!r.ok)throw 0;f.reset();st.textContent='✓ Thanks! We will reply within one business day.';
+  }catch{st.textContent='Could not send. Please book a call or message us on LinkedIn instead.'}
+  b.disabled=false;
+});
+</script>
 </body>
 </html>
