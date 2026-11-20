@@ -175,16 +175,49 @@ section{padding:64px 0}.calc{padding:26px}
 .menu{display:block}
 footer a{margin:0 18px 0 0}
 }
+
+/* ===== v2 visual upgrade ===== */
+.topbar{background:#051020;color:#9FB0C8;font-size:.8rem}
+.topbar .wrap{display:flex;justify-content:space-between;align-items:center;gap:12px;padding-top:8px;padding-bottom:8px}
+.topbar button{background:none;border:0;color:var(--teal-b);font:600 .8rem Inter;cursor:pointer;white-space:nowrap}
+header{background:rgba(11,31,58,.95);border-bottom:1px solid rgba(255,255,255,.08)}
+.brand{color:#fff;gap:10px}.bn{display:inline-block;white-space:nowrap}.brand b{color:var(--teal-b);font-weight:700}
+.links a{color:#CBD5E1}.links a:hover{color:#fff;background:rgba(255,255,255,.08)}
+.menu{color:#fff;border-color:rgba(255,255,255,.25)}
+.hero{position:relative;padding:100px 0 110px;color:#fff;border:0;
+background:linear-gradient(100deg,rgba(5,16,32,.95) 0%,rgba(11,31,58,.84) 50%,rgba(11,31,58,.55) 100%),url(https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?auto=format&fit=crop&w=1800&q=80) center/cover no-repeat,#0B1F3A}
+.hero h1{color:#fff}.hero h1 em{color:var(--teal-b)}.hero .lead,.hero .checks{color:#CBD5E1}
+.hero .tag{background:rgba(45,212,191,.14);color:var(--teal-b);border:1px solid rgba(45,212,191,.3)}
+.hero .btn-o{background:rgba(255,255,255,.06);color:#fff;border-color:rgba(255,255,255,.35)}.hero .btn-o:hover{background:rgba(255,255,255,.14);border-color:#fff}
+.board{background:rgba(8,22,42,.78);backdrop-filter:blur(14px);border:1px solid rgba(255,255,255,.14)}
+.stack{background:#fff}
+#services,#pricing,#faq{background:radial-gradient(rgba(11,31,58,.07) 1px,transparent 1px) 0 0/22px 22px,var(--bg)}
+.dark{border:0;background:radial-gradient(60% 80% at 50% 0%,rgba(45,212,191,.17),transparent 70%),linear-gradient(rgba(255,255,255,.04) 1px,transparent 1px) 0 0/44px 44px,linear-gradient(90deg,rgba(255,255,255,.04) 1px,transparent 1px) 0 0/44px 44px,var(--navy)}
+.dark .head h2{color:#fff}.dark .head p{color:#B6C4D8}.dark .kick{color:var(--teal-b)}
+.dark .card{background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.13);box-shadow:none}
+.dark .card:hover{border-color:var(--teal-b);background:rgba(255,255,255,.1)}
+.dark .card h3{color:#fff}.dark .card p{color:#B6C4D8}.dark .num{background:var(--teal-b);color:var(--navy)}
+.tp{padding:0;overflow:hidden}.tp img{width:100%;height:190px;object-fit:cover;display:block;background:var(--navy);transition:transform .5s}
+.tp:hover img{transform:scale(1.05)}.tp .b{padding:22px 24px 26px}.tr{margin-top:24px}
+.shot{position:relative;border-radius:20px;overflow:hidden;margin:6px 0 24px;box-shadow:var(--sh);background:var(--navy)}
+.shot img{width:100%;height:270px;object-fit:cover;display:block}
+.shot span{position:absolute;left:14px;right:14px;bottom:14px;background:rgba(11,31,58,.92);color:#fff;padding:12px 16px;border-radius:12px;font-size:.85rem;line-height:1.45}
+.band{text-align:center;color:#fff;padding:92px 0;background:linear-gradient(rgba(5,16,32,.86),rgba(11,31,58,.92)),url(https://images.unsplash.com/photo-1553877522-43269d4ea984?auto=format&fit=crop&w=1600&q=80) center/cover,#0B1F3A}
+.band h2{color:#fff;font-size:clamp(1.9rem,4vw,2.7rem);margin-bottom:12px}
+.band p{color:#CBD5E1;max-width:560px;margin:0 auto 26px}
+.contact{border-top:0}
+@media(max-width:940px){.links{background:var(--navy);border-bottom:1px solid rgba(255,255,255,.1)}.topbar span{display:none}.topbar .wrap{justify-content:center}.hero{padding:64px 0 72px}}
 </style>
 </head>
 <body class="no-js">
 <a class="skip" href="#main">Skip to content</a>
 
+<div class="topbar"><div class="wrap"><span>Remote dispatch &amp; front-office support for US HVAC, plumbing &amp; electrical teams</span><button data-cal>Book a free 30-min audit →</button></div></div>
 <header>
   <div class="wrap nav">
     <a class="brand" href="#top" aria-label="Field2Desk home">
       <svg width="34" height="34" viewBox="0 0 64 64" aria-hidden="true"><rect width="64" height="64" rx="14" fill="#0B1F3A"/><path d="M16 36v-4a16 16 0 0 1 32 0v4" fill="none" stroke="#2DD4BF" stroke-width="4" stroke-linecap="round"/><rect x="11" y="32" width="7" height="13" rx="3.5" fill="#2DD4BF"/><rect x="46" y="32" width="7" height="13" rx="3.5" fill="#2DD4BF"/><rect x="28" y="24" width="8" height="16" rx="4" fill="#fff"/></svg>
-      Field<b>2</b>Desk
+      <span class="bn">Field<b>2</b>Desk</span>
     </a>
     <nav class="links" id="links" aria-label="Main">
       <a href="#how">How it works</a><a href="#services">Services</a><a href="#roi">ROI</a><a href="#pricing">Coverage</a><a href="#about">About</a><a href="#faq">FAQ</a>
@@ -234,11 +267,15 @@ footer a{margin:0 18px 0 0}
       <div class="card rv" style="transition-delay:.08s"><div class="ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4.5 8-11a8 8 0 1 0-16 0c0 6.5 8 11 8 11z"/><circle cx="12" cy="11" r="3"/></svg></div><h3>Dispatch & route control</h3><p>We group jobs by zip code, slot urgent calls into open gaps, and text homeowners proactive ETA updates.</p></div>
       <div class="card rv" style="transition-delay:.16s"><div class="ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M7 15l4-4 3 3 5-6"/></svg></div><h3>Quote chasing & reporting</h3><p>We follow up on open estimates within 48 hours, call maintenance members, request reviews, and send a daily summary.</p></div>
     </div>
-    <div class="trades rv"><span class="chip">HVAC</span><span class="chip">Plumbing & drain</span><span class="chip">Electrical</span><span class="chip">Residential & light commercial</span></div>
+    <div class="g3 tr">
+      <div class="card tp rv"><img loading="lazy" width="800" height="380" src="https://images.unsplash.com/photo-1621905251189-08b45d6a269e?auto=format&fit=crop&w=800&q=80" alt="HVAC technician servicing an outdoor condenser"><div class="b"><span class="num">HVAC</span><h3>No-cool triage & tune-ups</h3><p>We capture system age and symptoms, prioritize outages, and keep shoulder-season maintenance boards full.</p></div></div>
+      <div class="card tp rv" style="transition-delay:.08s"><img loading="lazy" width="800" height="380" src="https://images.unsplash.com/photo-1585704032915-c3400ca199e7?auto=format&fit=crop&w=800&q=80" alt="Plumber repairing a residential pipe"><div class="b"><span class="num">Plumbing & drain</span><h3>Urgent leak & main-line dispatch</h3><p>When a homeowner has an active leak or sewer backup, speed wins the job. We calm the caller and route your nearest truck.</p></div></div>
+      <div class="card tp rv" style="transition-delay:.16s"><img loading="lazy" width="800" height="380" src="https://images.unsplash.com/photo-1621905252507-b35492cc74b4?auto=format&fit=crop&w=800&q=80" alt="Electrician inspecting a breaker panel"><div class="b"><span class="num">Electrical</span><h3>Panels, EV chargers & repairs</h3><p>We separate troubleshooting from install estimates and collect panel photos by text before your tech arrives.</p></div></div>
+    </div>
   </div>
 </section>
 
-<section id="how" style="background:var(--white);border-block:1px solid var(--line)">
+<section id="how" class="dark">
   <div class="wrap">
     <div class="head rv"><span class="kick">Getting started</span><h2>From intro call to live phones in about 4 business days</h2><p>We handle the script and workflow setup so you don't lose hours in the field.</p></div>
     <div class="g4">
@@ -250,7 +287,7 @@ footer a{margin:0 18px 0 0}
   </div>
 </section>
 
-<section class="roi" id="roi">
+<section class="roi dark" id="roi">
   <div class="wrap">
     <div class="head rv"><span class="kick">Revenue calculator</span><h2>What are missed calls costing your shop?</h2><p>Move the sliders to estimate monthly revenue lost to voicemail.</p></div>
     <div class="calc rv">
@@ -288,6 +325,7 @@ footer a{margin:0 18px 0 0}
       <h2>A founder-led partner who actually knows dispatch</h2>
       <p>Most virtual assistant agencies hand you a generalist and expect you to explain what a capacitor or a diagnostic fee is. Field2Desk is built from hands-on US home-service operations: live phone lines, dispatch boards, CRM follow-up, and KPI tracking.</p>
       <p>You work directly with the people doing the work, so there's one point of accountability for every call and every slot on your board.</p>
+      <div class="shot"><img loading="lazy" width="900" height="520" src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=900&q=80" alt="Operations team collaborating on dispatch workflows"><span><b style="color:var(--teal-b)">Boutique operations partnership</b><br>A direct extension of your front office.</span></div>
       <button class="btn btn-p" data-cal>Talk to the founders</button>
     </div>
     <div class="guard">
@@ -310,6 +348,8 @@ footer a{margin:0 18px 0 0}
     </div>
   </div>
 </section>
+
+<section class="band"><div class="wrap rv"><span class="kick" style="color:var(--teal-b)">Ready when you are</span><h2>Stop losing jobs to voicemail.</h2><p>Book a 30-minute workflow audit and we'll map exactly where calls, dispatch, and follow-ups are slipping.</p><button class="btn btn-p" data-cal>Book a 30-Min Audit →</button></div></section>
 
 <section class="contact" id="contact">
   <div class="wrap c-g">
