@@ -207,6 +207,27 @@ background:linear-gradient(100deg,rgba(5,16,32,.95) 0%,rgba(11,31,58,.84) 50%,rg
 .band p{color:#CBD5E1;max-width:560px;margin:0 auto 26px}
 .contact{border-top:0}
 @media(max-width:940px){.links{background:var(--navy);border-bottom:1px solid rgba(255,255,255,.1)}.topbar span{display:none}.topbar .wrap{justify-content:center}.hero{padding:64px 0 72px}}
+
+/* ===== v3 backgrounds ===== */
+:root{--wave:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='600' height='600' fill='none' stroke='%230B1F3A' stroke-opacity='.07' stroke-width='1.2'%3E%3Cpath d='M0 100C150 40 250 160 300 100S450 40 600 100' transform='translate(0 0)'/%3E%3Cpath d='M0 100C150 40 250 160 300 100S450 40 600 100' transform='translate(0 60)'/%3E%3Cpath d='M0 100C150 40 250 160 300 100S450 40 600 100' transform='translate(0 120)'/%3E%3Cpath d='M0 100C150 40 250 160 300 100S450 40 600 100' transform='translate(0 180)'/%3E%3Cpath d='M0 100C150 40 250 160 300 100S450 40 600 100' transform='translate(0 240)'/%3E%3Cpath d='M0 100C150 40 250 160 300 100S450 40 600 100' transform='translate(0 300)'/%3E%3Cpath d='M0 100C150 40 250 160 300 100S450 40 600 100' transform='translate(0 360)'/%3E%3Cpath d='M0 100C150 40 250 160 300 100S450 40 600 100' transform='translate(0 420)'/%3E%3Cpath d='M0 100C150 40 250 160 300 100S450 40 600 100' transform='translate(0 480)'/%3E%3Cpath d='M0 100C150 40 250 160 300 100S450 40 600 100' transform='translate(0 540)'/%3E%3C/svg%3E")}
+.hero{overflow:hidden}.hero-g{position:relative;z-index:2}
+.routes{position:absolute;inset:0;width:100%;height:100%;opacity:.55;pointer-events:none;z-index:1}
+.rt path{stroke-dasharray:4 12;animation:dash 6s linear infinite;stroke-opacity:.45}
+@keyframes dash{to{stroke-dashoffset:-160}}
+.pin{transform-box:fill-box;transform-origin:center;animation:ping 2.6s ease-out infinite}
+.pin:nth-child(2){animation-delay:.6s}.pin:nth-child(3){animation-delay:1.2s}.pin:nth-child(4){animation-delay:1.8s}
+@keyframes ping{0%{opacity:1;transform:scale(1)}100%{opacity:.15;transform:scale(3.2)}}
+.wv{position:absolute;left:0;right:0;bottom:-1px;width:100%;height:60px;z-index:2;display:block}
+.dark>.wrap{position:relative;z-index:1}
+.dark::before,.dark::after{content:"";position:absolute;width:620px;height:620px;border-radius:50%;filter:blur(90px);pointer-events:none;animation:drift 18s ease-in-out infinite alternate}
+.dark::before{background:rgba(18,165,148,.32);top:-240px;left:-140px}
+.dark::after{background:rgba(37,99,235,.28);bottom:-280px;right:-160px;animation-delay:-6s}
+@keyframes drift{to{transform:translate(120px,70px) scale(1.15)}}
+.roi{padding-bottom:120px}
+#services,#pricing,#faq{background:radial-gradient(45% 55% at 100% 0%,rgba(18,165,148,.13),transparent 70%),radial-gradient(40% 50% at 0% 100%,rgba(37,99,235,.10),transparent 70%),var(--wave) 0 0/600px 600px,var(--bg)}
+#about{background:radial-gradient(45% 55% at 0% 0%,rgba(18,165,148,.12),transparent 70%),radial-gradient(40% 50% at 100% 100%,rgba(37,99,235,.09),transparent 70%),var(--wave) 0 0/600px 600px,#fff!important}
+.contact{background:radial-gradient(50% 60% at 100% 0%,rgba(18,165,148,.12),transparent 70%),var(--wave) 0 0/600px 600px,#fff}
+@media(prefers-reduced-motion:reduce){.dark::before,.dark::after,.rt path,.pin{animation:none!important}}
 </style>
 </head>
 <body class="no-js">
@@ -231,6 +252,18 @@ background:linear-gradient(100deg,rgba(5,16,32,.95) 0%,rgba(11,31,58,.84) 50%,rg
 
 <main id="main">
 <section class="hero" id="top">
+  <svg class="routes" viewBox="0 0 1200 600" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+    <g fill="none" stroke="#2DD4BF" stroke-width="2" stroke-linecap="round" class="rt">
+      <path id="r1" d="M-40 480C200 380 320 520 560 400S900 300 1240 380"/>
+      <path id="r2" d="M-40 200C180 260 360 120 600 200S980 120 1240 220"/>
+      <path id="r3" d="M300 640C380 520 520 560 640 440S860 460 960 300"/>
+    </g>
+    <g fill="#2DD4BF"><circle class="pin" cx="560" cy="400" r="5"/><circle class="pin" cx="600" cy="200" r="5"/><circle class="pin" cx="960" cy="300" r="5"/><circle class="pin" cx="640" cy="440" r="5"/></g>
+    <circle r="4.5" fill="#fff"><animateMotion dur="9s" repeatCount="indefinite"><mpath href="#r1"/></animateMotion></circle>
+    <circle r="4.5" fill="#fff"><animateMotion dur="11s" begin="-4s" repeatCount="indefinite"><mpath href="#r2"/></animateMotion></circle>
+    <circle r="4.5" fill="#fff"><animateMotion dur="8s" begin="-2s" repeatCount="indefinite"><mpath href="#r3"/></animateMotion></circle>
+  </svg>
+  <svg class="wv" viewBox="0 0 1440 80" preserveAspectRatio="none" aria-hidden="true"><path d="M0 40C240 80 480 0 720 30S1200 80 1440 30V80H0Z" fill="#fff"/></svg>
   <div class="wrap hero-g">
     <div class="rv">
       <span class="tag"><i class="dot"></i>Remote front office for US trade teams</span>
@@ -288,6 +321,7 @@ background:linear-gradient(100deg,rgba(5,16,32,.95) 0%,rgba(11,31,58,.84) 50%,rg
 </section>
 
 <section class="roi dark" id="roi">
+  <svg class="wv" viewBox="0 0 1440 80" preserveAspectRatio="none" aria-hidden="true"><path d="M0 40C240 80 480 0 720 30S1200 80 1440 30V80H0Z" fill="#F7F9FB"/></svg>
   <div class="wrap">
     <div class="head rv"><span class="kick">Revenue calculator</span><h2>What are missed calls costing your shop?</h2><p>Move the sliders to estimate monthly revenue lost to voicemail.</p></div>
     <div class="calc rv">
@@ -382,6 +416,7 @@ background:linear-gradient(100deg,rgba(5,16,32,.95) 0%,rgba(11,31,58,.84) 50%,rg
 
 <script>
 document.body.classList.remove('no-js');
+if(matchMedia('(prefers-reduced-motion: reduce)').matches)document.querySelectorAll('animateMotion').forEach(a=>a.remove());
 const $=id=>document.getElementById(id);
 
 /* Calendly: loaded on first use, with fallback link */
